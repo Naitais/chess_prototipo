@@ -4,7 +4,6 @@ extends State
 @export var sprite = Sprite2D
 @export var actor = Piece
 
-
 signal piece_not_hovered
 signal piece_is_selected
 
@@ -14,15 +13,14 @@ func select_piece() -> void:
 		if Input.is_action_just_pressed("left_click"):
 			
 			Global.selected_piece = actor
+			#despues de hacerle click aumento mas inlcuso el color de la pieza para enfasis
 			sprite.self_modulate = Color(1,2,1)
 			actor.isActive = true
 			
 			#guardo la posicion inicial de la pieza
 			actor.initial_pos = Global.board.local_to_map(actor.global_position)
 			emit_signal("piece_is_selected")
-	
-		
-
+			
 #con esta funcion saco color opaco a la pieza que estoy hovereando
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:

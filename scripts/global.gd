@@ -2,8 +2,9 @@ extends Node
 
 
 var killed_piece: Piece
-var target_piece: Piece #hovered piece
+#var target_piece: Piece #hovered piece
 var selected_piece: Piece
+var selected_target_piece: Piece
 var tilemap_positions: Array = []
 var occupied_positions: Array = []
 var pieces_on_board: Array = []
@@ -23,6 +24,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print(occupied_positions)
+	#print(selected_target_piece)
 	#print(board)
 	pass

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/state scripts/select_piece_state.gd" id="4_l4vg0"]
 [ext_resource type="Script" path="res://scripts/state scripts/inactive_piece_state.gd" id="4_tvhtt"]
 [ext_resource type="Script" path="res://scripts/state scripts/move_piece_state.gd" id="6_fsx40"]
-[ext_resource type="Script" path="res://scripts/state scripts/KillPieceState.gd" id="7_iithq"]
+[ext_resource type="Script" path="res://scripts/state scripts/ReceiveDamageState.gd" id="7_iithq"]
 [ext_resource type="Texture2D" uid="uid://ymd732tflole" path="res://resources/pieza_marco.png" id="8_8er10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dp6h"]
@@ -58,9 +58,10 @@ actor = NodePath("../..")
 script = ExtResource("6_fsx40")
 actor = NodePath("../..")
 
-[node name="KillPieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor")]
+[node name="ReceiveDamageState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "sprite")]
 script = ExtResource("7_iithq")
 actor = NodePath("../..")
+sprite = NodePath("../../Sprite2D")
 
 [node name="health_lbl" type="Label" parent="."]
 z_index = 1

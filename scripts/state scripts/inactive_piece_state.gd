@@ -4,6 +4,7 @@ extends State
 @export var actor = Piece
 
 signal piece_hovered
+signal piece_is_target
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

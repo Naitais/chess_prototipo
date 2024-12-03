@@ -35,11 +35,14 @@ var square_positions: Array
 @onready var select_piece_state = $StateMachine/SelectPieceState as SelectPieceState
 @onready var inactive_piece_state = $StateMachine/InactivePieceState as InactivePieceState
 @onready var move_piece_state = $StateMachine/MovePieceState as MovePieceState
+@onready var receive_damage_state = $StateMachine/ReceiveDamageState as ReceiveDamageState
 
 
 func _ready():
 	
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
+	inactive_piece_state.piece_is_target.connect(state_machine.change_state.bind(receive_damage_state))
+	receive_damage_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
 	select_piece_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
 	select_piece_state.piece_is_selected.connect(state_machine.change_state.bind(move_piece_state))
 	move_piece_state.piece_is_inactive.connect(state_machine.change_state.bind(inactive_piece_state))
@@ -54,27 +57,25 @@ func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
 	set_stats()
 	
-	
 func _on_piece_area_mouse_entered():
 	
-	#si hovereo a una pieza y esta inactivo entonces la marco como una pieza que va a ser matada
-	#si el estado es seleccionar pieza no pasa nada
-	#si el estado es mover entonces la pieza muere
+	#hovereo la pieza que quiero seleccionar para mover
 	if isActive == false:
-		#guardo la pieza que estoy hovereando
-		Global.target_piece = self
+		#activo la señal para seleccionar la pieza si es que hago click
 		inactive_piece_state.emit_signal("piece_hovered")
 		
+	#si la pieza seleccionada para moverse ya existe, 
+	#entonces es porque estoy buscando un objetivo para atacar
+	if isActive == false and Global.selected_piece and team != Global.selected_piece.team:
+		inactive_piece_state.emit_signal("piece_is_target")
+		
 func _on_piece_area_mouse_exited():
-	
 	#solo envio señal cuando la pieza esta inactiva sino cuando
 	#salgo del area de la pieza me saca del move state 
 	if !isActive:
 		select_piece_state.emit_signal("piece_not_hovered")
-		
-		#seteo null cuando ya no estoy hovereando a la misma pieza
-		if Global.target_piece == self:
-			Global.target_piece = null
+		receive_damage_state.emit_signal("piece_not_hovered")
+	
 
 func set_opaque_sprite() -> void:
 	#solo es opaca cuando esta inactiva
@@ -104,7 +105,6 @@ func set_piece_colour() -> void:
 		pass
 		
 func set_stats() -> void:
-	
 	
 	health_lbl.text = str(health)
 	physical_dmg_lbl.text = str(physical_damage)
