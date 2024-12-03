@@ -44,8 +44,9 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	
-	select_piece()
-	highlight_hovered_piece()
+	if Global.turn == actor.team:
+		#print("es mi turno", actor.team)
+		select_piece()
+		highlight_hovered_piece()
 	
 	

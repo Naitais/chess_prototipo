@@ -32,6 +32,7 @@ func _ready():
 	#team = jugador.team
 	#print(team," ", self.name, " ",jugador)
 	#conexiones de state machine
+	
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	select_piece_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
 	select_piece_state.piece_is_selected.connect(state_machine.change_state.bind(move_piece_state))

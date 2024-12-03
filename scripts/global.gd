@@ -8,12 +8,13 @@ var tilemap_positions: Array = []
 var occupied_positions: Array = []
 var pieces_on_board: Array = []
 var board: TileMap = null
+var turn: String = "blue" #siempre empieza el azul
 
 
 #TODO
 # logica de turnos
 # limpiar el codigo y comentar mas
-# arreglar como llego a board desde cada pieza (board = get_parent().get_parent().get_parent())
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
