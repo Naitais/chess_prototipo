@@ -7,6 +7,10 @@
 [node name="bishop" instance=ExtResource("1_nqcis")]
 script = ExtResource("2_706tu")
 movement = 10
+physical_damage = 2
+magic_damage = 1
+health = 2
+magic_shield = 1
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_1qlgq")

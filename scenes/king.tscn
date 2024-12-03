@@ -7,6 +7,8 @@
 [node name="king" instance=ExtResource("1_5gm3n")]
 script = ExtResource("2_x585j")
 movement = 1
+physical_damage = 2
+health = 10
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_mpo5l")

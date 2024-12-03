@@ -8,6 +8,19 @@ class_name Piece
 @export var movement: int
 @export var team: String
 
+#TODO ESTADISTICAS
+@export var physical_damage: int
+@export var magic_damage: int
+@export var health: int
+@export var armor: int
+@export var magic_shield: int
+
+@onready var health_lbl = $health_lbl
+@onready var physical_dmg_lbl = $physical_dmg_lbl
+@onready var magical_dmg_lbl = $magical_dmg_lbl
+@onready var armor_lbl = $armor_lbl
+@onready var magical_shield_lbl = $magical_shield_lbl
+
 
 @onready var sprite = $Sprite2D
 @onready var mouse_pos: Vector2
@@ -26,13 +39,6 @@ var square_positions: Array
 
 func _ready():
 	
-	#esto lo tengo que modificar xd
-	#board = get_parent().get_parent().get_parent()
-	#jugador = get_parent().get_parent()
-	#team = jugador.team
-	#print(team," ", self.name, " ",jugador)
-	#conexiones de state machine
-	
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	select_piece_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
 	select_piece_state.piece_is_selected.connect(state_machine.change_state.bind(move_piece_state))
@@ -46,6 +52,7 @@ func _physics_process(delta):
 	set_opaque_sprite()
 	set_piece_colour()
 	mouse_pos = get_global_mouse_position()
+	set_stats()
 	
 	
 func _on_piece_area_mouse_entered():
@@ -90,7 +97,18 @@ func deselect_piece() -> void:
 
 func set_piece_colour() -> void:
 	if team == "blue":
-		modulate = Color8(0,126,255)
+		sprite.modulate = Color8(0,126,255)
+		pass
 	else:
-		modulate = Color8(255,0,50)
+		sprite.modulate = Color8(255,0,50)
+		pass
 		
+func set_stats() -> void:
+	
+	
+	health_lbl.text = str(health)
+	physical_dmg_lbl.text = str(physical_damage)
+	armor_lbl.text = str(armor)
+	magical_dmg_lbl.text = str(magic_damage)
+	magical_shield_lbl.text = str(magic_shield)
+	

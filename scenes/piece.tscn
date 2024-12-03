@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxvjrp620tk5u"]
+[gd_scene load_steps=11 format=3 uid="uid://dxvjrp620tk5u"]
 
 [ext_resource type="Script" path="res://scripts/piece.gd" id="1_n3k7r"]
 [ext_resource type="Texture2D" uid="uid://gw2xv4al0cm6" path="res://icon.svg" id="1_ypukh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/state scripts/inactive_piece_state.gd" id="4_tvhtt"]
 [ext_resource type="Script" path="res://scripts/state scripts/move_piece_state.gd" id="6_fsx40"]
 [ext_resource type="Script" path="res://scripts/state scripts/KillPieceState.gd" id="7_iithq"]
+[ext_resource type="Texture2D" uid="uid://ymd732tflole" path="res://resources/pieza_marco.png" id="8_8er10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dp6h"]
 size = Vector2(54, 54)
@@ -60,6 +61,51 @@ actor = NodePath("../..")
 [node name="KillPieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor")]
 script = ExtResource("7_iithq")
 actor = NodePath("../..")
+
+[node name="health_lbl" type="Label" parent="."]
+z_index = 1
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 16.0
+offset_bottom = 60.0
+text = "1"
+
+[node name="physical_dmg_lbl" type="Label" parent="."]
+z_index = 1
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 16.0
+offset_bottom = 19.0
+text = "1"
+
+[node name="magical_dmg_lbl" type="Label" parent="."]
+z_index = 1
+offset_left = 52.0
+offset_top = -4.0
+offset_right = 66.0
+offset_bottom = 19.0
+text = "1"
+
+[node name="armor_lbl" type="Label" parent="."]
+z_index = 1
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 15.0
+offset_bottom = 34.0
+text = "1"
+
+[node name="magical_shield_lbl" type="Label" parent="."]
+z_index = 1
+offset_left = 52.0
+offset_top = 11.0
+offset_right = 64.0
+offset_bottom = 34.0
+text = "1"
+
+[node name="estadisticas_marco" type="Sprite2D" parent="."]
+position = Vector2(32, 33)
+scale = Vector2(0.6875, 0.699219)
+texture = ExtResource("8_8er10")
 
 [connection signal="mouse_entered" from="piece_area" to="." method="_on_piece_area_mouse_entered"]
 [connection signal="mouse_exited" from="piece_area" to="." method="_on_piece_area_mouse_exited"]

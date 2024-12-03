@@ -7,6 +7,9 @@
 [node name="peon" instance=ExtResource("1_bph8t")]
 script = ExtResource("2_grxie")
 movement = 2
+physical_damage = 1
+health = 1
+armor = 1
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_3hrem")

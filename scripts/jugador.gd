@@ -14,16 +14,6 @@ var ROOK = load("res://scenes/rook.tscn").instantiate()
 func _ready():
 	set_team()
 	arrange_pieces(team)
-	#var king: King = KING.instantiate()
-	#var king2: King = KING.instantiate()
-	#add_child(king)
-	#add_child(king2.duplicate())
-	
-	
-	#king.global_position = Vector2(4,0) * 64
-	#king2.global_position = Vector2(3,0) * 64
-	#AHCERLO POR JUGADOR, O SEA DE A UNO SIN CARGAR LOS DOS
-	
 	
 func set_team() -> void:
 	for piece in piezas.get_children():
