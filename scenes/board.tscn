@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwqaaoyag530b"]
+
+[ext_resource type="Texture2D" uid="uid://c8k3hs5tffddn" path="res://resources/available_tile.png" id="1_3v4uj"]
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_ve1ml"]
+[ext_resource type="Texture2D" uid="uid://bw14pkmm1ub0w" path="res://resources/board_tiles.png" id="1_y5do3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6dcve"]
+texture = ExtResource("1_3v4uj")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k21c1"]
+texture = ExtResource("1_y5do3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hw3vl"]
+tile_size = Vector2i(64, 64)
+sources/2 = SubResource("TileSetAtlasSource_k21c1")
+sources/1 = SubResource("TileSetAtlasSource_6dcve")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hejjt"]
+size = Vector2(512, 512)
+
+[node name="board" type="TileMap"]
+tile_set = SubResource("TileSet_hw3vl")
+rendering_quadrant_size = 64
+format = 2
+layer_0/tile_data = PackedInt32Array(1, 2, 0, 0, 65538, 0, 2, 65538, 0, 65537, 65538, 0, 131074, 65538, 0, 131072, 65538, 0, 196609, 65538, 0, 262146, 65538, 0, 262144, 65538, 0, 327681, 65538, 0, 393218, 65538, 0, 393216, 65538, 0, 458753, 65538, 0, 458755, 65538, 0, 458757, 65538, 0, 393220, 65538, 0, 327683, 65538, 0, 262148, 65538, 0, 196611, 65538, 0, 131076, 65538, 0, 65539, 65538, 0, 4, 65538, 0, 65541, 65538, 0, 6, 65538, 0, 131078, 65538, 0, 196615, 65538, 0, 196613, 65538, 0, 262150, 65538, 0, 327687, 65538, 0, 327685, 65538, 0, 393222, 65538, 0, 458759, 65538, 0, 65538, 2, 0, 3, 2, 0, 65536, 2, 0, 131073, 2, 0, 196608, 2, 0, 327680, 2, 0, 458752, 2, 0, 393217, 2, 0, 262145, 2, 0, 196610, 2, 0, 327682, 2, 0, 262147, 2, 0, 393219, 2, 0, 458754, 2, 0, 327684, 2, 0, 458756, 2, 0, 393221, 2, 0, 458758, 2, 0, 393223, 2, 0, 327686, 2, 0, 262151, 2, 0, 262149, 2, 0, 196614, 2, 0, 131077, 2, 0, 196612, 2, 0, 131075, 2, 0, 65540, 2, 0, 5, 2, 0, 65542, 2, 0, 7, 2, 0, 131079, 2, 0, 65543, 65538, 0)
+script = ExtResource("1_ve1ml")
+
+[node name="board_area" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="board_area"]
+show_behind_parent = true
+position = Vector2(256, 256)
+shape = SubResource("RectangleShape2D_hejjt")
+
+[connection signal="body_entered" from="board_area" to="." method="_on_board_area_body_entered"]
+[connection signal="body_exited" from="board_area" to="." method="_on_board_area_body_exited"]
+[connection signal="mouse_entered" from="board_area" to="." method="_on_board_area_mouse_entered"]
+[connection signal="mouse_exited" from="board_area" to="." method="_on_board_area_mouse_exited"]

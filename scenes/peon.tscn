@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://5400q1w52bni"]
+
+[ext_resource type="PackedScene" uid="uid://dxvjrp620tk5u" path="res://scenes/piece.tscn" id="1_bph8t"]
+[ext_resource type="Script" path="res://scripts/peon.gd" id="2_grxie"]
+[ext_resource type="Texture2D" uid="uid://cshp5edshqpbg" path="res://resources/peon.png" id="3_3hrem"]
+
+[node name="peon" instance=ExtResource("1_bph8t")]
+script = ExtResource("2_grxie")
+movement = 2
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_3hrem")

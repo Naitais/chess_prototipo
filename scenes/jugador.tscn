@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://v36qteennc35"]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_3fj0r"]
+[ext_resource type="PackedScene" uid="uid://64iv6ktxuxgk" path="res://scenes/bishop.tscn" id="2_vx4o5"]
+[ext_resource type="PackedScene" uid="uid://cwemggqjy3icr" path="res://scenes/caballero.tscn" id="3_1bwpu"]
+[ext_resource type="PackedScene" uid="uid://yyp8uwu3eenw" path="res://scenes/king.tscn" id="4_i26kw"]
+[ext_resource type="PackedScene" uid="uid://5400q1w52bni" path="res://scenes/peon.tscn" id="5_ey6qb"]
+[ext_resource type="PackedScene" uid="uid://dh65ow8l6pld7" path="res://scenes/queen.tscn" id="6_cdsm0"]
+[ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="7_mokob"]
+
+[node name="jugador" type="Node2D"]
+script = ExtResource("1_3fj0r")
+team = "red"
+
+[node name="piezas" type="Node2D" parent="."]
+
+[node name="king" parent="piezas" instance=ExtResource("4_i26kw")]
+position = Vector2(257, 457)
+team = "blue"
+
+[node name="caballero" parent="piezas" instance=ExtResource("3_1bwpu")]
+position = Vector2(64, 2)
+
+[node name="caballero2" parent="piezas" instance=ExtResource("3_1bwpu")]
+position = Vector2(438, 2)
+team = "blue"
+
+[node name="peon" parent="piezas" instance=ExtResource("5_ey6qb")]
+position = Vector2(76, 452)
+team = "blue"
+
+[node name="peon2" parent="piezas" instance=ExtResource("5_ey6qb")]
+position = Vector2(8, 445)
+team = "blue"
+
+[node name="peon3" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="peon4" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="peon5" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="peon6" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="peon7" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="peon8" parent="piezas" instance=ExtResource("5_ey6qb")]
+team = "red"
+
+[node name="queen" parent="piezas" instance=ExtResource("6_cdsm0")]
+team = "red"
+
+[node name="rook" parent="piezas" instance=ExtResource("7_mokob")]
+team = "red"
+
+[node name="rook2" parent="piezas" instance=ExtResource("7_mokob")]
+team = "red"
+
+[node name="bishop" parent="piezas" instance=ExtResource("2_vx4o5")]
+team = "red"
+
+[node name="bishop2" parent="piezas" instance=ExtResource("2_vx4o5")]
+team = "red"

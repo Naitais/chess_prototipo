@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxvjrp620tk5u"]
+
+[ext_resource type="Script" path="res://scripts/piece.gd" id="1_n3k7r"]
+[ext_resource type="Texture2D" uid="uid://gw2xv4al0cm6" path="res://icon.svg" id="1_ypukh"]
+[ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="3_28a3i"]
+[ext_resource type="Script" path="res://scripts/state scripts/select_piece_state.gd" id="4_l4vg0"]
+[ext_resource type="Script" path="res://scripts/state scripts/inactive_piece_state.gd" id="4_tvhtt"]
+[ext_resource type="Script" path="res://scripts/state scripts/move_piece_state.gd" id="6_fsx40"]
+[ext_resource type="Script" path="res://scripts/state scripts/KillPieceState.gd" id="7_iithq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dp6h"]
+size = Vector2(54, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8lqu"]
+size = Vector2(54.5, 54)
+
+[node name="piece" type="CharacterBody2D"]
+top_level = true
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_n3k7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_8dp6h")
+debug_color = Color(1, 0, 0.0856009, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ypukh")
+
+[node name="piece_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="piece_area"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_a8lqu")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_28a3i")
+state = NodePath("InactivePieceState")
+
+[node name="InactivePieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor")]
+script = ExtResource("4_tvhtt")
+actor = NodePath("../..")
+
+[node name="SelectPieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite", "actor")]
+script = ExtResource("4_l4vg0")
+sprite = NodePath("../../Sprite2D")
+actor = NodePath("../..")
+
+[node name="MovePieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor")]
+script = ExtResource("6_fsx40")
+actor = NodePath("../..")
+
+[node name="KillPieceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor")]
+script = ExtResource("7_iithq")
+actor = NodePath("../..")
+
+[connection signal="mouse_entered" from="piece_area" to="." method="_on_piece_area_mouse_entered"]
+[connection signal="mouse_exited" from="piece_area" to="." method="_on_piece_area_mouse_exited"]

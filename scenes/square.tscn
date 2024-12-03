@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1wxhp2n7w14c"]
+
+[ext_resource type="Script" path="res://scripts/square.gd" id="1_c0fsh"]
+[ext_resource type="Texture2D" uid="uid://c8k3hs5tffddn" path="res://resources/available_tile.png" id="2_jcru2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7upea"]
+size = Vector2(56, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0uwn"]
+size = Vector2(35.5, 35)
+
+[node name="square" type="StaticBody2D"]
+script = ExtResource("1_c0fsh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jcru2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_7upea")
+
+[node name="detect_piece" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_piece"]
+shape = SubResource("RectangleShape2D_f0uwn")
+debug_color = Color(0.92976, 0.227082, 0.355285, 0.42)
+
+[connection signal="body_entered" from="detect_piece" to="." method="_on_detect_piece_body_entered"]
