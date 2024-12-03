@@ -56,6 +56,7 @@ func _physics_process(delta):
 	set_piece_colour()
 	mouse_pos = get_global_mouse_position()
 	set_stats()
+	kill_piece()
 	
 func _on_piece_area_mouse_entered():
 	
@@ -111,4 +112,7 @@ func set_stats() -> void:
 	armor_lbl.text = str(armor)
 	magical_dmg_lbl.text = str(magic_damage)
 	magical_shield_lbl.text = str(magic_shield)
-	
+
+func kill_piece() -> void:
+	if health <= 0:
+		self.queue_free()

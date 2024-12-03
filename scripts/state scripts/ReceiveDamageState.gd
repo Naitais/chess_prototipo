@@ -9,7 +9,7 @@ signal piece_not_hovered
 func receive_damage() -> void:
 	if Global.selected_piece:
 		if Input.is_action_just_pressed("left_click"):
-			actor.health -=1
+			actor.health -= Global.selected_piece.physical_damage
 			actor.set_stats()
 			
 func highlight_hovered_piece() -> void:
