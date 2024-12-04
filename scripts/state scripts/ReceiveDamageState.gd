@@ -5,15 +5,25 @@ extends State
 @export var sprite = Sprite2D
 
 signal piece_not_hovered
+signal piece_attack_finished
 
 #funciona bien pero esta checkeando por piezas que no corresponde porque me tira fuera de rango
 #incluso cuando esta en rango
 func receive_damage() -> void:
+	
+	#el ataque solo funciona si el jugador de la pieza no ataco en su turno actual
 	if Global.selected_piece and Input.is_action_just_pressed("left_click") and !Global.selected_piece.jugador.ataque_realizado:
+		
+		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
-		#reviso que la pieza atacada esta en rango de la pieza atacante
+		
+		#obtengo las posiciones de rango melee del atacante
 		var posiciones_off_del_atacante: Array = Global.selected_piece.posiciones_de_ataque #pos ofensivas
+		
+		#obtengo la posicion de la pieza atacada
 		var pos_actual: Vector2 = Global.board.local_to_map(actor.global_position)
+		
+		#reviso que la pieza atacada esta en rango de la pieza atacante
 		for posicion in posiciones_off_del_atacante: #reviso cada posicion of y si coincide con la pieza clickeada
 			if posicion == pos_actual:  			 #entonces hace daño
 				if actor.armor > 0:
@@ -23,6 +33,7 @@ func receive_damage() -> void:
 					
 					# Calculate remaining damage after armor
 					var rest_damage = damage_taken - damage_to_armor
+					
 					actor.health -= rest_damage
 					
 					#despues de realizar el ataque, seteo variable del jugador en true
@@ -32,13 +43,33 @@ func receive_damage() -> void:
 				else:
 					# If no armor, apply all damage to health
 					actor.health -= damage_taken
-			
+					
+		#actualizo los stats de la pieza atacada
 		actor.set_stats()
+		
+		#aca deberia ir la funcion que mueve la pieza si es que mato a la pieza atacada
+		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
 		
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:
 		sprite.self_modulate = Color(1,1,1)
-		
+
+func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) -> void:
+	
+	#desactivo la pieza
+	attacker.deselect_piece_no_click()
+	
+	#ejecuto tween para mover la pieza a la posicion de la pieza que murio
+	var tween: Tween = get_tree().create_tween()				
+	tween.tween_property(attacker, "position", killed_piece_pos * 64, 0.5)
+	await tween.finished
+	
+	
+	
+	
+	#attacker.global_position = killed_piece_pos * 64
+	
+
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)

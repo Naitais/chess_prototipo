@@ -14,8 +14,9 @@ var jugadores: Array
 #var game_end: bool = false
 var round_counter: int = 0
 #TODO
-# logica de turnos
+# logica de turnos -> agregar temporizador y agregar contador de rondas y turnos
 # limpiar el codigo y comentar mas
+# ver si agregar que al matar la pieza que mata ocupe el lugar de la pieza muerta
 		
 
 func end_turn() -> void:

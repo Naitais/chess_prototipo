@@ -14,28 +14,21 @@ func move_piece() -> void:
 	if Input.is_action_just_pressed("left_click"):
 		
 		for square in get_children():
-			#si la pieza a matar existe y no es la que estoy moviendo entonces la mato
-			#if Global.target_piece and Global.target_piece != actor and Global.target_piece.team != actor.team:
-			#	Global.target_piece.queue_free()
-			
-			#muevo la pieza solo si su posicion coincide con los cuadrados
-			
 			
 			if actor.isActive and Global.board.local_to_map(square.global_position) == Global.board.local_to_map(final_pos):
 				set_invisible_squares()
-				#print(is_path_clear(actor.board.local_to_map(square.global_position), actor.board.local_to_map(final_pos)))
-				var tween: Tween = get_tree().create_tween()
-				#actor.global_position = actor.board.local_to_map(final_pos) * 64
+				
+				var tween: Tween = get_tree().create_tween()				
 				tween.tween_property(actor, "position", Vector2(Global.board.local_to_map(final_pos) * 64), 0.5)
 				await tween.finished
-				
-				
-				
+
 				#seteo como true el movimiento del jugador
 				actor.jugador.pieza_movida = true
+				
 				#actualizo info de label
 				actor.jugador.update_player_labels()
 				actor.isActive = false #desactivo pieza
+				
 				#cambio a null la pieza seleccionada en el global despues de mover
 				Global.selected_piece = null
 				
@@ -43,10 +36,11 @@ func move_piece() -> void:
 				if actor is Pawn:
 					actor.movement = 1
 			
+			#seteo la posicion final
 			actor.final_pos = Global.board.local_to_map(final_pos)
+			
 			#limpio las posiciones ocupadas despues de mover
 			Global.occupied_positions.clear()
-
 
 #esta funcion tengo que modificarla para que en lugar de calcular aca los espacios
 #cada clase tenga su metodo y lo llamo aca pero bueno por ahora queda asi
@@ -167,25 +161,21 @@ func is_path_clear(end_pos: Vector2) -> bool:
 	if actor is not Knight:
 		# Get the starting position in map coordinates
 		var start_pos: Vector2 = Global.board.local_to_map(actor.global_position)
-		#print("Start position:", start_pos)
-		#print("End position:", end_pos)
 
 		# Compute the direction vector as an integer step
 		var direction: Vector2 = (end_pos - start_pos).sign()  # -1, 0, or 1 step
-		#print("Direction:", direction)
 
 		# Initialize the current position
 		var current_pos: Vector2 = start_pos + direction
 
 		# Traverse the path to the target
 		while current_pos != end_pos:
-			#print("Checking position:", current_pos)
 
 			# Check if the tile is occupied by any piece
 			for piece in Global.pieces_on_board:
 				var piece_pos = Global.board.local_to_map(piece.global_position)
 				if Vector2(piece_pos) == current_pos:
-					#print("Path blocked at:", current_pos)
+					
 					return false  # Path is blocked
 
 			# Increment to the next position in the path
@@ -193,29 +183,6 @@ func is_path_clear(end_pos: Vector2) -> bool:
 
 	# If no piece blocks the path, it's clear
 	return true
-
-
-#reviso si las ubicaciones para movimientos coinciden con la posicion de otra pieza
-func pos_is_another_piece(position) -> bool:
-	var occupied_pos: Array = []
-	
-	var converted_pos: Vector2 = actor.board.local_to_map(position)
-	
-	for piece in Global.pieces_on_board:
-		if piece.name == "peon":
-			occupied_pos.append(actor.board.local_to_map(piece.global_position))
-	print("square pos",converted_pos)
-	print("pieces pos",occupied_pos[0])
-	
-	if converted_pos in occupied_pos:
-		return false
-		#delete_squares_set()
-	return true
-	
-	#if converted_pos in Global.tilemap_positions:
-		#return true
-			
-	#return false
 
 
 func _ready():

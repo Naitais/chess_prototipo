@@ -27,8 +27,8 @@ func select_piece() -> void:
 func set_offensive_squares() -> void:
 	#actor.posiciones_de_ataque
 	actor.posiciones_de_ataque.clear()
-	# TODO AGREGAR LOGICA PARA QUE SI UNA ESTADISTICA ESTA EN 0 QUE NO LA MUESTRE PORQUE ES RUIDOSO A LA VISTA
-	# DAMOS POR SENTADO QUE SI ESTA EN 0 NO TIENE ESA PROPIEDAD ACTIVA
+	
+	#posicion actual de la pieza
 	var pos_actual: Vector2 = Global.board.local_to_map(actor.global_position)
 	if actor is Queen or actor is Knight or actor is King:
 		
@@ -60,7 +60,8 @@ func set_offensive_squares() -> void:
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, -1))  # top-right
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, 1))  # bottom-left
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, 1))   # bottom-right
-		
+	
+	
 #con esta funcion saco color opaco a la pieza que estoy hovereando
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:

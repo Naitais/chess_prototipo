@@ -100,6 +100,15 @@ func deselect_piece() -> void:
 		isActive = false
 		sprite.self_modulate = Color(1,1,1)
 		move_piece_state.emit_signal("piece_is_inactive")
+	
+func deselect_piece_no_click() -> void:
+	Global.selected_piece = null
+	posiciones_de_ataque.clear()
+	isActive = false
+	sprite.self_modulate = Color(1,1,1)
+	move_piece_state.emit_signal("piece_is_inactive")
+
+
 
 func set_piece_colour() -> void:
 	if team == "blue":
