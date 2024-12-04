@@ -105,14 +105,25 @@ func set_piece_colour() -> void:
 	else:
 		sprite.modulate = Color8(255,0,50)
 		pass
-		
+
+
+#armar un nodo que tenga todo contenido lo de estadisticas
+# hacer un sprite separado para cada estadistica asi
+# cuando vale 0 desaparace tambien el sprite porque
+#como funciona ahora queda el circulo de la estadistica colgado
+func _update_stat_label(label: Label, value: int) -> void:
+	label.visible = value > 0  # Show label only if value > 0
+	if value > 0:
+		label.text = str(value)  # Update text only when label is visible
+
 func set_stats() -> void:
+	_update_stat_label(health_lbl, health)
+	_update_stat_label(physical_dmg_lbl, physical_damage)
+	_update_stat_label(armor_lbl, armor)
+	_update_stat_label(magical_dmg_lbl, magic_damage)
+	_update_stat_label(magical_shield_lbl, magic_shield)
 	
-	health_lbl.text = str(health)
-	physical_dmg_lbl.text = str(physical_damage)
-	armor_lbl.text = str(armor)
-	magical_dmg_lbl.text = str(magic_damage)
-	magical_shield_lbl.text = str(magic_shield)
+	
 
 
 	
