@@ -141,5 +141,9 @@ func set_stats() -> void:
 	_update_stat_label(magical_shield_lbl, magic_shield)
 
 func kill_piece() -> void:
+	#reviso si la pieza que murio es el rey, si es asi el juego termina
+	if health <= 0 and self is King:
+		Global.check_game_end(team)
+	
 	if health <= 0:
 		self.queue_free()

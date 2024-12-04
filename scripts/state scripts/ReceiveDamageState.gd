@@ -34,6 +34,7 @@ func receive_damage() -> void:
 					# Calculate remaining damage after armor
 					var rest_damage = damage_taken - damage_to_armor
 					
+					
 					actor.health -= rest_damage
 					
 					#despues de realizar el ataque, seteo variable del jugador en true
@@ -48,7 +49,7 @@ func receive_damage() -> void:
 		actor.set_stats()
 		
 		#aca deberia ir la funcion que mueve la pieza si es que mato a la pieza atacada
-		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
+		#move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
 		
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:
@@ -56,6 +57,8 @@ func highlight_hovered_piece() -> void:
 
 func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) -> void:
 	
+	#se me bugea la pieza porque cuando ataco antes de moverme puedo seguir atacando infinitamente
+	#tengo que revisar esto
 	#desactivo la pieza
 	attacker.deselect_piece_no_click()
 	
@@ -63,6 +66,7 @@ func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) 
 	var tween: Tween = get_tree().create_tween()				
 	tween.tween_property(attacker, "position", killed_piece_pos * 64, 0.5)
 	await tween.finished
+	
 	
 	
 	
