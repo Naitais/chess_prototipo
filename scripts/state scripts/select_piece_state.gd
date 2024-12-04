@@ -4,6 +4,7 @@ extends State
 @export var sprite = Sprite2D
 @export var actor = Piece
 
+
 signal piece_not_hovered
 signal piece_is_selected
 
@@ -20,7 +21,20 @@ func select_piece() -> void:
 			#guardo la posicion inicial de la pieza
 			actor.initial_pos = Global.board.local_to_map(actor.global_position)
 			emit_signal("piece_is_selected")
-			
+
+#setea los espacios de cada pieza en los cuales puede detectar piezas enemigas para atacar
+func set_offensive_squares() -> void:
+	#actor.posiciones_de_ataque
+	
+	# TODO AGREGAR LOGICA PARA QUE SI UNA ESTADISTICA ESTA EN 0 QUE NO LA MUESTRE PORQUE ES RUIDOSO A LA VISTA
+	# DAMOS POR SENTADO QUE SI ESTA EN 0 NO TIENE ESA PROPIEDAD ACTIVA
+	var pos_actual: Vector2
+	if actor is Queen:
+		print(Global.board.local_to_map(actor.global_position)," ", actor.name)
+		
+		pos_actual = Global.board.local_to_map(actor.global_position)
+		
+
 #con esta funcion saco color opaco a la pieza que estoy hovereando
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:

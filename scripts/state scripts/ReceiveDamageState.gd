@@ -21,10 +21,8 @@ func receive_damage() -> void:
 		else:
 			# If no armor, apply all damage to health
 			actor.health -= damage_taken
+		actor.set_stats()
 		
-		actor.set_stats()  # Update stats
-
-			
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:
 		sprite.self_modulate = Color(1,1,1)

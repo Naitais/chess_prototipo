@@ -1,14 +1,15 @@
 extends Node2D
 class_name Jugador
-var turno_activo: bool
+
 @export var team: String 
 @onready var piezas = $piezas
 
-var BISHOP = load("res://scenes/bishop.tscn").instantiate()
-var CABALLERO = load("res://scenes/caballero.tscn").instantiate()
-var KING = load("res://scenes/king.tscn").instantiate()
-var QUEEN = load("res://scenes/queen.tscn").instantiate()
-var ROOK = load("res://scenes/rook.tscn").instantiate()
+var turno_activo: bool
+
+#VARIABLES DE ACCIONES DEL TURNO si ambas vars son true, automaticamente se pasa el turno
+#si ya se ataco o se movio no se puede vovler a hacer hasta el proximo turno
+var ataque_realizado: bool = false
+var pieza_movida: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

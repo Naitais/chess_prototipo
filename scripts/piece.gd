@@ -8,7 +8,7 @@ class_name Piece
 @export var movement: int
 @export var team: String
 
-#TODO ESTADISTICAS
+#ESTADISTICAS
 @export var physical_damage: int
 @export var magic_damage: int
 @export var health: int
@@ -27,8 +27,8 @@ class_name Piece
 @onready var jugador: Node2D
 
 var square_positions: Array
-
-
+var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
+								#rey, reina y caballo tienen la misma logica
 
 #state machine vars
 @onready var state_machine = $StateMachine as StateMachine
@@ -46,6 +46,8 @@ func _ready():
 	select_piece_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
 	select_piece_state.piece_is_selected.connect(state_machine.change_state.bind(move_piece_state))
 	move_piece_state.piece_is_inactive.connect(state_machine.change_state.bind(inactive_piece_state))
+	set_stats()
+	
 	
 func _physics_process(delta):
 	
@@ -55,7 +57,6 @@ func _physics_process(delta):
 	set_opaque_sprite()
 	set_piece_colour()
 	mouse_pos = get_global_mouse_position()
-	set_stats()
 	kill_piece()
 	
 func _on_piece_area_mouse_entered():
@@ -112,6 +113,10 @@ func set_stats() -> void:
 	armor_lbl.text = str(armor)
 	magical_dmg_lbl.text = str(magic_damage)
 	magical_shield_lbl.text = str(magic_shield)
+
+
+	
+	
 
 func kill_piece() -> void:
 	if health <= 0:
