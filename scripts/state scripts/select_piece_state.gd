@@ -26,12 +26,12 @@ func select_piece() -> void:
 #setea los espacios de cada pieza en los cuales puede detectar piezas enemigas para atacar
 func set_offensive_squares() -> void:
 	#actor.posiciones_de_ataque
-	
+	actor.posiciones_de_ataque.clear()
 	# TODO AGREGAR LOGICA PARA QUE SI UNA ESTADISTICA ESTA EN 0 QUE NO LA MUESTRE PORQUE ES RUIDOSO A LA VISTA
 	# DAMOS POR SENTADO QUE SI ESTA EN 0 NO TIENE ESA PROPIEDAD ACTIVA
-	var pos_actual: Vector2
-	if actor is Queen or Knight or King:
-		pos_actual = Global.board.local_to_map(actor.global_position)
+	var pos_actual: Vector2 = Global.board.local_to_map(actor.global_position)
+	if actor is Queen or actor is Knight or actor is King:
+		
 		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,-1)) #up
 		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,1)) #down
 		actor.posiciones_de_ataque.append(pos_actual+Vector2(-1,0)) #left
@@ -40,8 +40,27 @@ func set_offensive_squares() -> void:
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, -1))  # top-right
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, 1))  # bottom-left
 		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, 1))   # bottom-right
+	
+	elif actor is Pawn and actor.team == "blue":
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, -1)) # top-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, -1))  # top-right
 		
-
+	elif actor is Pawn and actor.team == "red":
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, 1))  # bottom-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, 1))   # bottom-right
+	
+	elif actor is Rook:
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,-1)) #up
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,1)) #down
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(-1,0)) #left
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(1,0)) #right
+	
+	elif actor is Bishop:
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, -1)) # top-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, -1))  # top-right
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, 1))  # bottom-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, 1))   # bottom-right
+		
 #con esta funcion saco color opaco a la pieza que estoy hovereando
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:

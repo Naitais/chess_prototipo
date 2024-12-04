@@ -58,6 +58,8 @@ func _physics_process(delta):
 	set_piece_colour()
 	mouse_pos = get_global_mouse_position()
 	kill_piece()
+	highlight_threatened_piece()
+	
 	
 func _on_piece_area_mouse_entered():
 	
@@ -106,7 +108,12 @@ func set_piece_colour() -> void:
 	else:
 		sprite.modulate = Color8(255,0,50)
 		
-
+func highlight_threatened_piece() -> void:
+	if Global.selected_piece:
+		if Global.selected_piece.team != self.team:
+			for posicion in Global.selected_piece.posiciones_de_ataque:
+				if posicion == Vector2(Global.board.local_to_map(self.global_position)):
+					sprite.modulate = Color8(255,100,170)
 
 #armar un nodo que tenga todo contenido lo de estadisticas
 # hacer un sprite separado para cada estadistica asi
@@ -123,12 +130,6 @@ func set_stats() -> void:
 	_update_stat_label(armor_lbl, armor)
 	_update_stat_label(magical_dmg_lbl, magic_damage)
 	_update_stat_label(magical_shield_lbl, magic_shield)
-	
-	
-
-
-	
-	
 
 func kill_piece() -> void:
 	if health <= 0:

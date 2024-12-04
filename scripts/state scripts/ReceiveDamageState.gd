@@ -6,6 +6,8 @@ extends State
 
 signal piece_not_hovered
 
+#funciona bien pero esta checkeando por piezas que no corresponde porque me tira fuera de rango
+#incluso cuando esta en rango
 func receive_damage() -> void:
 	if Global.selected_piece and Input.is_action_just_pressed("left_click"):
 		var damage_taken: int = Global.selected_piece.physical_damage
@@ -25,8 +27,7 @@ func receive_damage() -> void:
 				else:
 					# If no armor, apply all damage to health
 					actor.health -= damage_taken
-			else:
-				print("fuera de rango")
+			
 		actor.set_stats()
 		
 func highlight_hovered_piece() -> void:
