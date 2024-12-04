@@ -30,9 +30,16 @@ func move_piece() -> void:
 				await tween.finished
 				
 				
-				actor.isActive = false
+				
+				#seteo como true el movimiento del jugador
+				actor.jugador.pieza_movida = true
+				#actualizo info de label
+				actor.jugador.update_player_labels()
+				actor.isActive = false #desactivo pieza
 				#cambio a null la pieza seleccionada en el global despues de mover
 				Global.selected_piece = null
+				
+				#despues del primer movimiento de cada peon, cambio su mov de 2 a 1
 				if actor is Pawn:
 					actor.movement = 1
 			
@@ -48,7 +55,7 @@ func set_movement_tiles() -> void:
 	var piece_pos: Vector2 = actor.global_position
 	var space_moved: int = 64
 	
-	if !squares_set:
+	if !squares_set and !actor.jugador.pieza_movida:
 		for movement in actor.movement:
 			
 			var square_instance = load("res://scenes/square.tscn").instantiate()

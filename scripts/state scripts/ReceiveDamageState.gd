@@ -9,7 +9,7 @@ signal piece_not_hovered
 #funciona bien pero esta checkeando por piezas que no corresponde porque me tira fuera de rango
 #incluso cuando esta en rango
 func receive_damage() -> void:
-	if Global.selected_piece and Input.is_action_just_pressed("left_click"):
+	if Global.selected_piece and Input.is_action_just_pressed("left_click") and !Global.selected_piece.jugador.ataque_realizado:
 		var damage_taken: int = Global.selected_piece.physical_damage
 		#reviso que la pieza atacada esta en rango de la pieza atacante
 		var posiciones_off_del_atacante: Array = Global.selected_piece.posiciones_de_ataque #pos ofensivas
@@ -24,6 +24,11 @@ func receive_damage() -> void:
 					# Calculate remaining damage after armor
 					var rest_damage = damage_taken - damage_to_armor
 					actor.health -= rest_damage
+					
+					#despues de realizar el ataque, seteo variable del jugador en true
+					Global.selected_piece.jugador.ataque_realizado = true
+					#actualizo label de la accion del jugador
+					Global.selected_piece.jugador.update_player_labels()
 				else:
 					# If no armor, apply all damage to health
 					actor.health -= damage_taken

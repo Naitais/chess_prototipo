@@ -65,3 +65,17 @@ team = "red"
 
 [node name="bishop2" parent="piezas" instance=ExtResource("2_vx4o5")]
 team = "red"
+
+[node name="ataque_lbl" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 127.0
+offset_right = 578.0
+offset_bottom = 150.0
+text = "ataque "
+
+[node name="movimiento_lbl" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 109.0
+offset_right = 615.0
+offset_bottom = 132.0
+text = "movimiento "

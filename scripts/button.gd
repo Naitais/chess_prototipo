@@ -4,18 +4,16 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	turno_label.text = "turno actual: "+Global.turn
+	#turno_label.text = "turno actual: "+Global.turn
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	turno_label.text = "turno actual: "+Global.turn
 
 
 func _on_pressed():
-	if Global.turn == "blue":
-		Global.turn = "red"
-	else:
-		Global.turn = "blue"
+	Global.end_turn()
 		
-	turno_label.text = "turno actual: "+Global.turn
+	#turno_label.text = "turno actual: "+Global.turn

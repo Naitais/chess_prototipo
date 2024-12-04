@@ -39,7 +39,7 @@ var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun
 
 
 func _ready():
-	
+	jugador = get_parent().get_parent() #por el momento lo asigno asi
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	inactive_piece_state.piece_is_target.connect(state_machine.change_state.bind(receive_damage_state))
 	receive_damage_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
