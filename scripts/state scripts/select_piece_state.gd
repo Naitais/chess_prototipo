@@ -14,6 +14,7 @@ func select_piece() -> void:
 		if Input.is_action_just_pressed("left_click"):
 			
 			Global.selected_piece = actor
+			set_offensive_squares()
 			#despues de hacerle click aumento mas inlcuso el color de la pieza para enfasis
 			sprite.self_modulate = Color(1,2,1)
 			actor.isActive = true
@@ -29,16 +30,21 @@ func set_offensive_squares() -> void:
 	# TODO AGREGAR LOGICA PARA QUE SI UNA ESTADISTICA ESTA EN 0 QUE NO LA MUESTRE PORQUE ES RUIDOSO A LA VISTA
 	# DAMOS POR SENTADO QUE SI ESTA EN 0 NO TIENE ESA PROPIEDAD ACTIVA
 	var pos_actual: Vector2
-	if actor is Queen:
-		print(Global.board.local_to_map(actor.global_position)," ", actor.name)
-		
+	if actor is Queen or Knight or King:
 		pos_actual = Global.board.local_to_map(actor.global_position)
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,-1)) #up
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(0,1)) #down
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(-1,0)) #left
+		actor.posiciones_de_ataque.append(pos_actual+Vector2(1,0)) #right
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, -1)) # top-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, -1))  # top-right
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(-1, 1))  # bottom-left
+		actor.posiciones_de_ataque.append(pos_actual + Vector2(1, 1))   # bottom-right
 		
 
 #con esta funcion saco color opaco a la pieza que estoy hovereando
 func highlight_hovered_piece() -> void:
 	if !actor.isActive:
-		
 		sprite.self_modulate = Color(1,1,1)
 	
 
@@ -60,5 +66,5 @@ func _physics_process(_delta):
 		#print("es mi turno", actor.team)
 		select_piece()
 		highlight_hovered_piece()
-	
+		
 	

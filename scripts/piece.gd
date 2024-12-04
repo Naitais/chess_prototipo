@@ -94,6 +94,7 @@ func deselect_piece() -> void:
 	#desactivo la pieza seleccionada con clic derecho
 	if Input.is_action_just_pressed("right_click"):
 		Global.selected_piece = null
+		posiciones_de_ataque.clear()
 		isActive = false
 		sprite.self_modulate = Color(1,1,1)
 		move_piece_state.emit_signal("piece_is_inactive")
@@ -101,10 +102,10 @@ func deselect_piece() -> void:
 func set_piece_colour() -> void:
 	if team == "blue":
 		sprite.modulate = Color8(0,126,255)
-		pass
+		
 	else:
 		sprite.modulate = Color8(255,0,50)
-		pass
+		
 
 
 #armar un nodo que tenga todo contenido lo de estadisticas

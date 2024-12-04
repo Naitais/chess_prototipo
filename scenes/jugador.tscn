@@ -16,52 +16,153 @@ team = "red"
 
 [node name="king" parent="piezas" instance=ExtResource("4_i26kw")]
 position = Vector2(257, 457)
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "blue"
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="caballero" parent="piezas" instance=ExtResource("3_1bwpu")]
 position = Vector2(64, 2)
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
+team = ""
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="caballero2" parent="piezas" instance=ExtResource("3_1bwpu")]
 position = Vector2(438, 2)
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "blue"
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="peon" parent="piezas" instance=ExtResource("5_ey6qb")]
 position = Vector2(76, 452)
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "blue"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon2" parent="piezas" instance=ExtResource("5_ey6qb")]
 position = Vector2(8, 445)
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "blue"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon3" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon4" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon5" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon6" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon7" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="peon8" parent="piezas" instance=ExtResource("5_ey6qb")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+magic_shield = 0
 
 [node name="queen" parent="piezas" instance=ExtResource("6_cdsm0")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="rook" parent="piezas" instance=ExtResource("7_mokob")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="rook2" parent="piezas" instance=ExtResource("7_mokob")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+magic_damage = 0
+armor = 0
+magic_shield = 0
 
 [node name="bishop" parent="piezas" instance=ExtResource("2_vx4o5")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+armor = 0
 
 [node name="bishop2" parent="piezas" instance=ExtResource("2_vx4o5")]
+isActive = false
+isKilled = false
+initial_pos = Vector2(0, 0)
+final_pos = Vector2(0, 0)
 team = "red"
+armor = 0
