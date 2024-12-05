@@ -12,10 +12,22 @@ var turns_in_round: int = 0
 var round_counter: int = 1
 var game_end: bool = false
 #TODO
-# logica de turnos -> agregar temporizador y agregar contador de rondas y turnos
+# logica de turnos -> agregar temporizador
+#ARREGLAR BUG DE MOVIMIENTO DESPUES DE MATAR, HAY QUE AGREGAR EL CHECKEO DE QUE SOLO MUEVA
+#SI MATAMOS A LA PIEZA Y TAMBIEN REVISAR EL METODO QUE SE ACTIVA AL MOVERSE PORQUE
+#ESTA HACIENDO QUE SE PUEDA ATACAR INFINITAMENTE
+
+#implementar check del rey
+#implementar enroque (castling)
+#reemplazar tags de acciones del jugador por iconos, cuando la accion esta disponible el icono esta a color
+#cuando la accion esta en gris es porque esa accion ya fue realizada
+
 # limpiar el codigo y comentar mas
 
 func end_turn() -> void:
+	if Global.selected_piece:
+		Global.selected_piece.deselect_piece_no_click()
+	
 	if turn == "blue":
 		turn = "red"
 	else:

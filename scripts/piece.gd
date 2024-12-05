@@ -108,8 +108,6 @@ func deselect_piece_no_click() -> void:
 	sprite.self_modulate = Color(1,1,1)
 	move_piece_state.emit_signal("piece_is_inactive")
 
-
-
 func set_piece_colour() -> void:
 	if team == "blue":
 		sprite.modulate = Color8(0,126,255)

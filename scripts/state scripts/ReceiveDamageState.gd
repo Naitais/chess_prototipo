@@ -12,7 +12,7 @@ signal piece_attack_finished
 func receive_damage() -> void:
 	
 	#el ataque solo funciona si el jugador de la pieza no ataco en su turno actual
-	if Global.selected_piece and Input.is_action_just_pressed("left_click") and !Global.selected_piece.jugador.ataque_realizado:
+	if Global.selected_piece and Input.is_action_just_pressed("left_click") and !Global.selected_piece.jugador.ataque_realizado and Global.selected_piece.jugador.team == Global.turn:
 		
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
@@ -34,45 +34,39 @@ func receive_damage() -> void:
 					# Calculate remaining damage after armor
 					var rest_damage = damage_taken - damage_to_armor
 					
-					
 					actor.health -= rest_damage
 					
-					#despues de realizar el ataque, seteo variable del jugador en true
-					Global.selected_piece.jugador.ataque_realizado = true
-					#actualizo label de la accion del jugador
-					Global.selected_piece.jugador.update_player_labels()
 				else:
 					# If no armor, apply all damage to health
 					actor.health -= damage_taken
-					
+				
+				#despues de realizar el ataque, seteo variable del jugador en true
+				Global.selected_piece.jugador.ataque_realizado = true
+				
+				#actualizo label de la accion del jugador
+				Global.selected_piece.jugador.update_player_labels()
+				
 		#actualizo los stats de la pieza atacada
 		actor.set_stats()
 		
-		#aca deberia ir la funcion que mueve la pieza si es que mato a la pieza atacada
-		#move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
+		#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
+		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
+		
+		#despues de atacar deselecciono la pieza
+		Global.selected_piece.deselect_piece_no_click()
 		
 func highlight_hovered_piece() -> void:
+	#highlight the hovered piece to be attacked
 	if !actor.isActive:
 		sprite.self_modulate = Color(1,1,1)
 
 func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) -> void:
 	
-	#se me bugea la pieza porque cuando ataco antes de moverme puedo seguir atacando infinitamente
-	#tengo que revisar esto
-	#desactivo la pieza
-	attacker.deselect_piece_no_click()
-	
-	#ejecuto tween para mover la pieza a la posicion de la pieza que murio
-	var tween: Tween = get_tree().create_tween()				
-	tween.tween_property(attacker, "position", killed_piece_pos * 64, 0.5)
-	await tween.finished
-	
-	
-	
-	
-	
-	#attacker.global_position = killed_piece_pos * 64
-	
+	if actor.health <= 0:
+		#ejecuto tween para mover la pieza a la posicion de la pieza que murio
+		var tween: Tween = get_tree().create_tween()				
+		tween.tween_property(attacker, "position", killed_piece_pos * 64, 0.5)
+		await tween.finished
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
