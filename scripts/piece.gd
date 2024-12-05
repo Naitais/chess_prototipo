@@ -138,6 +138,46 @@ func set_stats() -> void:
 	_update_stat_label(magical_dmg_lbl, magic_damage)
 	_update_stat_label(magical_shield_lbl, magic_shield)
 
+#metodo que calcula el daño recibido en la pieza teniendo en cuenta el escudo
+#funciona para daño magico/ escudo magico o para daño fisico/armadura
+func aplicar_daño(daño: int , tipo_ataque: String) -> void:
+	
+	if tipo_ataque == "fisico":
+		
+		if self.armor > 0:
+			# Subtract damage from armor first
+			var damage_to_shield = min(daño, self.armor)  # Only reduce armor by the amount it has
+			self.armor -= damage_to_shield
+						
+			# Calculate remaining damage after armor
+			var rest_damage = daño - damage_to_shield
+						
+			self.health -= rest_damage
+			
+		else:
+		# If no armor, apply all damage to health
+			self.health -= daño
+			
+	elif tipo_ataque == "magico":
+		
+		if self.magic_shield > 0:
+			# Subtract damage from armor first
+			var damage_to_shield = min(daño, self.magic_shield)  # Only reduce armor by the amount it has
+			self.magic_shield -= damage_to_shield
+						
+			# Calculate remaining damage after armor
+			var rest_damage = daño - damage_to_shield
+						
+			self.health -= rest_damage
+		
+	
+		
+		else:
+		# If no armor, apply all damage to health
+			self.health -= daño
+	set_stats()
+	
+
 func kill_piece() -> void:
 	#reviso si la pieza que murio es el rey, si es asi el juego termina
 	if health <= 0 and self is King:
