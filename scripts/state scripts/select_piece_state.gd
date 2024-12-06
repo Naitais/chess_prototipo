@@ -5,6 +5,7 @@ extends State
 @export var actor = Piece
 
 
+
 signal piece_not_hovered
 signal piece_is_selected
 
@@ -14,6 +15,7 @@ func select_piece() -> void:
 		if Input.is_action_just_pressed("left_click"):
 			
 			Global.selected_piece = actor
+			actor.show_active_skill()
 			set_offensive_squares()
 			#despues de hacerle click aumento mas inlcuso el color de la pieza para enfasis
 			sprite.self_modulate = Color(1,2,1)
@@ -73,6 +75,7 @@ func _ready():
 	set_physics_process(false)
 
 func _enter_state() -> void:
+	
 	#solo se activa cuando entro al state wander
 	set_physics_process(true)
 	

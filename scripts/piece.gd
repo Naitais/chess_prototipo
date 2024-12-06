@@ -20,8 +20,7 @@ class_name Piece
 @onready var magical_dmg_lbl = $magical_dmg_lbl
 @onready var armor_lbl = $armor_lbl
 @onready var magical_shield_lbl = $magical_shield_lbl
-
-
+@onready var skills = $skills
 @onready var sprite = $Sprite2D
 @onready var mouse_pos: Vector2
 @onready var jugador: Node2D
@@ -98,6 +97,7 @@ func deselect_piece() -> void:
 		isActive = false
 		sprite.self_modulate = Color(1,1,1)
 		move_piece_state.emit_signal("piece_is_inactive")
+		hide_active_skill()
 	
 func deselect_piece_no_click() -> void:
 	Global.selected_piece = null
@@ -105,6 +105,7 @@ func deselect_piece_no_click() -> void:
 	isActive = false
 	sprite.self_modulate = Color(1,1,1)
 	move_piece_state.emit_signal("piece_is_inactive")
+	hide_active_skill()
 
 func set_piece_colour() -> void:
 	if team == "blue":
@@ -175,6 +176,16 @@ func aplicar_daño(daño: int , tipo_ataque: String) -> void:
 			self.health -= daño
 	set_stats()
 	
+
+func show_active_skill() -> void:
+	for skill in skills.get_children():
+		if skill and skill is ActiveSkill:
+			skill.visible = true
+
+func hide_active_skill() -> void:
+	for skill in skills.get_children():
+		if skill and skill is ActiveSkill:
+			skill.visible = false
 
 func kill_piece() -> void:
 	#reviso si la pieza que murio es el rey, si es asi el juego termina

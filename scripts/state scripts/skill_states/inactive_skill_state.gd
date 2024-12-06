@@ -1,6 +1,8 @@
 class_name InactiveSkillState
 extends State
 
+signal skill_activated
+
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
