@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxkhjp7f17v1d"]
+
+[ext_resource type="PackedScene" uid="uid://5400q1w52bni" path="res://scenes/peon.tscn" id="1_73gy8"]
+[ext_resource type="Script" path="res://royal_soldier.gd" id="2_1qxhg"]
+[ext_resource type="Texture2D" uid="uid://dquv5gfoou7fb" path="res://resources/piezas_sprites/royal_soldier_sprite.png" id="3_2c6xv"]
+
+[node name="royal_soldier" instance=ExtResource("1_73gy8")]
+script = ExtResource("2_1qxhg")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
+texture = ExtResource("3_2c6xv")

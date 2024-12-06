@@ -11,14 +11,17 @@ var jugadores: Array
 var turns_in_round: int = 0
 var round_counter: int = 1
 var game_end: bool = false
+var king_check: bool = false
+
 #TODO
 # logica de turnos -> agregar temporizador
 #ARREGLAR BUG DE MOVIMIENTO DESPUES DE MATAR, HAY QUE AGREGAR EL CHECKEO DE QUE SOLO MUEVA
 #SI MATAMOS A LA PIEZA Y TAMBIEN REVISAR EL METODO QUE SE ACTIVA AL MOVERSE PORQUE
 #ESTA HACIENDO QUE SE PUEDA ATACAR INFINITAMENTE
 
-#implementar check del rey
+#implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
+#
 #reemplazar tags de acciones del jugador por iconos, cuando la accion esta disponible el icono esta a color
 #cuando la accion esta en gris es porque esa accion ya fue realizada
 

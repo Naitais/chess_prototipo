@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://v36qteennc35"]
+[gd_scene load_steps=9 format=3 uid="uid://v36qteennc35"]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_3fj0r"]
 [ext_resource type="PackedScene" uid="uid://64iv6ktxuxgk" path="res://scenes/bishop.tscn" id="2_vx4o5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5400q1w52bni" path="res://scenes/peon.tscn" id="5_ey6qb"]
 [ext_resource type="PackedScene" uid="uid://dh65ow8l6pld7" path="res://scenes/queen.tscn" id="6_cdsm0"]
 [ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="7_mokob"]
+[ext_resource type="PackedScene" uid="uid://bxkhjp7f17v1d" path="res://scenes/royal_soldier.tscn" id="8_nvywv"]
 
 [node name="jugador" type="Node2D"]
 script = ExtResource("1_3fj0r")
@@ -23,10 +24,6 @@ position = Vector2(64, 2)
 
 [node name="caballero2" parent="piezas" instance=ExtResource("3_1bwpu")]
 position = Vector2(438, 2)
-team = "blue"
-
-[node name="peon" parent="piezas" instance=ExtResource("5_ey6qb")]
-position = Vector2(76, 452)
 team = "blue"
 
 [node name="peon2" parent="piezas" instance=ExtResource("5_ey6qb")]
@@ -65,6 +62,8 @@ team = "red"
 
 [node name="bishop2" parent="piezas" instance=ExtResource("2_vx4o5")]
 team = "red"
+
+[node name="royal_soldier" parent="piezas" instance=ExtResource("8_nvywv")]
 
 [node name="ataque_lbl" type="Label" parent="."]
 offset_left = 517.0

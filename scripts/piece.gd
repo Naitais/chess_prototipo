@@ -37,7 +37,6 @@ var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun
 @onready var move_piece_state = $StateMachine/MovePieceState as MovePieceState
 @onready var receive_damage_state = $StateMachine/ReceiveDamageState as ReceiveDamageState
 
-
 func _ready():
 	jugador = get_parent().get_parent() #por el momento lo asigno asi
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
@@ -47,7 +46,6 @@ func _ready():
 	select_piece_state.piece_is_selected.connect(state_machine.change_state.bind(move_piece_state))
 	move_piece_state.piece_is_inactive.connect(state_machine.change_state.bind(inactive_piece_state))
 	set_stats()
-	
 	
 func _physics_process(delta):
 	

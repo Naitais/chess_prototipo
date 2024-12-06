@@ -61,16 +61,16 @@ func set_movement_tiles() -> void:
 			#si el peon sube se multiplica en negativo pero si baja seria en positivo
 
 			var positions: Array = []
-			match actor.name.substr(0, 4):
-				
+			#match actor.name.substr(0, 4):
+			if actor is Pawn:
 				#PEON
-				"peon":
+				
 					if actor.team == "blue":
 						positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * (movement + 1)))
 					else:
 						positions.append((piece_pos + position_offset) + Vector2(0, space_moved * (movement + 1)))
 				#CABALLO
-				"caba":
+			if actor is Knight:
 					#directamente se calcula la posicion final, no se agregan los demas cuadrados
 					positions.append((piece_pos + position_offset) + Vector2(space_moved * 2, space_moved * 1))   # Right-Down
 					positions.append((piece_pos + position_offset) + Vector2(space_moved * 2, -space_moved * 1))  # Right-Up
@@ -82,18 +82,38 @@ func set_movement_tiles() -> void:
 					positions.append((piece_pos + position_offset) + Vector2(-space_moved * 1, -space_moved * 2)) # Up-Left
 				
 				#ROOK
-				"rook":
-					for i in range(1, movement + 1):
-						positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * i))  # Up
-						positions.append((piece_pos + position_offset) + Vector2(0, space_moved * i))   # Down
-						positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, 0)) # Left
-						positions.append((piece_pos + position_offset) + Vector2(space_moved * i, 0))  # Right
+			if actor is Rook:
+				for i in range(1, movement + 1):
+					positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * i))  # Up
+					positions.append((piece_pos + position_offset) + Vector2(0, space_moved * i))   # Down
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, 0)) # Left
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, 0))  # Right
 
 				#KING
-				"king":
+			if actor is King:
 					
 					#le sumo uno porque algo hace que incluso si el movement es 1 lo vuelva 0
 					#asi que le pongo 2 y fue
+				for i in range(1, movement + 2):
+					positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * i))  # Up
+					positions.append((piece_pos + position_offset) + Vector2(0, space_moved * i))   # Down
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, 0)) # Left
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, 0))  # Right
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, space_moved * i))  # Down Right
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, -space_moved * i))  # Up Left
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, space_moved * i))  # Down Left
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, -space_moved * i))  # Up Right
+						
+			#BISHOP
+			if actor is Bishop:
+				for i in range(1, movement + 1):
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, space_moved * i))  # Down Right
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, -space_moved * i))  # Up Left
+					positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, space_moved * i))  # Down Left
+					positions.append((piece_pos + position_offset) + Vector2(space_moved * i, -space_moved * i))  # Up Right
+
+				#QUEEN
+			if actor is Queen:
 					for i in range(1, movement + 2):
 						positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * i))  # Up
 						positions.append((piece_pos + position_offset) + Vector2(0, space_moved * i))   # Down
@@ -103,27 +123,6 @@ func set_movement_tiles() -> void:
 						positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, -space_moved * i))  # Up Left
 						positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, space_moved * i))  # Down Left
 						positions.append((piece_pos + position_offset) + Vector2(space_moved * i, -space_moved * i))  # Up Right
-						
-				#BISHOP
-				"bish":
-					for i in range(1, movement + 1):
-						positions.append((piece_pos + position_offset) + Vector2(space_moved * i, space_moved * i))  # Down Right
-						positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, -space_moved * i))  # Up Left
-						positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, space_moved * i))  # Down Left
-						positions.append((piece_pos + position_offset) + Vector2(space_moved * i, -space_moved * i))  # Up Right
-
-				#QUEEN
-				"quee":
-						for i in range(1, movement + 2):
-							positions.append((piece_pos + position_offset) + Vector2(0, -space_moved * i))  # Up
-							positions.append((piece_pos + position_offset) + Vector2(0, space_moved * i))   # Down
-							positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, 0)) # Left
-							positions.append((piece_pos + position_offset) + Vector2(space_moved * i, 0))  # Right
-							positions.append((piece_pos + position_offset) + Vector2(space_moved * i, space_moved * i))  # Down Right
-							positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, -space_moved * i))  # Up Left
-							positions.append((piece_pos + position_offset) + Vector2(-space_moved * i, space_moved * i))  # Down Left
-							positions.append((piece_pos + position_offset) + Vector2(space_moved * i, -space_moved * i))  # Up Right
-			
 			
 			#por cada posicion final se agrega una instancia de square y se le asigna una de las posiciones
 			var valid_positions: Array = []
