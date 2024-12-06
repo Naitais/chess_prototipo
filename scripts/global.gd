@@ -15,16 +15,11 @@ var king_check: bool = false
 
 #TODO
 # logica de turnos -> agregar temporizador
-#ARREGLAR BUG DE MOVIMIENTO DESPUES DE MATAR, HAY QUE AGREGAR EL CHECKEO DE QUE SOLO MUEVA
-#SI MATAMOS A LA PIEZA Y TAMBIEN REVISAR EL METODO QUE SE ACTIVA AL MOVERSE PORQUE
-#ESTA HACIENDO QUE SE PUEDA ATACAR INFINITAMENTE
 
 #implementar habilidades de royal soldier/por el momento cuando se usa una habilidad, en lugar
 #de mostrar una animacion puedo mostrar un label indicando el nombre de la habilidad que se uso
 
 #implementar tooltip
-
-#implementar logica de uso de mana
 
 #implementar conteo de rondas o turnos para que afecte cuanto duran las habilidades como buffs/debuffs
 
