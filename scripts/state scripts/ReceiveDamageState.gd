@@ -25,11 +25,9 @@ func receive_damage() -> void:
 		if pos_actual in posiciones_off_del_atacante:
 				#en este caso es daño fisico asi que el escudo es la armadura
 			actor.aplicar_daño(damage_taken, "fisico")
-				
-				#despues de realizar el ataque, seteo variable del jugador en true
-			Global.selected_piece.jugador.ataque_realizado = true
-				
-				#actualizo label de la accion del jugador
+			#reduzco mana en 1
+			Global.selected_piece.jugador.deplete_mana(1)
+			#actualizo label de la accion del jugador
 			Global.selected_piece.jugador.update_player_labels()
 		
 		#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
@@ -53,7 +51,7 @@ func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) 
 #uso metodo para checkear is es legal el ataque para no tener todo amontonado
 func check_attack_is_legal() -> bool:
 	return Global.selected_piece \
-		   and !Global.selected_piece.jugador.ataque_realizado \
+		   and Global.selected_piece.jugador.mana >= 1 \
 		   and Global.selected_piece.jugador.team == Global.turn
 
 func _ready():

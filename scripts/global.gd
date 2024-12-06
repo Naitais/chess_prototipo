@@ -61,9 +61,13 @@ func end_turn() -> void:
 
 	# Reset game actions and update labels for both players
 	for jugador in jugadores:
-		jugador.reset_game_actions()
-		jugador.update_player_labels()
-	
+		
+		if jugador.team == turn:
+			jugador.set_mana()
+			jugador.update_player_labels()
+			
+		if jugador.team != turn:
+			jugador.save_extra_mana()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -12,6 +12,8 @@
 [node name="jugador" type="Node2D"]
 script = ExtResource("1_3fj0r")
 team = "red"
+max_mana = 1
+gold = 250
 
 [node name="piezas" type="Node2D" parent="."]
 
@@ -65,16 +67,16 @@ team = "red"
 
 [node name="royal_soldier" parent="piezas" instance=ExtResource("8_nvywv")]
 
-[node name="ataque_lbl" type="Label" parent="."]
+[node name="mana_lbl" type="Label" parent="."]
 offset_left = 517.0
-offset_top = 127.0
+offset_top = 125.0
 offset_right = 578.0
-offset_bottom = 150.0
-text = "ataque "
+offset_bottom = 148.0
+text = "Mana: "
 
-[node name="movimiento_lbl" type="Label" parent="."]
+[node name="extra_mana_lbl" type="Label" parent="."]
 offset_left = 517.0
-offset_top = 109.0
-offset_right = 615.0
-offset_bottom = 132.0
-text = "movimiento "
+offset_top = 150.0
+offset_right = 614.0
+offset_bottom = 173.0
+text = "Extra mana: "

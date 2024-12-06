@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtnyhsyeyk6mv"]
+
+[ext_resource type="Script" path="res://scripts/skill.gd" id="1_cxxla"]
+[ext_resource type="Script" path="res://scripts/state scripts/state_class.gd" id="2_lq12v"]
+
+[node name="skill" type="Node2D"]
+script = ExtResource("1_cxxla")
+
+[node name="State" type="Node" parent="."]
+script = ExtResource("2_lq12v")

@@ -1,20 +1,25 @@
 extends Node2D
 class_name Jugador
 
-@export var team: String 
+@export var team: String
+@export var mana: int
+@export var extra_mana: int
+@export var max_mana: int
+@export var gold: int
 @onready var piezas = $piezas
-@onready var ataque_lbl = $ataque_lbl
-@onready var movimiento_lbl = $movimiento_lbl
+@onready var mana_lbl = $mana_lbl
+@onready var extra_mana_lbl = $extra_mana_lbl
+
 
 #VARIABLES DE ACCIONES DEL TURNO si ambas vars son true, automaticamente se pasa el turno
 #si ya se ataco o se movio no se puede vovler a hacer hasta el proximo turno
-var ataque_realizado: bool = false
-var pieza_movida: bool = false
+#var ataque_realizado: bool = false
+#var pieza_movida: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.jugadores.append(self)
-	
+	set_mana()
 	set_team()
 	arrange_pieces(team)
 	set_label_pos()
@@ -129,23 +134,53 @@ func arrange_pieces(team: String) -> void:
 				else:
 					piece.global_position = Vector2(5,7) * 64
 
-func reset_game_actions() -> void:
-	ataque_realizado = false
-	pieza_movida  = false
+#func reset_game_actions() -> void:
+#	ataque_realizado = false
+#	pieza_movida  = false
 
 func set_label_pos() -> void:
-	movimiento_lbl.text = movimiento_lbl.text+str(pieza_movida)
-	ataque_lbl.text = ataque_lbl.text+str(ataque_realizado)
+	mana_lbl.text = mana_lbl.text+str(mana)
+	extra_mana_lbl.text = extra_mana_lbl.text+str(extra_mana)
 	if self.team == "blue":
-		movimiento_lbl.global_position = Vector2(525, 379)
-		ataque_lbl.global_position = Vector2(525, 400)
+		mana_lbl.global_position = Vector2(525, 379)
+		extra_mana_lbl.global_position = Vector2(525, 400)
 
 func update_player_labels() -> void:
-	movimiento_lbl.text = " "
-	ataque_lbl.text = " "
-	movimiento_lbl.text = "movimiento "+str(pieza_movida)
-	ataque_lbl.text = "ataque "+str(ataque_realizado)
+	mana_lbl.text = " "
+	mana_lbl.text = "Mana: "+str(mana)
 	
+	extra_mana_lbl.text = " "
+	extra_mana_lbl.text = "Extra mana: "+str(extra_mana)
+	
+#after each round mana is reset
+func set_mana() -> void:
+	
+	mana = max_mana
+
+func save_extra_mana() -> void:
+	#if Global.turn != self.team:
+	extra_mana += min(mana, 3 - extra_mana) #como maximo se puede guardar 3 de mana
+
+#to reduce mana when an action is done
+func deplete_mana(amount: int) -> void:
+	if self.extra_mana > 0:
+			# Subtract damage from armor first
+		var mana_to_spend = min(amount, self.extra_mana)  # Only reduce armor by the amount it has
+		self.extra_mana -= mana_to_spend
+						
+		# Calculate remaining mana to spend after extra mana
+		var rest_mana_to_spend = amount - mana_to_spend
+						
+		self.mana -= rest_mana_to_spend
+			
+	else:
+		# If no armor, apply all damage to health
+		
+		self.mana -= amount
+
+#it can be used to deplete or increase gold
+func modify_gold(amount: int) -> void:
+	gold += amount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

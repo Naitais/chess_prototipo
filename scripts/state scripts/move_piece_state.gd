@@ -11,27 +11,24 @@ func move_piece() -> void:
 	var final_pos: Vector2
 	final_pos = actor.mouse_pos
 	
+	#acomodar mejor el codigo esta muy desordenado
+	#ver de modularizarlo para que no haga tantas cosas en un solo metodo
+	
+	#deberia modificar esto para que deje de generar los squares de movimiento
+	#cuando selecciono la pieza si el movimiento no es posible
+	#si el mov no es legal entonces deberia mostrar mensaje de que no hay mana
 	if Input.is_action_just_pressed("left_click"):
 		
 		for square in get_children():
 			
-			if actor.isActive and Global.board.local_to_map(square.global_position) == Global.board.local_to_map(final_pos):
+			if attack_is_legal(square.global_position, final_pos):
 				set_invisible_squares()
+				start_move_tween(final_pos)
 				
-				var tween: Tween = get_tree().create_tween()				
-				tween.tween_property(actor, "position", Vector2(Global.board.local_to_map(final_pos) * 64), 0.5)
-				await tween.finished
-
-				#seteo como true el movimiento del jugador
-				actor.jugador.pieza_movida = true
-				
-				#actualizo info de label
+				#reduzco el mana
+				actor.jugador.deplete_mana(1)
 				actor.jugador.update_player_labels()
-				actor.isActive = false #desactivo pieza
-				
-				#cambio a null la pieza seleccionada en el global despues de mover
-				Global.selected_piece = null
-				
+				actor.deselect_piece_no_click()
 				#despues del primer movimiento de cada peon, cambio su mov de 2 a 1
 				if actor is Pawn:
 					actor.movement = 1
@@ -49,7 +46,7 @@ func set_movement_tiles() -> void:
 	var piece_pos: Vector2 = actor.global_position
 	var space_moved: int = 64
 	
-	if !squares_set and !actor.jugador.pieza_movida:
+	if !squares_set:# and !actor.jugador.pieza_movida:
 		for movement in actor.movement:
 			
 			var square_instance = load("res://scenes/square.tscn").instantiate()
@@ -135,6 +132,16 @@ func set_movement_tiles() -> void:
 				
 		
 		squares_set = true
+
+func attack_is_legal(square_pos, final_pos) -> bool:
+	return Global.board.local_to_map(square_pos) == Global.board.local_to_map(final_pos) \
+		and actor.isActive \
+		and actor.jugador.mana >=1
+
+func start_move_tween(final_pos) -> void:
+	var tween: Tween = get_tree().create_tween()				
+	tween.tween_property(actor, "position", Vector2(Global.board.local_to_map(final_pos) * 64), 0.5)
+	await tween.finished
 
 func delete_squares_set() -> void:
 	squares_set = false
