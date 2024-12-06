@@ -118,7 +118,7 @@ func highlight_threatened_piece() -> void:
 		if Global.selected_piece.team != self.team:
 			for posicion in Global.selected_piece.posiciones_de_ataque:
 				if posicion == Vector2(Global.board.local_to_map(self.global_position)):
-					sprite.modulate = Color8(255,100,170)
+					sprite.modulate = Color8(255,100,0)
 
 #armar un nodo que tenga todo contenido lo de estadisticas
 # hacer un sprite separado para cada estadistica asi
