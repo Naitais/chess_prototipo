@@ -9,5 +9,8 @@ damage = 1
 skill_name = "Shield Bash"
 description = "Deal 1 damage and increase armor by 1 for 1 round."
 
+[node name="Control" parent="." index="2"]
+z_index = 1
+
 [node name="skill_button" parent="Control" index="0"]
 icon = ExtResource("2_updkd")

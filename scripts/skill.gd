@@ -7,6 +7,7 @@ class_name ActiveSkill
 @export var skill_name: String
 @export var description: String
 @export var actor: Pawn
+@onready var skill_button = $Control/skill_button
 
 @onready var state_machine = $StateMachine as StateMachine
 @onready var choose_target_state = $StateMachine/ChooseTargetState as ChooseTargetState
@@ -17,9 +18,11 @@ func _ready():
 	set_skill_name()
 	inactive_skill_state.skill_activated.connect(state_machine.change_state.bind(choose_target_state))
 	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	skill_button.global_position = UiManager.active_skill_panel.global_position
 
 func set_skill_name() -> void:
 	skill_name_lbl.text = skill_name

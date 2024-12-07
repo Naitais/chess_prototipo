@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d22tfbsf075y8"]
+[gd_scene load_steps=5 format=3 uid="uid://d22tfbsf075y8"]
 
 [ext_resource type="PackedScene" uid="uid://bwqaaoyag530b" path="res://scenes/board.tscn" id="1_rt6oo"]
 [ext_resource type="PackedScene" uid="uid://v36qteennc35" path="res://scenes/jugador.tscn" id="2_lromt"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="3_vhq4f"]
+[ext_resource type="PackedScene" uid="uid://ct8afyuceems8" path="res://scenes/ui.tscn" id="4_ubwr2"]
 
 [node name="main" type="Node"]
+
+[node name="UI" parent="." instance=ExtResource("4_ubwr2")]
 
 [node name="board" parent="." instance=ExtResource("1_rt6oo")]
 
@@ -26,9 +29,5 @@ offset_left = 553.0
 offset_top = 293.0
 offset_right = 618.0
 offset_bottom = 316.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(262, 262)
-zoom = Vector2(1.4, 1.4)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -76,9 +76,12 @@ func check_game_end(team):
 	
 	else:
 		print("Gana el equipo rojo")
-	
-	
+
+func exit() -> void:
+	if Input.is_action_just_pressed("escape"):
+		get_tree().quit()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#end_turn()
-	pass
+	exit()
+	
