@@ -25,6 +25,7 @@ class_name Piece
 @onready var mouse_pos: Vector2
 @onready var jugador: Node2D
 
+var active_skill: ActiveSkill
 var square_positions: Array
 var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
 								#rey, reina y caballo tienen la misma logica
@@ -37,6 +38,7 @@ var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun
 @onready var receive_damage_state = $StateMachine/ReceiveDamageState as ReceiveDamageState
 
 func _ready():
+	set_active_skill()
 	jugador = get_parent().get_parent() #por el momento lo asigno asi
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	inactive_piece_state.piece_is_target.connect(state_machine.change_state.bind(receive_damage_state))
@@ -47,8 +49,7 @@ func _ready():
 	set_stats()
 	
 func _physics_process(delta):
-	if isCastingSkill:
-		print("isCastingSkill")
+	
 	#send_to_cemetery()
 	#check_if_active_piece()
 	deselect_piece()
@@ -195,3 +196,7 @@ func kill_piece() -> void:
 	if health <= 0:
 		self.queue_free()
 	
+func set_active_skill() -> void:
+	for skill in skills.get_children():
+		if skill and skill is ActiveSkill:
+			active_skill = skill

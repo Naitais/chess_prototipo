@@ -16,19 +16,29 @@ func receive_damage() -> void:
 		
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
+		#pieza atacante
+		var atacante: Piece = Global.selected_piece
 		#pos ofensivas
-		var posiciones_off_del_atacante: Array = Global.selected_piece.posiciones_de_ataque 
+		var posiciones_off_del_atacante: Array = atacante.posiciones_de_ataque 
 		#obtengo la posicion de la pieza atacada
 		var pos_actual: Vector2 = Global.board.local_to_map(actor.global_position)
 		
+		
+		
 		#reviso cada posicion ofensiva y si el actor esta en una de esas, entonces esta en rango de ataque
 		if pos_actual in posiciones_off_del_atacante:
+				
+			if atacante.isCastingSkill:
+				
+				print("skill casteada por: ", atacante, " ", atacante.active_skill)
+				
+			else:
 				#en este caso es daño fisico asi que el escudo es la armadura
-			actor.aplicar_daño(damage_taken, "fisico")
-			#reduzco mana en 1
-			Global.selected_piece.jugador.deplete_mana(1)
-			#actualizo label de la accion del jugador
-			Global.selected_piece.jugador.update_player_labels()
+				actor.aplicar_daño(damage_taken, "fisico")
+				#reduzco mana en 1
+				Global.selected_piece.jugador.deplete_mana(1)
+				#actualizo label de la accion del jugador
+				Global.selected_piece.jugador.update_player_labels()
 		
 		#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
 		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
