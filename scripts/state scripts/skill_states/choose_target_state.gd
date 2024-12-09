@@ -2,10 +2,19 @@ class_name ChooseTargetState
 extends State
 
 
+@export var button: Button
+
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
+
+#esto si funciona solo que la vez pasada lo configure mal
+#tengo que activarlo cuando la pieza esta activa
+#tendria que crear un export de la skill
+#y a partir de ahi hacer skill.actor.isActive = true -> entonces muestro el boton
+func show_button() -> void:
+	button.visible = true
 
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
@@ -16,4 +25,5 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	print("funciono")
+	pass
+	

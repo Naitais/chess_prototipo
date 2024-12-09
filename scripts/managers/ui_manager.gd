@@ -1,6 +1,8 @@
 extends Node
 
+#THIS IS THE UI MANAGER
 var active_skill_panel: Panel
+var control_skill_panel: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

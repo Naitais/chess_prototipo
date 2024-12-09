@@ -4,13 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://bapmesk17qjmm" path="res://resources/skill_icon/royal_soldier/shield_bash.png" id="2_updkd"]
 
 [node name="shield_bash" instance=ExtResource("1_ntx8i")]
+visible = false
 mana_cost = 1
 damage = 1
 skill_name = "Shield Bash"
 description = "Deal 1 damage and increase armor by 1 for 1 round."
 
-[node name="Control" parent="." index="2"]
-z_index = 1
+[node name="ChooseTargetState" parent="StateMachine" index="0" node_paths=PackedStringArray("button")]
+button = NodePath("../../Control/skill_button")
+
+[node name="InactiveSkillState" parent="StateMachine" index="1" node_paths=PackedStringArray("button")]
+button = NodePath("../../Control/skill_button")
 
 [node name="skill_button" parent="Control" index="0"]
+anchor_left = 9.964
+anchor_top = 12.96
+anchor_right = 9.964
+anchor_bottom = 12.96
+offset_left = -398.56
+offset_top = -518.4
+offset_right = -326.56
+offset_bottom = -446.4
 icon = ExtResource("2_updkd")

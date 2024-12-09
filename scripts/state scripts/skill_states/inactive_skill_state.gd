@@ -1,11 +1,16 @@
 class_name InactiveSkillState
 extends State
 
+@export var button: Button
+
 signal skill_activated
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
+
+func hide_button() -> void:
+	button.visible = false
 
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
@@ -16,4 +21,5 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
+	#hide_button()
 	pass

@@ -194,3 +194,4 @@ func kill_piece() -> void:
 	
 	if health <= 0:
 		self.queue_free()
+	

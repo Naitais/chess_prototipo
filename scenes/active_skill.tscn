@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtnyhsyeyk6mv"]
+[gd_scene load_steps=6 format=3 uid="uid://dtnyhsyeyk6mv"]
 
 [ext_resource type="Script" path="res://scripts/skill.gd" id="1_dcsas"]
 [ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="2_cjvxv"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/choose_target_state.gd" id="3_5y0iy"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/inactive_skill_state.gd" id="4_t21to"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upw1b"]
+
 [node name="active_skill" type="Node2D"]
-visible = false
 script = ExtResource("1_dcsas")
 
 [node name="skill_name_lbl" type="Label" parent="."]
@@ -30,8 +31,23 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="skill_button" type="Button" parent="Control"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.606
+anchor_top = 24.236
+anchor_right = 2.606
+anchor_bottom = 24.236
+offset_left = -4.24001
+offset_top = -132.44
+offset_right = 56.76
+offset_bottom = 6.55994
+
+[node name="range" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
+shape = SubResource("RectangleShape2D_upw1b")
+
+[node name="cooldown" type="Timer" parent="."]
 
 [connection signal="pressed" from="Control/skill_button" to="." method="_on_skill_button_pressed"]
