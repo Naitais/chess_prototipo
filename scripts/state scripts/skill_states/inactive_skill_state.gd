@@ -2,6 +2,7 @@ class_name InactiveSkillState
 extends State
 
 @export var button: Button
+@export var skill: ActiveSkill
 
 signal skill_activated
 
@@ -14,6 +15,7 @@ func hide_button() -> void:
 
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
+	skill.actor.isCastingSkill = false
 	set_physics_process(true)
 	
 func _exit_state() -> void:

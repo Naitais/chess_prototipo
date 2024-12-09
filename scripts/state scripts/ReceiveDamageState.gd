@@ -11,7 +11,7 @@ signal piece_attack_finished
 #incluso cuando esta en rango
 func receive_damage() -> void:
 	
-	#el ataque solo funciona si el jugador de la pieza no ataco en su turno actual
+	
 	if  Input.is_action_just_pressed("left_click") and check_attack_is_legal():
 		
 		#daño realizado lo saco del attack damage de la pieza que ataca

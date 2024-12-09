@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtnyhsyeyk6mv"]
+[gd_scene load_steps=5 format=3 uid="uid://dtnyhsyeyk6mv"]
 
 [ext_resource type="Script" path="res://scripts/skill.gd" id="1_dcsas"]
 [ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="2_cjvxv"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/choose_target_state.gd" id="3_5y0iy"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/inactive_skill_state.gd" id="4_t21to"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_upw1b"]
 
 [node name="active_skill" type="Node2D"]
 script = ExtResource("1_dcsas")
@@ -18,11 +16,15 @@ offset_bottom = 23.0
 script = ExtResource("2_cjvxv")
 state = NodePath("InactiveSkillState")
 
-[node name="ChooseTargetState" type="Node" parent="StateMachine"]
+[node name="ChooseTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
 script = ExtResource("3_5y0iy")
+button = NodePath("../../Control/skill_button")
+skill = NodePath("../..")
 
-[node name="InactiveSkillState" type="Node" parent="StateMachine"]
+[node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
 script = ExtResource("4_t21to")
+button = NodePath("../../Control/skill_button")
+skill = NodePath("../..")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -41,12 +43,6 @@ offset_left = -4.24001
 offset_top = -132.44
 offset_right = 56.76
 offset_bottom = 6.55994
-
-[node name="range" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
-shape = SubResource("RectangleShape2D_upw1b")
 
 [node name="cooldown" type="Timer" parent="."]
 

@@ -3,7 +3,9 @@ extends State
 
 
 @export var button: Button
+@export var skill: ActiveSkill
 
+signal skill_deactivated
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
@@ -18,6 +20,7 @@ func show_button() -> void:
 
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
+	skill.actor.isCastingSkill = true
 	set_physics_process(true)
 	
 func _exit_state() -> void:

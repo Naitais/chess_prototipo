@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Piece
 
 @export var isActive: bool = false
-@export var isKilled: bool = false
+@export var isCastingSkill: bool = false
 @export var initial_pos: Vector2
 @export var final_pos: Vector2
 @export var movement: int
@@ -47,7 +47,8 @@ func _ready():
 	set_stats()
 	
 func _physics_process(delta):
-	
+	if isCastingSkill:
+		print("isCastingSkill")
 	#send_to_cemetery()
 	#check_if_active_piece()
 	deselect_piece()
@@ -85,9 +86,7 @@ func set_opaque_sprite() -> void:
 		sprite.self_modulate = Color(1,1,1,0.6)
 		
 			
-func send_to_cemetery() -> void:
-	if isKilled:
-		self.global_position = Vector2(0,0)
+
 
 func deselect_piece() -> void:
 	#desactivo la pieza seleccionada con clic derecho
@@ -98,6 +97,7 @@ func deselect_piece() -> void:
 		sprite.self_modulate = Color(1,1,1)
 		move_piece_state.emit_signal("piece_is_inactive")
 		hide_active_skill()
+		
 	
 func deselect_piece_no_click() -> void:
 	Global.selected_piece = null
