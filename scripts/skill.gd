@@ -7,9 +7,13 @@ class_name ActiveSkill
 @export var skill_name: String
 @export var description: String
 @export var actor: Piece
-@onready var skill_button = $Control/skill_button
+@export var turn_cooldown: int
+@export var on_cooldown: bool = false
 
+@onready var skill_button = $Control/skill_button
 @onready var target_piece: Piece
+
+#state vars
 @onready var state_machine = $StateMachine as StateMachine
 @onready var choose_target_state = $StateMachine/ChooseTargetState as ChooseTargetState
 @onready var inactive_skill_state = $StateMachine/InactiveSkillState as InactiveSkillState
@@ -37,14 +41,12 @@ func _process(delta):
 	#skill_button.global_position = UiManager.active_skill_panel.global_position
 	deactivate_casting()
 	set_button_pos()
+	set_on_cooldown()
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
 func active_effect() -> void:
-	actor.armor += 1
-	actor.set_stats()
-	
-	
+	pass
 
 func set_skill_name() -> void:
 	skill_name_lbl.text = skill_name
@@ -61,6 +63,11 @@ func hide_or_show_skill_button() -> void:
 			skill_button.visible = true
 		else:
 			skill_button.visible = false
+
+func set_on_cooldown() -> void:
+	if on_cooldown:
+		skill_button.disabled = true
+		skill_button.modulate = Color8(128, 128, 128)
 
 func deactivate_casting() -> void:
 	if !actor.isActive:

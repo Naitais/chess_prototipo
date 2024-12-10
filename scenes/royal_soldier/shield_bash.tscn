@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ds5ukuebu0ov0"]
 
 [ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_ntx8i"]
-[ext_resource type="Script" path="res://scenes/royal_soldier/shield_bash.gd" id="2_j0e7t"]
+[ext_resource type="Script" path="res://scripts/royal_soldier/shield_bash.gd" id="2_j0e7t"]
 [ext_resource type="Texture2D" uid="uid://bapmesk17qjmm" path="res://resources/skill_icon/royal_soldier/shield_bash.png" id="2_updkd"]
 
 [node name="shield_bash" instance=ExtResource("1_ntx8i")]
@@ -10,6 +10,7 @@ mana_cost = 1
 damage = 1
 skill_name = "Shield Bash"
 description = "Deal 1 damage and increase armor by 1 for 1 round."
+turn_cooldown = 2
 
 [node name="skill_button" parent="Control" index="0"]
 anchor_left = 9.964

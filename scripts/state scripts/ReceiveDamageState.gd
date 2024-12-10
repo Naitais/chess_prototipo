@@ -69,7 +69,7 @@ func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) 
 func check_attack_is_legal() -> bool:
 	return Global.selected_piece \
 		   and Global.selected_piece.jugador.mana >= 1 \
-		   and Global.selected_piece.jugador.team == Global.turn
+		   and Global.selected_piece.jugador.team == TurnManager.turn
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

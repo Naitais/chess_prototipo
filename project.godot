@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
+Global="*res://scripts/managers/global.gd"
 UiManager="*res://scripts/managers/ui_manager.gd"
+TurnManager="*res://scripts/managers/turn_manager.gd"
 
 [display]
 

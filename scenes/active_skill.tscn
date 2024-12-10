@@ -51,6 +51,4 @@ offset_top = -132.44
 offset_right = 56.76
 offset_bottom = 6.55994
 
-[node name="cooldown" type="Timer" parent="."]
-
 [connection signal="pressed" from="Control/skill_button" to="." method="_on_skill_button_pressed"]

@@ -18,7 +18,7 @@ class_name Jugador
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Global.jugadores.append(self)
+	TurnManager.jugadores.append(self)
 	set_mana()
 	set_team()
 	arrange_pieces(team)
