@@ -27,10 +27,17 @@ func receive_damage() -> void:
 		
 		#reviso cada posicion ofensiva y si el actor esta en una de esas, entonces esta en rango de ataque
 		if pos_actual in posiciones_off_del_atacante:
-				
+			#TODO
+			#agregar bandera que detecte que tipó de skill is, si es una ofensiva melee
+			#si fuera rango facilmente se puede editar las casillas en el state choose target de la skill
+			#para agregar posiciones ofensivas de rango
+			#tambien tener en cuenta que si una posicion rango esta en rango melee no puede usar skills
+			#de rango asi estan en desventaja como en el heroes
 			if atacante.isCastingSkill:
-				
-				print("skill casteada por: ", atacante, " ", atacante.active_skill)
+				var skill_damage: int = atacante.active_skill.damage
+				print("skill casteada por: ", skill_damage, " ", atacante.active_skill)
+				atacante.active_skill.choose_target_state.emit_signal("skill_executed")
+				actor.aplicar_daño(skill_damage, "fisico")
 				
 			else:
 				#en este caso es daño fisico asi que el escudo es la armadura

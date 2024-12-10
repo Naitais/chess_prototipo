@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtnyhsyeyk6mv"]
+[gd_scene load_steps=6 format=3 uid="uid://dtnyhsyeyk6mv"]
 
 [ext_resource type="Script" path="res://scripts/skill.gd" id="1_dcsas"]
 [ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="2_cjvxv"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/choose_target_state.gd" id="3_5y0iy"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/inactive_skill_state.gd" id="4_t21to"]
+[ext_resource type="Script" path="res://scripts/state scripts/skill_states/execute_skill_state.gd" id="5_li3ky"]
 
 [node name="active_skill" type="Node2D"]
+visible = false
 script = ExtResource("1_dcsas")
 
 [node name="skill_name_lbl" type="Label" parent="."]
@@ -23,6 +25,11 @@ skill = NodePath("../..")
 
 [node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
 script = ExtResource("4_t21to")
+button = NodePath("../../Control/skill_button")
+skill = NodePath("../..")
+
+[node name="ExecuteSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
+script = ExtResource("5_li3ky")
 button = NodePath("../../Control/skill_button")
 skill = NodePath("../..")
 

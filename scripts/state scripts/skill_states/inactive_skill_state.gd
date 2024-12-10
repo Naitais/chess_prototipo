@@ -23,5 +23,5 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	#hide_button()
+	
 	pass
