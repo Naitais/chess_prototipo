@@ -10,7 +10,7 @@ mana_cost = 1
 damage = 1
 skill_name = "Shield Bash"
 description = "Deal 1 damage and increase armor by 1 for 1 round."
-turn_cooldown = 2
+initial_turn_cooldown = 2
 
 [node name="skill_button" parent="Control" index="0"]
 anchor_left = 9.964

@@ -13,8 +13,9 @@ func _ready():
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	skill.active_effect()
-	skill.on_cooldown = true
-	print("asdads")
+	#skill.show_label_when_cast()
+	skill.set_on_cooldown()
+	
 	set_physics_process(true)
 	
 func _exit_state() -> void:

@@ -7,9 +7,9 @@ class_name ActiveSkill
 @export var skill_name: String
 @export var description: String
 @export var actor: Piece
-@export var turn_cooldown: int
+@export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
-
+var turn_cooldown: int
 @onready var skill_button = $Control/skill_button
 @onready var target_piece: Piece
 
@@ -29,7 +29,7 @@ class_name ActiveSkill
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	turn_cooldown = initial_turn_cooldown
 	set_skill_name()
 	inactive_skill_state.skill_activated.connect(state_machine.change_state.bind(choose_target_state))
 	choose_target_state.skill_deactivated.connect(state_machine.change_state.bind(inactive_skill_state))
@@ -41,13 +41,23 @@ func _process(delta):
 	#skill_button.global_position = UiManager.active_skill_panel.global_position
 	deactivate_casting()
 	set_button_pos()
-	set_on_cooldown()
 	reset_cooldown()
+	
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
 func active_effect() -> void:
 	pass
+
+func show_label_when_cast() -> void:
+	#should show label and make it go negative on y axis (go up) 
+	#then set to be not visible again
+	var end_position: Vector2 = skill_name_lbl.global_position + Vector2(0,-30)
+	skill_name_lbl.visible = true
+	var tween: Tween = get_tree().create_tween()				
+	tween.tween_property(skill_name_lbl, "position", end_position, 0.5)
+	await tween.finished
+	#skill_name_lbl.visible = false
 
 func set_skill_name() -> void:
 	skill_name_lbl.text = skill_name
@@ -66,15 +76,17 @@ func hide_or_show_skill_button() -> void:
 			skill_button.visible = false
 
 func set_on_cooldown() -> void:
-	if on_cooldown:
-		skill_button.disabled = true
-		skill_button.modulate = Color8(128, 128, 128)
+	on_cooldown = true
+	skill_button.disabled = true
+	turn_cooldown = initial_turn_cooldown
+	skill_button.modulate = Color(128, 128, 128)
 		
 func reset_cooldown() -> void:
-	if turn_cooldown == 0:
+	#lo hago hasta -1 porque sino siempre tengo un turno menos de cooldown
+	if turn_cooldown == -1 and on_cooldown:
 		on_cooldown = false
 		skill_button.disabled = false
-		skill_button.modulate = Color8(1, 1, 1)
+		skill_button.modulate = Color(0.502, 0.502, 0.502, 1)
 
 func deactivate_casting() -> void:
 	if !actor.isActive:

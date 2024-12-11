@@ -134,10 +134,6 @@ func arrange_pieces(team: String) -> void:
 				else:
 					piece.global_position = Vector2(5,7) * 64
 
-#func reset_game_actions() -> void:
-#	ataque_realizado = false
-#	pieza_movida  = false
-
 func set_label_pos() -> void:
 	mana_lbl.text = mana_lbl.text+str(mana)
 	extra_mana_lbl.text = extra_mana_lbl.text+str(extra_mana)

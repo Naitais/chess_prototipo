@@ -11,6 +11,7 @@ visible = false
 script = ExtResource("1_dcsas")
 
 [node name="skill_name_lbl" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
@@ -50,5 +51,6 @@ offset_left = -4.24001
 offset_top = -132.44
 offset_right = 56.76
 offset_bottom = 6.55994
+focus_mode = 0
 
 [connection signal="pressed" from="Control/skill_button" to="." method="_on_skill_button_pressed"]

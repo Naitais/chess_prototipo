@@ -25,6 +25,7 @@ class_name Piece
 @onready var sprite = $Sprite2D
 @onready var mouse_pos: Vector2
 @onready var jugador: Node2D
+@onready var active_effects: Array
 
 var active_skill: ActiveSkill
 var square_positions: Array

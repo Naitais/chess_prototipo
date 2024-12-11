@@ -21,17 +21,7 @@ func end_turn() -> void:
 		turn = "red"
 	else:
 		turn = "blue"
-
-	# Increment the number of turns in this round
-	turns_in_round += 1
-
-	# Check if both players have completed their turns
-	if turns_in_round >= 2:
-		round_counter += 1 # Increment the round counter
-		turns_in_round = 0 # Reset the turn counter for the next round
-		print("Round:", round_counter)
-
-	# Reset game actions and update labels for both players
+	
 	for jugador in jugadores:
 		
 		if jugador.team == turn:
@@ -41,6 +31,18 @@ func end_turn() -> void:
 			
 		if jugador.team != turn:
 			jugador.save_extra_mana()
+	
+	# Increment the number of turns in this round
+	turns_in_round += 1
+	
+	# Check if both players have completed their turns
+	if turns_in_round >= 2:
+		round_counter += 1 # Increment the round counter
+		turns_in_round = 0 # Reset the turn counter for the next round
+		print("Round:", round_counter)
+
+	# Reset game actions and update labels for both players
+	
 
 func cooling_down_skills(jugador: Jugador) -> void:
 	
@@ -48,6 +50,8 @@ func cooling_down_skills(jugador: Jugador) -> void:
 	
 	for piece in pieces:
 		if piece.active_skill and piece.active_skill.on_cooldown:
-			piece.active_skill.turn_cooldown -= 1
-			print(piece.active_skill.turn_cooldown)
-	
+			if piece.active_skill.turn_cooldown > -1:
+				piece.active_skill.turn_cooldown -= 1
+				print(piece.active_skill.turn_cooldown)
+			
+			
