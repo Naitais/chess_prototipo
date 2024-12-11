@@ -42,6 +42,7 @@ func _process(delta):
 	deactivate_casting()
 	set_button_pos()
 	set_on_cooldown()
+	reset_cooldown()
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
@@ -68,6 +69,12 @@ func set_on_cooldown() -> void:
 	if on_cooldown:
 		skill_button.disabled = true
 		skill_button.modulate = Color8(128, 128, 128)
+		
+func reset_cooldown() -> void:
+	if turn_cooldown == 0:
+		on_cooldown = false
+		skill_button.disabled = false
+		skill_button.modulate = Color8(1, 1, 1)
 
 func deactivate_casting() -> void:
 	if !actor.isActive:

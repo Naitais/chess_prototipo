@@ -37,6 +37,17 @@ func end_turn() -> void:
 		if jugador.team == turn:
 			jugador.set_mana()
 			jugador.update_player_labels()
+			cooling_down_skills(jugador)
 			
 		if jugador.team != turn:
 			jugador.save_extra_mana()
+
+func cooling_down_skills(jugador: Jugador) -> void:
+	
+	var pieces: Array = jugador.piezas.get_children()
+	
+	for piece in pieces:
+		if piece.active_skill and piece.active_skill.on_cooldown:
+			piece.active_skill.turn_cooldown -= 1
+			print(piece.active_skill.turn_cooldown)
+	

@@ -8,6 +8,7 @@ class_name Piece
 @export var movement: int
 @export var team: String
 
+
 #ESTADISTICAS
 @export var physical_damage: int
 @export var magic_damage: int
