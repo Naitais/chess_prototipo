@@ -36,7 +36,10 @@ var king_check: bool = false
 func _ready():
 	
 	pass
-	
+
+func esperar(segundos: float) -> void:
+	await get_tree().create_timer(segundos).timeout
+
 func check_game_end(team):
 	TurnManager.turn = "termino el juego"
 	if team == "red":

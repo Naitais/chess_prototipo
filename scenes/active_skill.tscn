@@ -7,10 +7,14 @@
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/execute_skill_state.gd" id="5_li3ky"]
 
 [node name="active_skill" type="Node2D"]
-visible = false
 script = ExtResource("1_dcsas")
 
 [node name="skill_name_lbl" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="skill_description_lbl" type="Label" parent="."]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -21,36 +25,41 @@ state = NodePath("InactiveSkillState")
 
 [node name="ChooseTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
 script = ExtResource("3_5y0iy")
-button = NodePath("../../Control/skill_button")
+button = NodePath("../../control_button/skill_button")
 skill = NodePath("../..")
 
-[node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
+[node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "button_control")]
 script = ExtResource("4_t21to")
-button = NodePath("../../Control/skill_button")
+button = NodePath("../../control_button/skill_button")
 skill = NodePath("../..")
+button_control = NodePath("../../control_button")
 
-[node name="ExecuteSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
+[node name="ExecuteSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "skill_name_lbl")]
 script = ExtResource("5_li3ky")
-button = NodePath("../../Control/skill_button")
+button = NodePath("../../control_button/skill_button")
 skill = NodePath("../..")
+skill_name_lbl = NodePath("../../skill_name_lbl")
 
-[node name="Control" type="Control" parent="."]
+[node name="control_button" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1074.0
 
-[node name="skill_button" type="Button" parent="Control"]
+[node name="skill_button" type="Button" parent="control_button"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 2.606
 anchor_top = 24.236
 anchor_right = 2.606
 anchor_bottom = 24.236
-offset_left = -4.24001
-offset_top = -132.44
+offset_left = -4.24
+offset_top = -51.44
 offset_right = 56.76
-offset_bottom = 6.55994
+offset_bottom = 6.56
+grow_vertical = 2
 focus_mode = 0
 
-[connection signal="pressed" from="Control/skill_button" to="." method="_on_skill_button_pressed"]
+[connection signal="mouse_entered" from="control_button/skill_button" to="." method="_on_skill_button_mouse_entered"]
+[connection signal="mouse_exited" from="control_button/skill_button" to="." method="_on_skill_button_mouse_exited"]
+[connection signal="pressed" from="control_button/skill_button" to="." method="_on_skill_button_pressed"]

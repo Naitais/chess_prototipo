@@ -35,7 +35,6 @@ func receive_damage() -> void:
 			#de rango asi estan en desventaja como en el heroes
 			if atacante.isCastingSkill:
 				var skill_damage: int = atacante.active_skill.damage
-				print("skill casteada por: ", skill_damage, " ", atacante.active_skill)
 				atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				actor.aplicar_daño(skill_damage, "fisico")
 				
@@ -48,9 +47,11 @@ func receive_damage() -> void:
 				Global.selected_piece.jugador.update_player_labels()
 		
 		#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
+		
+		await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada
 		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
 		
-		#despues de atacar deselecciono la pieza
+		#despues de atacar deselecciono
 		Global.selected_piece.deselect_piece_no_click()
 		
 func highlight_hovered_piece() -> void:

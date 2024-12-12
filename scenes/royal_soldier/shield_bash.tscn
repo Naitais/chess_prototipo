@@ -9,16 +9,8 @@ script = ExtResource("2_j0e7t")
 mana_cost = 1
 damage = 1
 skill_name = "Shield Bash"
-description = "Deal 1 damage and increase armor by 1 for 1 round."
+description = "Deal 1 damage and increase armor by 1."
 initial_turn_cooldown = 2
 
-[node name="skill_button" parent="Control" index="0"]
-anchor_left = 9.964
-anchor_top = 12.96
-anchor_right = 9.964
-anchor_bottom = 12.96
-offset_left = -398.56
-offset_top = -518.4
-offset_right = -326.56
-offset_bottom = -446.4
+[node name="skill_button" parent="control_button" index="0"]
 icon = ExtResource("2_updkd")
