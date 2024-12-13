@@ -97,7 +97,10 @@ func reset_cooldown() -> void:
 func deactivate_casting() -> void:
 	if !actor.isActive:
 		choose_target_state.emit_signal("skill_deactivated")
-		
+
+
+
+
 func _on_skill_button_pressed():
 	inactive_skill_state.emit_signal("skill_activated")
 

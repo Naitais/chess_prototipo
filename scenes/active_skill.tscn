@@ -41,8 +41,8 @@ skill_name_lbl = NodePath("../../skill_name_lbl")
 [node name="control_button" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1074.0
+offset_right = 98.0
+offset_bottom = 125.0
 
 [node name="skill_button" type="Button" parent="control_button"]
 layout_mode = 1

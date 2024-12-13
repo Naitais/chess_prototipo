@@ -27,6 +27,7 @@ func show_skill_name_when_cast() -> void:
 	
 	
 
+
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	skill.actor.jugador.deplete_mana(skill.mana_cost)
@@ -40,6 +41,7 @@ func _enter_state() -> void:
 func _exit_state() -> void:
 	#cuando se sale se pone false
 	set_physics_process(false)
+	
 	
 func _physics_process(_delta):
 	pass

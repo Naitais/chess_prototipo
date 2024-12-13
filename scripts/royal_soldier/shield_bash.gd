@@ -12,5 +12,7 @@ func _process(delta):
 	
 
 func active_effect() -> void:
+	
 	actor.armor += 1
 	actor.set_stats()
+	

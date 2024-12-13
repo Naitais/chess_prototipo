@@ -74,7 +74,7 @@ func _on_piece_area_mouse_entered():
 	#entonces es porque estoy buscando un objetivo para atacar
 	if isActive == false and Global.selected_piece and team != Global.selected_piece.team:
 		inactive_piece_state.emit_signal("piece_is_target")
-		print("asdasd")
+		
 		
 func _on_piece_area_mouse_exited():
 	#solo envio señal cuando la pieza esta inactiva sino cuando
