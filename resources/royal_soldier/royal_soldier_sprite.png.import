@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dquv5gfoou7fb"
-path="res://.godot/imported/royal_soldier_sprite.png-e205bf12ad52aebb30ba4ce2956e9cc2.ctex"
+path="res://.godot/imported/royal_soldier_sprite.png-92ead9ebc24e389d17a06548680b7af3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/piezas_sprites/royal_soldier_sprite.png"
-dest_files=["res://.godot/imported/royal_soldier_sprite.png-e205bf12ad52aebb30ba4ce2956e9cc2.ctex"]
+source_file="res://resources/royal_soldier/royal_soldier_sprite.png"
+dest_files=["res://.godot/imported/royal_soldier_sprite.png-92ead9ebc24e389d17a06548680b7af3.ctex"]
 
 [params]
 

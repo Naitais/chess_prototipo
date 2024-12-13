@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnj3cat5n0nqc"]
+
+[ext_resource type="PackedScene" uid="uid://bbtmgk5ac175u" path="res://scenes/passive_skill.tscn" id="1_rr0fu"]
+[ext_resource type="Script" path="res://scripts/royal_soldier/wall_of_pawns.gd" id="2_uubvk"]
+
+[node name="wall_of_pawns" instance=ExtResource("1_rr0fu")]
+script = ExtResource("2_uubvk")
+skill_name = "Wall of Pawns"
+description = "Gains 1 armor when side to side with another piece of PAWN class. "

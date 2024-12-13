@@ -17,9 +17,9 @@ func receive_damage() -> void:
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
 		#pieza atacante
-		var atacante: Piece = Global.selected_piece
+		var pieza_atacante: Piece = Global.selected_piece
 		#pos ofensivas
-		var posiciones_off_del_atacante: Array = atacante.posiciones_de_ataque 
+		var posiciones_off_del_atacante: Array = pieza_atacante.posiciones_de_ataque 
 		#obtengo la posicion de la pieza atacada
 		var pos_actual: Vector2 = Global.board.local_to_map(actor.global_position)
 		
@@ -33,22 +33,23 @@ func receive_damage() -> void:
 			#para agregar posiciones ofensivas de rango
 			#tambien tener en cuenta que si una posicion rango esta en rango melee no puede usar skills
 			#de rango asi estan en desventaja como en el heroes
-			if atacante.isCastingSkill:
-				var skill_damage: int = atacante.active_skill.damage
-				atacante.active_skill.choose_target_state.emit_signal("skill_executed")
+			if pieza_atacante.isCastingSkill:
+				var skill_damage: int = pieza_atacante.active_skill.damage
+				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				actor.aplicar_daño(skill_damage, "fisico")
 				
 			else:
 				#en este caso es daño fisico asi que el escudo es la armadura
 				actor.aplicar_daño(damage_taken, "fisico")
 				#reduzco mana en 1
-				Global.selected_piece.jugador.deplete_mana(1)
+				pieza_atacante.jugador.deplete_mana(1)
 				#actualizo label de la accion del jugador
-				Global.selected_piece.jugador.update_player_labels()
+				
 		
 		#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
 		
-		await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada
+		#await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada
 		move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
 		
 		#despues de atacar deselecciono

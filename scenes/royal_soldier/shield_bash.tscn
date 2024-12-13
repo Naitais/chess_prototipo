@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_ntx8i"]
 [ext_resource type="Script" path="res://scripts/royal_soldier/shield_bash.gd" id="2_j0e7t"]
-[ext_resource type="Texture2D" uid="uid://bapmesk17qjmm" path="res://resources/skill_icon/royal_soldier/shield_bash.png" id="2_updkd"]
+[ext_resource type="Texture2D" uid="uid://bapmesk17qjmm" path="res://resources/royal_soldier/skill_icon/shield_bash.png" id="3_3whjk"]
 
 [node name="shield_bash" instance=ExtResource("1_ntx8i")]
 script = ExtResource("2_j0e7t")
@@ -13,4 +13,4 @@ description = "Deal 1 damage and increase armor by 1."
 initial_turn_cooldown = 2
 
 [node name="skill_button" parent="control_button" index="0"]
-icon = ExtResource("2_updkd")
+icon = ExtResource("3_3whjk")

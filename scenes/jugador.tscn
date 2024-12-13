@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5400q1w52bni" path="res://scenes/peon.tscn" id="5_ey6qb"]
 [ext_resource type="PackedScene" uid="uid://dh65ow8l6pld7" path="res://scenes/queen.tscn" id="6_cdsm0"]
 [ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="7_mokob"]
-[ext_resource type="PackedScene" uid="uid://bxkhjp7f17v1d" path="res://scenes/royal_soldier.tscn" id="8_nvywv"]
+[ext_resource type="PackedScene" uid="uid://bxkhjp7f17v1d" path="res://scenes/royal_soldier/royal_soldier.tscn" id="8_nvywv"]
 
 [node name="jugador" type="Node2D"]
 script = ExtResource("1_3fj0r")
@@ -28,28 +28,6 @@ position = Vector2(64, 2)
 position = Vector2(438, 2)
 team = "blue"
 
-[node name="peon2" parent="piezas" instance=ExtResource("5_ey6qb")]
-position = Vector2(8, 445)
-team = "blue"
-
-[node name="peon3" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
-[node name="peon4" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
-[node name="peon5" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
-[node name="peon6" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
-[node name="peon7" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
-[node name="peon8" parent="piezas" instance=ExtResource("5_ey6qb")]
-team = "red"
-
 [node name="queen" parent="piezas" instance=ExtResource("6_cdsm0")]
 team = "red"
 
@@ -66,6 +44,20 @@ team = "red"
 team = "red"
 
 [node name="royal_soldier" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="royal_soldier2" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="royal_soldier3" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="royal_soldier4" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="royal_soldier5" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="royal_soldier6" parent="piezas" instance=ExtResource("8_nvywv")]
+
+[node name="peon" parent="piezas" instance=ExtResource("5_ey6qb")]
+
+[node name="royal_soldier7" parent="piezas" instance=ExtResource("8_nvywv")]
 
 [node name="mana_lbl" type="Label" parent="."]
 offset_left = 517.0

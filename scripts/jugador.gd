@@ -173,6 +173,8 @@ func deplete_mana(amount: int) -> void:
 		# If no armor, apply all damage to health
 		
 		self.mana -= amount
+	#actualizo labels con nueva informacion
+	update_player_labels()
 
 #it can be used to deplete or increase gold
 func modify_gold(amount: int) -> void:

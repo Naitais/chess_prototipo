@@ -15,6 +15,8 @@ class_name Piece
 @export var health: int
 @export var armor: int
 @export var magic_shield: int
+@export var  active_skill: ActiveSkill
+@export var  passive_skill: PassiveSkill
 
 @onready var health_lbl = $health_lbl
 @onready var physical_dmg_lbl = $physical_dmg_lbl
@@ -27,7 +29,7 @@ class_name Piece
 @onready var jugador: Node2D
 @onready var active_effects: Array
 
-var active_skill: ActiveSkill
+
 var square_positions: Array
 var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
 								#rey, reina y caballo tienen la misma logica
@@ -40,7 +42,6 @@ var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun
 @onready var receive_damage_state = $StateMachine/ReceiveDamageState as ReceiveDamageState
 
 func _ready():
-	set_active_skill()
 	jugador = get_parent().get_parent() #por el momento lo asigno asi
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	inactive_piece_state.piece_is_target.connect(state_machine.change_state.bind(receive_damage_state))
@@ -73,6 +74,7 @@ func _on_piece_area_mouse_entered():
 	#entonces es porque estoy buscando un objetivo para atacar
 	if isActive == false and Global.selected_piece and team != Global.selected_piece.team:
 		inactive_piece_state.emit_signal("piece_is_target")
+		print("asdasd")
 		
 func _on_piece_area_mouse_exited():
 	#solo envio señal cuando la pieza esta inactiva sino cuando
@@ -198,7 +200,3 @@ func kill_piece() -> void:
 	if health <= 0:
 		self.queue_free()
 	
-func set_active_skill() -> void:
-	for skill in skills.get_children():
-		if skill and skill is ActiveSkill:
-			active_skill = skill

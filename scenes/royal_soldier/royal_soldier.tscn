@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxkhjp7f17v1d"]
+
+[ext_resource type="PackedScene" uid="uid://5400q1w52bni" path="res://scenes/peon.tscn" id="1_b1k23"]
+[ext_resource type="Script" path="res://scripts/royal_soldier/royal_soldier.gd" id="2_h2p6m"]
+[ext_resource type="Texture2D" uid="uid://dquv5gfoou7fb" path="res://resources/royal_soldier/royal_soldier_sprite.png" id="3_wglxw"]
+[ext_resource type="PackedScene" uid="uid://cnj3cat5n0nqc" path="res://scenes/royal_soldier/wall_of_pawns.tscn" id="5_nhkbn"]
+
+[node name="royal_soldier" node_paths=PackedStringArray("active_skill", "passive_skill") instance=ExtResource("1_b1k23")]
+script = ExtResource("2_h2p6m")
+active_skill = NodePath("")
+passive_skill = NodePath("skills/wall_of_pawns")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
+texture = ExtResource("3_wglxw")
+
+[node name="wall_of_pawns" parent="skills" index="0" instance=ExtResource("5_nhkbn")]

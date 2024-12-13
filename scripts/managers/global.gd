@@ -10,20 +10,14 @@ var game_end: bool = false
 var king_check: bool = false
 
 #TODO
-# logica de turnos -> agregar temporizador
-
-#implementar habilidades de royal soldier/por el momento cuando se usa una habilidad, en lugar
-#de mostrar una animacion puedo mostrar un label indicando el nombre de la habilidad que se uso
+#LOS ELEMENTOS DE LA ESCENA DE LA ACTIVE SKILL SON EL BUG PORQUE EL MOUSE NO DETECTA LA PIEZA QUE ESTA DEBAJO
+#REVISAR BUG EL ERROR QUIZAS SEA LAS SKILLS ESTAN TAPANDO EL LADO DERECHO PRO ESO SOLO PASA EN ROYAL SOLDIER
+#el peon rojo esta bugeado, le falta la posicion ofensiva del lado derecho
 
 #implementar tooltip
 
-#implementar conteo de rondas o turnos para que afecte cuanto duran las habilidades como buffs/debuffs
-
 #implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
-#
-#reemplazar tags de acciones del jugador por iconos, cuando la accion esta disponible el icono esta a color
-#cuando la accion esta en gris es porque esa accion ya fue realizada
 
 #agregar un pequeño icono que identifique que clase de pieza es cada una, una para peon, rey, reina etc
 #asi es facil identificar la clase de cada pieza. quizas esto puede estar en un tooltip con el nombre de la pieza

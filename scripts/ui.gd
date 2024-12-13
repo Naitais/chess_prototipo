@@ -5,7 +5,6 @@ extends CanvasLayer
 
 @onready var active_skill_panel = $active_skill_panel
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	UiManager.active_skill_panel = active_skill_panel

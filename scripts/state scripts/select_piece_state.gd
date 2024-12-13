@@ -17,6 +17,7 @@ func select_piece() -> void:
 			Global.selected_piece = actor
 			actor.show_active_skill()
 			set_offensive_squares()
+			print(actor.posiciones_de_ataque)
 			#despues de hacerle click aumento mas inlcuso el color de la pieza para enfasis
 			sprite.self_modulate = Color(1,2,1)
 			actor.isActive = true
