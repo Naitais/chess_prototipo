@@ -13,8 +13,6 @@ func _ready():
 	# Initialize the tile dictionary
 	initialize_tile_dict()
 	
-	
-	
 func _physics_process(delta):
 	#update_map_dictionary()
 	#highlight_occupied_tiles()
@@ -23,8 +21,6 @@ func _physics_process(delta):
 	pass
 	
 func initialize_tile_dict() -> void:
-	
-		
 	for x in range(map_size.x):
 		for y in range(map_size.y):
 			var tile_pos: Vector2 = Vector2(x, y)
@@ -88,6 +84,7 @@ func set_pieces_on_board() -> void:
 
 		
 	#print(Global.occupied_positions)
+	
 
 #funciones de area para solo mover piezas cuando el mouse esta dentro del tablero
 func _on_board_area_mouse_entered():
@@ -97,7 +94,7 @@ func _on_board_area_mouse_exited():
 	mouse_inside_board_area = false
 
 func _on_board_area_body_entered(body):
-	if body is Piece:
+	if body is Piece and body not in Global.pieces_on_board:
 		Global.pieces_on_board.append(body)
 
 func _on_board_area_body_exited(body):

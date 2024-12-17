@@ -42,6 +42,9 @@ func end_turn() -> void:
 	if turns_in_round >= 2:
 		round_counter += 1 # Increment the round counter
 		turns_in_round = 0 # Reset the turn counter for the next round
+		
+		#for piece in Global.pieces_on_board:
+		#	print(Global.board.local_to_map(piece.global_position))
 		print("Round:", round_counter)
 
 	# Reset game actions and update labels for both players

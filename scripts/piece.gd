@@ -30,6 +30,7 @@ class_name Piece
 @onready var active_effects: Array
 
 
+var states: Array
 var square_positions: Array
 var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
 								#rey, reina y caballo tienen la misma logica
@@ -52,7 +53,7 @@ func _ready():
 	set_stats()
 	
 func _physics_process(delta):
-	
+	print(states)
 	#send_to_cemetery()
 	#check_if_active_piece()
 	deselect_piece()

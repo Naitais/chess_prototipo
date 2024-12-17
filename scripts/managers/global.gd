@@ -10,14 +10,20 @@ var game_end: bool = false
 var king_check: bool = false
 
 #TODO
-#LOS ELEMENTOS DE LA ESCENA DE LA ACTIVE SKILL SON EL BUG PORQUE EL MOUSE NO DETECTA LA PIEZA QUE ESTA DEBAJO
-#REVISAR BUG EL ERROR QUIZAS SEA LAS SKILLS ESTAN TAPANDO EL LADO DERECHO PRO ESO SOLO PASA EN ROYAL SOLDIER
-#el peon rojo esta bugeado, le falta la posicion ofensiva del lado derecho
-#TODO revisar el numero de countdown como deberia funcionar
 #implementar tooltip
 
 #implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
+
+#cada pieza debe tener un array llamado states
+#al inicio de cada turno cada pieza debe correr un metodo que revise que states
+#se encuentran actualmente en el array states y dependiendo de eso
+#se activa el efecto del state mientras exista en el array states de la pieza
+#y de esa manera manejo los estados que afectan a cada pieza
+#esto sirve para ahorrar codigo ya que muchos estados pueden repetirse
+#en distintas skills ya sean pasivas o activas
+#cuando se implemente el metodo que aplique los estados tambien debe llamar al metodo que 
+#actualiza los labels asi se refleja automaticamente en las estadisticas de la pieza
 
 #agregar un pequeño icono que identifique que clase de pieza es cada una, una para peon, rey, reina etc
 #asi es facil identificar la clase de cada pieza. quizas esto puede estar en un tooltip con el nombre de la pieza

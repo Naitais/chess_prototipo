@@ -1,11 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://v36qteennc35"]
+[gd_scene load_steps=3 format=3 uid="uid://v36qteennc35"]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_3fj0r"]
-[ext_resource type="PackedScene" uid="uid://64iv6ktxuxgk" path="res://scenes/bishop.tscn" id="2_vx4o5"]
-[ext_resource type="PackedScene" uid="uid://cwemggqjy3icr" path="res://scenes/caballero.tscn" id="3_1bwpu"]
-[ext_resource type="PackedScene" uid="uid://yyp8uwu3eenw" path="res://scenes/king.tscn" id="4_i26kw"]
-[ext_resource type="PackedScene" uid="uid://dh65ow8l6pld7" path="res://scenes/queen.tscn" id="6_cdsm0"]
-[ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="7_mokob"]
 [ext_resource type="PackedScene" uid="uid://bxkhjp7f17v1d" path="res://scenes/royal_soldier/royal_soldier.tscn" id="8_nvywv"]
 
 [node name="jugador" type="Node2D"]
@@ -16,55 +11,9 @@ gold = 250
 
 [node name="piezas" type="Node2D" parent="."]
 
-[node name="king" parent="piezas" instance=ExtResource("4_i26kw")]
-z_index = 1
-position = Vector2(257, 457)
-team = "blue"
-
-[node name="caballero" parent="piezas" instance=ExtResource("3_1bwpu")]
-z_index = 1
-position = Vector2(64, 2)
-
-[node name="caballero2" parent="piezas" instance=ExtResource("3_1bwpu")]
-z_index = 1
-position = Vector2(438, 2)
-team = "blue"
-
-[node name="queen" parent="piezas" instance=ExtResource("6_cdsm0")]
-z_index = 1
-team = "red"
-
-[node name="rook" parent="piezas" instance=ExtResource("7_mokob")]
-z_index = 1
-team = "red"
-
-[node name="rook2" parent="piezas" instance=ExtResource("7_mokob")]
-z_index = 1
-team = "red"
-
-[node name="bishop" parent="piezas" instance=ExtResource("2_vx4o5")]
-z_index = 1
-team = "red"
-
-[node name="bishop2" parent="piezas" instance=ExtResource("2_vx4o5")]
-z_index = 1
-team = "red"
-
 [node name="royal_soldier" parent="piezas" instance=ExtResource("8_nvywv")]
 
 [node name="royal_soldier2" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier3" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier4" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier5" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier6" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier7" parent="piezas" instance=ExtResource("8_nvywv")]
-
-[node name="royal_soldier8" parent="piezas" instance=ExtResource("8_nvywv")]
 
 [node name="mana_lbl" type="Label" parent="."]
 offset_left = 517.0
