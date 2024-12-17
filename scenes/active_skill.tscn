@@ -58,6 +58,12 @@ offset_bottom = 6.56
 grow_vertical = 2
 focus_mode = 0
 
+[node name="cooldown_countdown_lbl" type="Label" parent="control_button"]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 23.0
+text = "prueba"
+
 [connection signal="mouse_entered" from="control_button/skill_button" to="." method="_on_skill_button_mouse_entered"]
 [connection signal="mouse_exited" from="control_button/skill_button" to="." method="_on_skill_button_mouse_exited"]
 [connection signal="pressed" from="control_button/skill_button" to="." method="_on_skill_button_pressed"]

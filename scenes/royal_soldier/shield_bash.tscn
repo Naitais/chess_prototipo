@@ -32,3 +32,9 @@ offset_top = -71.4901
 offset_right = 71.52
 offset_bottom = 0.509949
 icon = ExtResource("3_3whjk")
+
+[node name="cooldown_countdown_lbl" parent="control_button" index="1"]
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 68.0
+offset_bottom = 49.0

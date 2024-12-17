@@ -27,9 +27,12 @@ func end_turn() -> void:
 		if jugador.team == turn:
 			jugador.set_mana()
 			jugador.update_player_labels()
+			
+			#probar poner condicion aca para que haga lo del mana solo si es el final de la ronda
 			cooling_down_skills(jugador)
 			
 		if jugador.team != turn:
+			
 			jugador.save_extra_mana()
 	
 	# Increment the number of turns in this round
@@ -50,7 +53,7 @@ func cooling_down_skills(jugador: Jugador) -> void:
 	
 	for piece in pieces:
 		if piece.active_skill and piece.active_skill.on_cooldown:
-			if piece.active_skill.turn_cooldown > -1:
+			if piece.active_skill.turn_cooldown > 0:
 				piece.active_skill.turn_cooldown -= 1
 				print(piece.active_skill.turn_cooldown)
 			

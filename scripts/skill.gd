@@ -24,6 +24,7 @@ var turn_cooldown: int
 @onready var skill_description_lbl = $skill_description_lbl
 @onready var skill_name_lbl = $skill_name_lbl
 @onready var skill_button = $control_button/skill_button
+@onready var cooldown_countdown_lbl = $control_button/cooldown_countdown_lbl
 
 #state vars
 @onready var state_machine = $StateMachine as StateMachine
@@ -54,7 +55,7 @@ func _process(delta):
 	deactivate_casting()
 	set_button_pos()
 	reset_cooldown()
-	
+	show_cooldown_countdown()
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
@@ -73,6 +74,15 @@ func set_button_pos() -> void:
 	skill_button.global_position = UiManager.active_skill_panel.position - Vector2(screen_size/6)#UiManager.active_skill_panel.position - Vector2(screen_size)#screen_size #Vector2(20, screen_size.y - 20)
 	#skill_button.position = UiManager.active_skill_panel.global_position
 	
+func show_cooldown_countdown() -> void:
+	if on_cooldown:
+		cooldown_countdown_lbl.visible = true
+		var skill_cooldown_countdown: int = turn_cooldown
+		cooldown_countdown_lbl.text = str(turn_cooldown)
+		cooldown_countdown_lbl.global_position = skill_button.global_position
+	else:
+		cooldown_countdown_lbl.visible = false
+	
 
 func hide_or_show_skill_button() -> void:
 	if actor:
@@ -89,10 +99,10 @@ func set_on_cooldown() -> void:
 		
 func reset_cooldown() -> void:
 	#lo hago hasta -1 porque sino siempre tengo un turno menos de cooldown
-	if turn_cooldown == -1 and on_cooldown:
+	if turn_cooldown == 0 and on_cooldown:
 		on_cooldown = false
 		skill_button.disabled = false
-		skill_button.modulate = Color(0.502, 0.502, 0.502, 1)
+		skill_button.modulate = Color(1, 1, 1, 1)
 
 func deactivate_casting() -> void:
 	if !actor.isActive:
