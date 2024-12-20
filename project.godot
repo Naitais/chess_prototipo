@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://scripts/managers/global.gd"
 UiManager="*res://scripts/managers/ui_manager.gd"
 TurnManager="*res://scripts/managers/turn_manager.gd"
+StateEffectManager="*res://scripts/managers/state_effect_manager.gd"
 
 [display]
 

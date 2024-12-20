@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx14jjtle6mu8"]
+
+[ext_resource type="Script" path="res://scripts/efecto.gd" id="1_kwmbj"]
+[ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="2_y3s1q"]
+[ext_resource type="Script" path="res://scripts/state scripts/effect_states/inactive_effect_state.gd" id="3_ri03j"]
+[ext_resource type="Script" path="res://scripts/state scripts/effect_states/activate_effect_state.gd" id="4_57fja"]
+
+[node name="efecto" type="Node2D"]
+script = ExtResource("1_kwmbj")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("2_y3s1q")
+state = NodePath("InactiveEffectState")
+
+[node name="InactiveEffectState" type="Node" parent="StateMachine" node_paths=PackedStringArray("efecto")]
+script = ExtResource("3_ri03j")
+efecto = NodePath("../..")
+
+[node name="ActiveEffectState" type="Node" parent="StateMachine" node_paths=PackedStringArray("efecto")]
+script = ExtResource("4_57fja")
+efecto = NodePath("../..")

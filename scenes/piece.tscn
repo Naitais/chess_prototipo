@@ -110,5 +110,7 @@ texture = ExtResource("8_8er10")
 
 [node name="skills" type="Node2D" parent="."]
 
+[node name="efectos" type="Node2D" parent="."]
+
 [connection signal="mouse_entered" from="piece_area" to="." method="_on_piece_area_mouse_entered"]
 [connection signal="mouse_exited" from="piece_area" to="." method="_on_piece_area_mouse_exited"]
