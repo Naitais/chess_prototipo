@@ -17,6 +17,18 @@ var king_check: bool = false
 
 #tengo que terminar de pensar como voy a trabajar lo de los states
 
+#ultimo detalle: en lugar de agregfar el pasivo al array de piece, tengo que agregar el efecto
+#cuando tengo agregado el efecto uso el metodo global del effect manager para instanciar el efecto
+#agregado a la pieza y luego ya depende de como se maneje el efecto y la pasiva seria el resto
+#la pasiva/habilidad lo unico que hacen es determinar de que manera agregan la "etiqueta" del efecto
+#luego, con el effect manager se instancia ese efecto a partir de la etiqueta en la pieza y finalmente dependiendo
+#de como funcione el efecto, va accionarse de una u otra forma.
+
+#agregado para finalizar idea: usar un manager de efectos en donde tengo un diccionario 
+#con el nombre del efecto como key y la ruta para crear una instancia del efecto
+#como valor de esa forma al leer el nombre del efecto solo lo matcheo con el diccionario del manager
+#y cuando es agregado al nodo efectos del jugador, se puede activar segun la conficion del efecto
+
 #nuevo planteamiento -> tanto las habilidades activas como pasivas desencadenan efectos
 #los efectos van a ser nodos que se agregan a un nodo contenedor de efectos llamado efectos
 #cada efecto va a tener su state machine con sus metodos y atributos

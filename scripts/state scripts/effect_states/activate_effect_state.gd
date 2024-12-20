@@ -12,9 +12,6 @@ func _ready():
 func _enter_state() -> void:
 	pass
 	#solo se activa cuando entro al state wander
-	
-	#skill.actor.deselect_piece_no_click()
-	
 	set_physics_process(true)
 	
 func _exit_state() -> void:

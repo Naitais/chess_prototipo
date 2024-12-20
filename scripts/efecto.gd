@@ -40,4 +40,3 @@ func modify_piece_stat(stat_type: String) -> void:
 		
 		"magic_damage": actor.magic_damage += stat_mod_num
 		
-	
