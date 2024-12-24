@@ -15,6 +15,12 @@ var king_check: bool = false
 #implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
 
+
+#TODO conclusion, quedo bien lo de los efectos pero tengo que reescribir como funciona las passive skills
+#para que implemente el mismo sistema que la active skill. Fue un error no armar una clase padre skill
+#para que luego salgan las subclases passive skill y active skill pero bueno ahi veo que onda
+
+
 #tengo que terminar de pensar como voy a trabajar lo de los states
 
 #ultimo detalle: en lugar de agregfar el pasivo al array de piece, tengo que agregar el efecto

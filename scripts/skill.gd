@@ -9,6 +9,7 @@ class_name ActiveSkill
 @export var actor: Piece
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
+@export var effect_list: Array
 #tendria que ser un conjunto de booleanos del estilo:
 	#melee
 	#rango
@@ -59,8 +60,18 @@ func _process(delta):
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
-func active_effect() -> void:
-	pass
+#esto deberia ser dependiendo del tipo de habilidad
+#si es una habilidad que afecta solo al caster
+#o si afecta solo al objetivo o si afecta a ambos con distintos efectos
+#supongo que podria tener distintas versiones de este metodo
+#y solo modificarla segun la habilidad
+func add_effect() -> void:
+	for effect in effect_list:
+		var effect_node: Efecto = StateEffectManager.get_effect(effect)
+		
+		actor.efectos.add_child(effect_node.duplicate())
+
+	actor.set_stats()
 
 
 func set_labels_text() -> void:

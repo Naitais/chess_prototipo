@@ -11,6 +11,7 @@ damage = 1
 skill_name = "Shield Bash"
 description = "Deal 1 damage and increase armor by 1."
 initial_turn_cooldown = 2
+effect_list = ["shield"]
 
 [node name="skill_name_lbl" parent="." index="0"]
 visible = false

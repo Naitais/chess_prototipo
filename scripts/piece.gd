@@ -28,9 +28,10 @@ class_name Piece
 @onready var mouse_pos: Vector2
 @onready var jugador: Node2D
 
-@onready var states_node = $efectos
+@onready var efectos = $efectos
 
-var states: Array
+
+var effects: Array
 var square_positions: Array
 var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
 								#rey, reina y caballo tienen la misma logica
@@ -57,9 +58,10 @@ func _ready():
 	set_stats()
 	
 func _physics_process(delta):
-	print(states)
+	#print(states)
 	#send_to_cemetery()
 	#check_if_active_piece()
+	set_effect_parent()
 	deselect_piece()
 	set_opaque_sprite()
 	set_piece_colour()
@@ -204,4 +206,13 @@ func kill_piece() -> void:
 	
 	if health <= 0:
 		self.queue_free()
+
+#seteo como actor del efecto a la pieza
+func set_effect_parent() -> void:
+	for efecto in efectos.get_children():
+		if efecto:
+			if efecto.actor == null:
+				efecto.actor = self
+	
+	
 	

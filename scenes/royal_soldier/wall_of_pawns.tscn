@@ -7,3 +7,4 @@
 script = ExtResource("2_uubvk")
 skill_name = "Wall of Pawns"
 description = "Gains 1 armor when side to side with another piece of PAWN class. "
+effect_list = ["shield"]

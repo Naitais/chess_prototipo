@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bar40fsst5uyp"]
+[gd_scene load_steps=3 format=3 uid="uid://bar40fsst5uyp"]
 
 [ext_resource type="PackedScene" uid="uid://cx14jjtle6mu8" path="res://scenes/efecto.tscn" id="1_hulmt"]
+[ext_resource type="Script" path="res://scripts/effect scripts/shield.gd" id="2_5qr3d"]
 
 [node name="Shield" instance=ExtResource("1_hulmt")]
-nombre = "Shield"
+script = ExtResource("2_5qr3d")
+nombre = "shield"
 descripcion = "Increase piece armor by 1."
 stat_mod_num = 1

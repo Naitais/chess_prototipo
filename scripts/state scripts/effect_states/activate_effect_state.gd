@@ -10,7 +10,8 @@ func _ready():
 	set_physics_process(false)
 
 func _enter_state() -> void:
-	pass
+	
+	
 	#solo se activa cuando entro al state wander
 	set_physics_process(true)
 	
@@ -19,5 +20,10 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	
-	pass
+	activate_effect()
+
+func activate_effect() -> void:
+	if !efecto.is_active:
+		efecto.modify_piece_stat("armor")
+		efecto.is_active = true
+		

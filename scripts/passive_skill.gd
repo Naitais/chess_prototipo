@@ -7,15 +7,25 @@ class_name PassiveSkill
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
 
-func set_state_on_piece(piece: Piece) -> void:
-	if self.skill_name not in piece.states:
-		piece.states.append(self.skill_name)
+@export var effect_list: Array
+
+func add_effect() -> void:
+	for effect in effect_list:
+		var effect_node: Efecto = StateEffectManager.get_effect(effect)
+		
+		actor.efectos.add_child(effect_node.duplicate())
+
+	actor.set_stats()
+
+func set_effect_on_piece(piece: Piece) -> void:
+	if self.skill_name not in piece.effects:
+		piece.effects.append(self.skill_name)
 		#piece.armor += 1  # Add armor
 		#piece.set_stats()  # Update stats if needed
 
 func remove_state_from_piece(piece: Piece) -> void:
-	if self.skill_name in piece.states:
-		piece.states.erase(self.skill_name)
+	if self.skill_name in piece.effects:
+		piece.effects.erase(self.skill_name)
 		piece.armor -= 1  # Add armor
 		piece.set_stats()  # Update stats if needed
 

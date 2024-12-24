@@ -4,7 +4,7 @@ extends Node
 
 var effects: Dictionary = {
 	
-	"Shield": load("res://scenes/effects/shield.tscn").instantiate()
+	"shield": load("res://scenes/effects/shield.tscn").instantiate()
 	
 }
 # Called when the node enters the scene tree for the first time.

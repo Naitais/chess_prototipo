@@ -11,10 +11,10 @@ func _process(delta):
 	activate_passive_skill()
 
 func activate_passive_skill() -> void:
-	# Clear previous states to start fresh
+	# Clear previous effects to start fresh
 	for piece in Global.pieces_on_board:
 		if piece is Pawn and piece.team == actor.team:
-			piece.states.erase(self.skill_name)
+			piece.effects.erase(self.skill_name)
 	
 	# Iterate over all pieces to check for neighbors
 	for piece in Global.pieces_on_board:
@@ -29,11 +29,11 @@ func activate_passive_skill() -> void:
 				
 				var other_pos: Vector2 = Global.board.local_to_map(other_piece.global_position)
 				
-				# If an adjacent pawn is found, add the state
+				# If an adjacent pawn is found, add the effects
 				if other_piece is Pawn and other_piece.team == actor.team and \
 					(other_pos == left_pos or other_pos == right_pos):
-					if self.skill_name not in piece.states:
-						set_state_on_piece(piece)
+					if self.skill_name not in piece.effects:
+						set_effect_on_piece(piece)
 					break  # No need to check further neighbors for this piece
 
 			
