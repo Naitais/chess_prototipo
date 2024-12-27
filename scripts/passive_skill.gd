@@ -6,34 +6,28 @@ class_name PassiveSkill
 @export var actor: Piece
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
-
 @export var effect_list: Array
 
-func add_effect() -> void:
-	for effect in effect_list:
-		var effect_node: Efecto = StateEffectManager.get_effect(effect)
-		
-		actor.efectos.add_child(effect_node.duplicate())
-
-	actor.set_stats()
-
-func set_effect_on_piece(piece: Piece) -> void:
-	if self.skill_name not in piece.effects:
-		piece.effects.append(self.skill_name)
-		#piece.armor += 1  # Add armor
-		#piece.set_stats()  # Update stats if needed
-
-func remove_state_from_piece(piece: Piece) -> void:
-	if self.skill_name in piece.effects:
-		piece.effects.erase(self.skill_name)
-		piece.armor -= 1  # Add armor
-		piece.set_stats()  # Update stats if needed
+#state machine
+@onready var state_machine = $StateMachine as StateMachine
+@onready var inactive_passive_state = $StateMachine/InactivePassiveState as InactivePassiveState
+@onready var active_passive_state = $StateMachine/ActivePassiveState as ActivePassiveState
+@onready var delete_passive_state = $StateMachine/DeletePassiveState as DeletePassiveState
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
+	inactive_passive_state.passive_activated.connect(state_machine.change_state.bind(active_passive_state))
+	active_passive_state.passive_deactivated.connect(state_machine.change_state.bind(inactive_passive_state))
+	#delete_passive_state.effect_deleted.connect(state_machine.change_state.bind(inactive_passive_state))
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func add_effect(piece: Piece) -> void:
+	for effect in effect_list:
+		var effect_node: Efecto = StateEffectManager.get_effect(effect)
+		effect_node.origen = self.skill_name #agrego el origen
+		piece.efectos.add_child(effect_node.duplicate())
+
+	piece.set_stats()

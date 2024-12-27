@@ -68,7 +68,7 @@ func _process(delta):
 func add_effect() -> void:
 	for effect in effect_list:
 		var effect_node: Efecto = StateEffectManager.get_effect(effect)
-		
+		effect_node.origen = self.skill_name #agrego el origen
 		actor.efectos.add_child(effect_node.duplicate())
 
 	actor.set_stats()
@@ -107,7 +107,8 @@ func set_on_cooldown() -> void:
 	skill_button.disabled = true
 	turn_cooldown = initial_turn_cooldown
 	skill_button.modulate = Color(128, 128, 128)
-		
+	actor.isCastingSkill = false
+	
 func reset_cooldown() -> void:
 	#lo hago hasta -1 porque sino siempre tengo un turno menos de cooldown
 	if turn_cooldown == 0 and on_cooldown:

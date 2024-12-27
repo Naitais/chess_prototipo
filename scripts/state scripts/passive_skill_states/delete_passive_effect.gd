@@ -1,18 +1,15 @@
-class_name ActiveEffectState
+class_name DeletePassiveState
 extends State
 
-@export var efecto: Efecto
+@export var skill: PassiveSkill
 
-signal effect_deactivated
+signal effect_deleted
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
 
 func _enter_state() -> void:
-	
-	
-	#solo se activa cuando entro al state wander
 	set_physics_process(true)
 	
 func _exit_state() -> void:
@@ -20,7 +17,4 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	efecto.activate_effect()
-
-
-		
+	pass
