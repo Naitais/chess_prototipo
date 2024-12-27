@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ds5ukuebu0ov0" path="res://scenes/royal_soldier/shield_bash.tscn" id="5_kuoft"]
 
 [node name="royal_soldier" node_paths=PackedStringArray("active_skill") instance=ExtResource("1_b1k23")]
+light_mask = 1
+visibility_layer = 1
 z_index = 1
 script = ExtResource("2_h2p6m")
 active_skill = NodePath("skills/shield_bash")

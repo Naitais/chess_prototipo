@@ -10,11 +10,11 @@ class_name ActiveSkill
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
 @export var effect_list: Array
-#tendria que ser un conjunto de booleanos del estilo:
-	#melee
-	#rango
-	#daño_fisico
-	#daño_magico
+#tipos de active skill para determinar como funcionan:
+	#fisico_melee -> se activa desde el ReceiveDamageState de piece
+	#buff_debuff_rango
+	#fisico_rango
+	#magico_rango
 	#buff
 	#debuff
 @export var tipo: String
@@ -110,7 +110,6 @@ func set_on_cooldown() -> void:
 	actor.isCastingSkill = false
 	
 func reset_cooldown() -> void:
-	#lo hago hasta -1 porque sino siempre tengo un turno menos de cooldown
 	if turn_cooldown == 0 and on_cooldown:
 		on_cooldown = false
 		skill_button.disabled = false

@@ -33,14 +33,14 @@ func receive_damage() -> void:
 			#para agregar posiciones ofensivas de rango
 			#tambien tener en cuenta que si una posicion rango esta en rango melee no puede usar skills
 			#de rango asi estan en desventaja como en el heroes
-			if pieza_atacante.isCastingSkill:
+			if pieza_atacante.isCastingSkill and pieza_atacante.active_skill.tipo == "fisico_melee":
 				var skill_damage: int = pieza_atacante.active_skill.damage
 				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
 				
 				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				actor.aplicar_daño(skill_damage, "fisico")
 				
-			else:
+			elif not pieza_atacante.isCastingSkill:
 				#en este caso es daño fisico asi que el escudo es la armadura
 				actor.aplicar_daño(damage_taken, "fisico")
 				#reduzco mana en 1
