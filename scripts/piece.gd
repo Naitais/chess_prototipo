@@ -35,6 +35,7 @@ var effects: Array
 var square_positions: Array
 var posiciones_de_ataque: Array #posiciones que tiene la pieza para atacar segun su posicion actual
 								#rey, reina y caballo tienen la misma logica
+var posiciones_de_skill_range: Array
 
 #state machine vars
 @onready var state_machine = $StateMachine as StateMachine
@@ -128,9 +129,14 @@ func highlight_threatened_piece() -> void:
 	if Global.selected_piece:
 		if Global.selected_piece.team != self.team:
 			for posicion in Global.selected_piece.posiciones_de_ataque:
+				
 				if posicion == Vector2(Global.board.local_to_map(self.global_position)):
 					sprite.modulate = Color8(255,100,0)
-
+		#aca tendria que hacer lo mismo pero para piezas que son aliadas
+		#else:
+		#	for posicion in Global.selected_piece.posiciones_de_ataque:
+		#		if posicion == Vector2(Global.board.local_to_map(self.global_position)):
+		#			sprite.modulate = Color8(255,100,0)
 #armar un nodo que tenga todo contenido lo de estadisticas
 # hacer un sprite separado para cada estadistica asi
 # cuando vale 0 desaparace tambien el sprite porque

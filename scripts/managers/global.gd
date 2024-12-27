@@ -15,6 +15,8 @@ var king_check: bool = false
 #implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
 
+#TODO ARREGLAR LAS SKILLS QUEDO TODO COMO LA MIERDA EL TEMA DEL RANGO DE LAS HABILIDADES
+#SHIELD BASH YA NO FUNCIONA
 
 #TODO conclusion, quedo bien lo de los efectos pero tengo que reescribir como funciona las passive skills
 #para que implemente el mismo sistema que la active skill. Fue un error no armar una clase padre skill

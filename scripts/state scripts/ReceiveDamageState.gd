@@ -26,31 +26,47 @@ func receive_damage() -> void:
 		
 		
 		#reviso cada posicion ofensiva y si el actor esta en una de esas, entonces esta en rango de ataque
-		if pos_actual in posiciones_off_del_atacante:
+		
+		if pos_actual in posiciones_off_del_atacante and not pieza_atacante.isCastingSkill:
+			
+			
+			
 			#TODO
 			#agregar bandera que detecte que tipó de skill es, si es una ofensiva melee
 			#si fuera rango facilmente se puede editar las casillas en el state choose target de la skill
 			#para agregar posiciones ofensivas de rango
 			#tambien tener en cuenta que si una posicion rango esta en rango melee no puede usar skills
 			#de rango asi estan en desventaja como en el heroes
-			if pieza_atacante.isCastingSkill and pieza_atacante.active_skill.tipo == "fisico_melee":
+			
+				
+				
+					
+			
+				#en este caso es daño fisico asi que el escudo es la armadura
+			actor.aplicar_daño(damage_taken, "fisico")
+				#reduzco mana en 1
+			pieza_atacante.jugador.deplete_mana(1)
+				#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
+			move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
+			Global.selected_piece.deselect_piece_no_click()
+				
+			
+				
+				
+				
+		
+		if pos_actual in actor.posiciones_de_skill_range and pieza_atacante.isCastingSkill:
+			
+			#si la skill es fisico melee
+			if pieza_atacante.active_skill.tipo == "fisico_melee":
 				var skill_damage: int = pieza_atacante.active_skill.damage
 				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
 				
 				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				actor.aplicar_daño(skill_damage, "fisico")
-				
-			elif not pieza_atacante.isCastingSkill:
-				#en este caso es daño fisico asi que el escudo es la armadura
-				actor.aplicar_daño(damage_taken, "fisico")
-				#reduzco mana en 1
-				pieza_atacante.jugador.deplete_mana(1)
-				#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
-				move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
-				Global.selected_piece.deselect_piece_no_click()
-				
-		
-		
+					
+			elif pieza_atacante.active_skill.tipo == "buff_debuff_rango":
+				print("dow")
 		
 		
 		#await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada

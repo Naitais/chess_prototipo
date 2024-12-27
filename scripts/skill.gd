@@ -19,7 +19,8 @@ class_name ActiveSkill
 	#debuff
 @export var tipo: String
 
-
+var pieces_in_range: Array
+var pos_pieces_in_range: Array
 var turn_cooldown: int
 @onready var target_piece: Piece
 @onready var skill_description_lbl = $skill_description_lbl
@@ -133,3 +134,16 @@ func _on_skill_button_mouse_entered():
 
 func _on_skill_button_mouse_exited():
 	skill_description_lbl.visible = false
+
+
+func _on_skill_area_body_entered(body):
+	if body is Piece and body.team == actor.team:
+		if body not in pieces_in_range:
+			pieces_in_range.append(body)
+			actor.posiciones_de_skill_range.append(Vector2(Global.board.local_to_map(body.position)))
+			
+
+func _on_skill_area_body_exited(body):
+	if body in pieces_in_range:
+			pieces_in_range.erase(body)
+			actor.posiciones_de_skill_range.erase(Global.board.local_to_map(body.position))

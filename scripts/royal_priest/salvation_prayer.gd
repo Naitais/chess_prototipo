@@ -2,7 +2,7 @@ extends ActiveSkill
 
 
 @onready var skill_collision_shape = $skillArea/CollisionShape2D
-var pieces_in_range: Array
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,19 +13,10 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	set_skill_area_pos()
+	#set_pieces_in_range_when_casting()
+	#print(actor.posiciones_de_ataque)
 	
-
+	
 func set_skill_area_pos() -> void:
 	skill_collision_shape.global_position = actor.position + Vector2(32,32)
-
-
-func _on_skill_area_body_entered(body):
-	
-	if body is Piece and body.team == actor.team:
-		if body not in pieces_in_range:
-			pieces_in_range.append(body)
-
-
-func _on_skill_area_body_exited(body):
-	if body in pieces_in_range:
-			pieces_in_range.erase(body)
+		
