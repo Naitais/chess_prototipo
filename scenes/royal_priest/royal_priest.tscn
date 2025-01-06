@@ -9,6 +9,8 @@
 light_mask = 1
 visibility_layer = 1
 script = ExtResource("2_2bofs")
+physical_damage = 1
+max_health = 2
 active_skill = NodePath("skills/salvation_prayer")
 
 [node name="Sprite2D" parent="." index="1"]

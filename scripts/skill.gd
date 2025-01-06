@@ -7,6 +7,7 @@ class_name ActiveSkill
 @export var skill_name: String
 @export var description: String
 @export var actor: Piece
+@export var objective_piece: Piece
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
 @export var effect_list: Array
@@ -19,9 +20,11 @@ class_name ActiveSkill
 	#debuff
 @export var tipo: String
 
+var _pieza: Piece
 var pieces_in_range: Array
-var pos_pieces_in_range: Array
+#var pos_pieces_in_range: Array
 var turn_cooldown: int
+var choosing_target: bool = false
 @onready var target_piece: Piece
 @onready var skill_description_lbl = $skill_description_lbl
 @onready var skill_name_lbl = $skill_name_lbl
@@ -66,13 +69,23 @@ func _process(delta):
 #o si afecta solo al objetivo o si afecta a ambos con distintos efectos
 #supongo que podria tener distintas versiones de este metodo
 #y solo modificarla segun la habilidad
+
+#salvation prayer ya se ejecuta ahora solo me queda pasar la pieza a este metodo cuando lo llamo
+#en el execute skill state
 func add_effect() -> void:
 	for effect in effect_list:
-		var effect_node: Efecto = StateEffectManager.get_effect(effect)
-		effect_node.origen = self.skill_name #agrego el origen
-		actor.efectos.add_child(effect_node.duplicate())
-
-	actor.set_stats()
+		if _pieza:
+			var effect_node: Efecto = StateEffectManager.get_effect(effect)
+			effect_node.origen = self.skill_name #agrego el origen
+			_pieza.efectos.add_child(effect_node.duplicate())
+		else:
+			var effect_node: Efecto = StateEffectManager.get_effect(effect)
+			effect_node.origen = self.skill_name #agrego el origen
+			actor.efectos.add_child(effect_node.duplicate())
+	if _pieza:
+		_pieza.set_stats()
+	else:
+		actor.set_stats()
 
 
 func set_labels_text() -> void:
@@ -137,13 +150,18 @@ func _on_skill_button_mouse_exited():
 
 
 func _on_skill_area_body_entered(body):
-	if body is Piece and body.team == actor.team:
+	if body is Piece and body.team != actor.team:
 		if body not in pieces_in_range:
 			pieces_in_range.append(body)
-			actor.posiciones_de_skill_range.append(Vector2(Global.board.local_to_map(body.position)))
+			#print("El actor es: ",actor," posicion: ",Global.board.local_to_map(actor.global_position), " del equipo: ",actor.team," y detecto a: ", body, body.team, " en posicion ", Global.board.local_to_map(body.global_position))
+			#print(pieces_in_range)
+	#if body is Piece and body.team == actor.team:
+		#if body not in pieces_in_range:
+			#pieces_in_range.append(body)
+			#actor.posiciones_de_skill_range.append(Vector2(Global.board.local_to_map(body.position)))
 			
 
 func _on_skill_area_body_exited(body):
 	if body in pieces_in_range:
 			pieces_in_range.erase(body)
-			actor.posiciones_de_skill_range.erase(Global.board.local_to_map(body.position))
+			

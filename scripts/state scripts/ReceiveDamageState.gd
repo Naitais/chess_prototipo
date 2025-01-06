@@ -13,7 +13,7 @@ func receive_damage() -> void:
 	
 	
 	if  Input.is_action_just_pressed("left_click") and check_attack_is_legal():
-		
+		print(actor)
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
 		#pieza atacante
@@ -55,7 +55,7 @@ func receive_damage() -> void:
 				
 				
 		
-		if pos_actual in actor.posiciones_de_skill_range and pieza_atacante.isCastingSkill:
+		if actor in pieza_atacante.active_skill.pieces_in_range and pieza_atacante.isCastingSkill:
 			
 			#si la skill es fisico melee
 			if pieza_atacante.active_skill.tipo == "fisico_melee":
@@ -66,7 +66,12 @@ func receive_damage() -> void:
 				actor.aplicar_daño(skill_damage, "fisico")
 					
 			elif pieza_atacante.active_skill.tipo == "buff_debuff_rango":
-				print("dow")
+				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+				
+				#seteo la pieza objetivo de la skill puede ser aliada o enemigo
+				pieza_atacante.active_skill._pieza = actor
+				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
+				
 		
 		
 		#await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada

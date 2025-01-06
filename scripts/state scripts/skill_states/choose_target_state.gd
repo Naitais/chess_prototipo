@@ -4,6 +4,7 @@ extends State
 
 @export var button: Button
 @export var skill: ActiveSkill
+@export var skill_area: Area2D
 
 signal skill_deactivated
 signal skill_executed
@@ -23,6 +24,7 @@ func show_button() -> void:
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	skill.actor.isCastingSkill = true
+	skill_area.monitoring = true
 	set_physics_process(true)
 	
 func _exit_state() -> void:

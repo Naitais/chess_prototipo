@@ -10,6 +10,7 @@ light_mask = 1
 visibility_layer = 1
 z_index = 1
 script = ExtResource("2_h2p6m")
+max_health = 1
 active_skill = NodePath("skills/shield_bash")
 
 [node name="Sprite2D" parent="." index="1"]

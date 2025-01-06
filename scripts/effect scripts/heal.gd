@@ -11,5 +11,10 @@ func _process(delta):
 
 func activate_effect() -> void:
 	if !is_active:
-		modify_piece_stat("health")
-		is_active = true
+		if actor.health < actor.max_health:
+			modify_piece_stat("health")
+			is_active = true
+		else:
+			print("no se puede agregar punto de vida si ya tiene el maximo")
+			queue_free()
+		#TODO creo que aca tendria que hacerle un queue free

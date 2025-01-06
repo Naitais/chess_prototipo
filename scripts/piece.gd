@@ -12,7 +12,8 @@ class_name Piece
 #ESTADISTICAS
 @export var physical_damage: int
 @export var magic_damage: int
-@export var health: int
+var health: int
+@export var max_health: int
 @export var armor: int
 @export var magic_shield: int
 @export var  active_skill: ActiveSkill
@@ -48,6 +49,7 @@ var posiciones_de_skill_range: Array
 func _ready():
 	jugador = get_parent().get_parent() #por el momento lo asigno asi
 	
+	health = max_health #seteo la salud como la salud maximo una sola vez al inicio
 	inactive_piece_state.piece_hovered.connect(state_machine.change_state.bind(select_piece_state))
 	inactive_piece_state.piece_is_target.connect(state_machine.change_state.bind(receive_damage_state))
 	receive_damage_state.piece_not_hovered.connect(state_machine.change_state.bind(inactive_piece_state))
@@ -80,7 +82,12 @@ func _on_piece_area_mouse_entered():
 	#entonces es porque estoy buscando un objetivo para atacar
 	if isActive == false and Global.selected_piece and team != Global.selected_piece.team:
 		inactive_piece_state.emit_signal("piece_is_target")
-		
+	
+	#tengo que revisar esto porque es una bosta, creo que las active skills deberian
+	#tener sus propios metodos para activarse con los clicks pero bueno tengo que revisar
+	elif isActive == false and Global.selected_piece and Global.selected_piece.active_skill.tipo == "buff_debuff_rango" and Global.selected_piece.isCastingSkill:
+		print("adsasdqad")
+		inactive_piece_state.emit_signal("piece_is_target")
 		
 func _on_piece_area_mouse_exited():
 	#solo envio señal cuando la pieza esta inactiva sino cuando

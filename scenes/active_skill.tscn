@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtnyhsyeyk6mv"]
+[gd_scene load_steps=6 format=3 uid="uid://dtnyhsyeyk6mv"]
 
 [ext_resource type="Script" path="res://scripts/skill.gd" id="1_dcsas"]
 [ext_resource type="Script" path="res://scripts/state scripts/State Machine.gd" id="2_cjvxv"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/choose_target_state.gd" id="3_5y0iy"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/inactive_skill_state.gd" id="4_t21to"]
 [ext_resource type="Script" path="res://scripts/state scripts/skill_states/execute_skill_state.gd" id="5_li3ky"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7i57"]
-size = Vector2(175, 49.125)
 
 [node name="active_skill" type="Node2D"]
 script = ExtResource("1_dcsas")
@@ -24,16 +21,18 @@ offset_bottom = 23.0
 script = ExtResource("2_cjvxv")
 state = NodePath("InactiveSkillState")
 
-[node name="ChooseTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill")]
+[node name="ChooseTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "skill_area")]
 script = ExtResource("3_5y0iy")
 button = NodePath("../../control_button/skill_button")
 skill = NodePath("../..")
+skill_area = NodePath("../../skillArea")
 
-[node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "button_control")]
+[node name="InactiveSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "button_control", "skill_area")]
 script = ExtResource("4_t21to")
 button = NodePath("../../control_button/skill_button")
 skill = NodePath("../..")
 button_control = NodePath("../../control_button")
+skill_area = NodePath("../../skillArea")
 
 [node name="ExecuteSkillState" type="Node" parent="StateMachine" node_paths=PackedStringArray("button", "skill", "skill_name_lbl")]
 script = ExtResource("5_li3ky")
@@ -70,11 +69,7 @@ text = "prueba"
 [node name="skillArea" type="Area2D" parent="."]
 collision_layer = 3
 collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skillArea"]
-position = Vector2(296, 219)
-shape = SubResource("RectangleShape2D_b7i57")
-debug_color = Color(0.119448, 0.638243, 0.317413, 0.42)
+monitoring = false
 
 [connection signal="mouse_entered" from="control_button/skill_button" to="." method="_on_skill_button_mouse_entered"]
 [connection signal="mouse_exited" from="control_button/skill_button" to="." method="_on_skill_button_mouse_exited"]

@@ -36,7 +36,9 @@ func modify_piece_stat(stat_type: String) -> void:
 	match stat_type:
 		
 		"health": actor.health += stat_mod_num
-	
+		
+		"max_health": actor.max_health += stat_mod_num
+		
 		"armor": actor.armor += stat_mod_num
 		
 		"physical_damage": actor.physical_damage += stat_mod_num

@@ -5,3 +5,6 @@
 
 [node name="heal" instance=ExtResource("1_hyuu8")]
 script = ExtResource("2_kfwng")
+nombre = "heal"
+descripcion = "Heal piece by 1."
+stat_mod_num = 1

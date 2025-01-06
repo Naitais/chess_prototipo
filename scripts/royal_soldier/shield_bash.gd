@@ -12,3 +12,9 @@ func _process(delta):
 	
 
 	
+#func _on_skill_area_body_entered(body):
+#	if body is Piece:
+#		print(body)
+		#if body not in pieces_in_range:
+		#	pieces_in_range.append(body)
+		#	actor.posiciones_de_skill_range.append(Vector2(Global.board.local_to_map(body.position)))

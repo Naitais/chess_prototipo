@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bge7krvalhedv"]
+[gd_scene load_steps=5 format=3 uid="uid://bge7krvalhedv"]
 
 [ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_meqbd"]
 [ext_resource type="Script" path="res://scripts/royal_priest/salvation_prayer.gd" id="2_8eewa"]
 [ext_resource type="Texture2D" uid="uid://bygcvmw3jfes7" path="res://resources/royal_priest/skill_icon/salvation_prayer.png" id="3_w0rhc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y7b3"]
+size = Vector2(291, 292)
 
 [node name="salvation_prayer" instance=ExtResource("1_meqbd")]
 script = ExtResource("2_8eewa")
@@ -15,3 +18,8 @@ tipo = "buff_debuff_rango"
 
 [node name="skill_button" parent="control_button" index="0"]
 icon = ExtResource("3_w0rhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skillArea" index="0"]
+position = Vector2(32, 38)
+shape = SubResource("RectangleShape2D_2y7b3")
+debug_color = Color(0.314701, 0.618851, 0.275203, 0.42)

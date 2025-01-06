@@ -4,6 +4,7 @@ extends State
 @export var button: Button
 @export var skill: ActiveSkill
 @export var button_control: Control
+@export var skill_area: Area2D
 
 signal skill_activated
 
@@ -26,7 +27,7 @@ func show_button() -> void:
 func _enter_state() -> void:
 	hide_button()
 	#solo se activa cuando entro al state wander
-	
+	skill_area.monitoring = false
 	#skill.actor.deselect_piece_no_click()
 	skill.actor.isCastingSkill = false
 	set_physics_process(true)
