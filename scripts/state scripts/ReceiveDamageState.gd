@@ -13,7 +13,6 @@ func receive_damage() -> void:
 	
 	
 	if  Input.is_action_just_pressed("left_click") and check_attack_is_legal():
-		print(actor)
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
 		#pieza atacante

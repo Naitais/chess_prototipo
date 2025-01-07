@@ -11,6 +11,7 @@ class_name ActiveSkill
 @export var initial_turn_cooldown: int
 @export var on_cooldown: bool = false
 @export var effect_list: Array
+@export var matrix_range: Vector2
 #tipos de active skill para determinar como funcionan:
 	#fisico_melee -> se activa desde el ReceiveDamageState de piece
 	#buff_debuff_rango
@@ -44,6 +45,9 @@ var choosing_target: bool = false
 #habilidad de daño fisico/magico distancia
 #buff/debuff
 #otras (movimiento de piezas, invocacion de unidades, etc)
+
+#TODO agregar que el area 2d del rango de la habilidad cree squares de la misma forma 
+#que lo hace el movimiento de las piezas
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -134,6 +138,7 @@ func deactivate_casting() -> void:
 		choose_target_state.emit_signal("skill_deactivated")
 
 
+	
 
 
 func _on_skill_button_pressed():
@@ -150,6 +155,7 @@ func _on_skill_button_mouse_exited():
 
 
 func _on_skill_area_body_entered(body):
+	
 	if body is Piece and body.team != actor.team:
 		if body not in pieces_in_range:
 			pieces_in_range.append(body)

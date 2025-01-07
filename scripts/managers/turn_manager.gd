@@ -58,6 +58,6 @@ func cooling_down_skills(jugador: Jugador) -> void:
 		if piece.active_skill and piece.active_skill.on_cooldown:
 			if piece.active_skill.turn_cooldown > 0:
 				piece.active_skill.turn_cooldown -= 1
-				print(piece.active_skill.turn_cooldown)
+				
 			
 			

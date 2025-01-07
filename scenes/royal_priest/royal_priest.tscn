@@ -8,9 +8,10 @@
 [node name="royal_priest" node_paths=PackedStringArray("active_skill") instance=ExtResource("1_so8j6")]
 light_mask = 1
 visibility_layer = 1
+y_sort_enabled = false
 script = ExtResource("2_2bofs")
 physical_damage = 1
-max_health = 2
+max_health = 3
 active_skill = NodePath("skills/salvation_prayer")
 
 [node name="Sprite2D" parent="." index="1"]

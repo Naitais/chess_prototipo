@@ -13,14 +13,19 @@ gold = 250
 [node name="piezas" type="Node2D" parent="."]
 
 [node name="royal_soldier" parent="piezas" instance=ExtResource("8_nvywv")]
+y_sort_enabled = false
 
 [node name="royal_soldier2" parent="piezas" instance=ExtResource("8_nvywv")]
+y_sort_enabled = false
 
 [node name="royal_soldier3" parent="piezas" instance=ExtResource("8_nvywv")]
+y_sort_enabled = false
 
 [node name="royal_priest" parent="piezas" instance=ExtResource("3_388th")]
+y_sort_enabled = false
 
 [node name="royal_priest2" parent="piezas" instance=ExtResource("3_388th")]
+y_sort_enabled = false
 
 [node name="mana_lbl" type="Label" parent="."]
 offset_left = 517.0

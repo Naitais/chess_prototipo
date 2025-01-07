@@ -15,13 +15,28 @@ var king_check: bool = false
 #implementar check del rey (el rey esta en check si esta al alcance de una pieza tanto en mov como en pos of)
 #implementar enroque (castling)
 
-#TODO ARREGLAR LAS SKILLS QUEDO TODO COMO LA MIERDA EL TEMA DEL RANGO DE LAS HABILIDADES
-#SHIELD BASH YA NO FUNCIONA
 
 #TODO conclusion, quedo bien lo de los efectos pero tengo que reescribir como funciona las passive skills
 #para que implemente el mismo sistema que la active skill. Fue un error no armar una clase padre skill
 #para que luego salgan las subclases passive skill y active skill pero bueno ahi veo que onda
 
+#utilizar un area 2d en la pieza que debe detectar piezas a su lado es mucho mas facil
+
+#esto podria haberme solucionado la vida para lo que seria el movimiento de piezas
+
+#para facilitar como armar la habilidad pasiva del peon tener como opcion
+#crear un efecto que accione efectos, o sea activar un efecto que su efecto
+#sea agregar un efecto menor a piezas que se encuentren alrededor de la pieza que
+#activo el efecto de area. De esta forma puedo crear otros efectos mas complejos
+#como por ejemplo una habilidad en cadena que tome una pieza aleatoria que este cerca
+#de la pieza que acciona el efecto
+
+#TODO el dia que haga esto en serio es vital que cree un diccionario enorme o json con todo
+#el texto que se muestra dentro edl juego asi puedo facilmente agregar
+#distintos idiomas facilmente no solo por la facilidad de acceder a los idiomas
+#sino porque puedo traducirlo rapido y sin mucho esfuerzo usando ia y asi agregar muchos
+#idiomas aunque claro probablemente tenga errores a menos que conoza el idioma al nivel que
+#entiendo ingles o español
 
 #tengo que terminar de pensar como voy a trabajar lo de los states
 
