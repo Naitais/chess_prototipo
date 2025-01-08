@@ -24,6 +24,7 @@ sources/1 = SubResource("TileSetAtlasSource_6dcve")
 size = Vector2(512, 512)
 
 [node name="board" type="TileMap"]
+z_index = -2
 tile_set = SubResource("TileSet_hw3vl")
 rendering_quadrant_size = 64
 format = 2
