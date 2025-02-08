@@ -58,7 +58,6 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	#directamente lo voy a acomodar desde aca en la esquina inferior izq con anchors
 	#skill_button.global_position = UiManager.active_skill_panel.global_position
 	deactivate_casting()
