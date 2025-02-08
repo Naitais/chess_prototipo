@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds5ukuebu0ov0"]
+[gd_scene load_steps=5 format=3 uid="uid://ds5ukuebu0ov0"]
 
 [ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_ntx8i"]
 [ext_resource type="Script" path="res://scripts/royal_soldier/shield_bash.gd" id="2_j0e7t"]
 [ext_resource type="Texture2D" uid="uid://bapmesk17qjmm" path="res://resources/royal_soldier/skill_icon/shield_bash.png" id="3_3whjk"]
-[ext_resource type="PackedScene" uid="uid://b1wxhp2n7w14c" path="res://scenes/square.tscn" id="4_0luns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytq7w"]
 size = Vector2(175.664, 56.125)
@@ -17,12 +16,6 @@ description = "Deal 1 damage and increase armor by 1."
 initial_turn_cooldown = 2
 effect_list = ["shield"]
 tipo = "fisico_melee"
-
-[node name="skill_name_lbl" parent="." index="0"]
-visible = false
-
-[node name="skill_description_lbl" parent="." index="1"]
-visible = false
 
 [node name="control_button" parent="." index="3"]
 offset_right = 91.0
@@ -49,17 +42,3 @@ offset_bottom = 49.0
 position = Vector2(31, -33)
 shape = SubResource("RectangleShape2D_ytq7w")
 debug_color = Color(0.160784, 0.631373, 0.0941176, 0.419608)
-
-[node name="skill_range_squares" type="Node2D" parent="." index="5"]
-
-[node name="square" parent="skill_range_squares" index="0" instance=ExtResource("4_0luns")]
-position = Vector2(-33, -33)
-is_skill_square = true
-
-[node name="square2" parent="skill_range_squares" index="1" instance=ExtResource("4_0luns")]
-position = Vector2(30, -33)
-is_skill_square = true
-
-[node name="square3" parent="skill_range_squares" index="2" instance=ExtResource("4_0luns")]
-position = Vector2(95, -33)
-is_skill_square = true

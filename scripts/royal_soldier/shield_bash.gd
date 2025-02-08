@@ -1,5 +1,6 @@
 extends ActiveSkill
 @onready var collision_shape_2d = $skillArea/CollisionShape2D
+#@onready var skill_range_squares = $skill_range_squares
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,11 +11,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
-	set_col_shape_pos()
-func set_col_shape_pos() -> void:
+	set_skill_range_pos()
+
+func set_skill_range_pos() -> void:
 	if actor.team == "red" and collision_shape_2d.position.y != 99:
 		collision_shape_2d.position.y = 99
-	
+		#skill_range_squares.position.y = 129 #(2,129)
 	
 #func _on_skill_area_body_entered(body):
 #	if body is Piece:

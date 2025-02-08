@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2o4bgx1gss0i"]
+
+[ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_e6ee6"]
+[ext_resource type="Texture2D" uid="uid://com6iwrcfjmd8" path="res://resources/royal_knight/skill_icon/charge.png" id="2_6cktc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyt2f"]
+size = Vector2(99, 89)
+
+[node name="charge" instance=ExtResource("1_e6ee6")]
+mana_cost = 2
+damage = 2
+skill_name = "Charge"
+description = "Move up to one space and target an enemy piece. The piece is hit by 2 damage and is pushed back 1 space."
+initial_turn_cooldown = 3
+tipo = "fisico_melee"
+
+[node name="skill_button" parent="control_button" index="0"]
+icon = ExtResource("2_6cktc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skillArea" index="0"]
+position = Vector2(39.5, 34.5)
+shape = SubResource("RectangleShape2D_dyt2f")

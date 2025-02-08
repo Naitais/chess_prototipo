@@ -25,6 +25,7 @@ collision_layer = 2
 collision_mask = 2
 input_pickable = true
 script = ExtResource("1_n3k7r")
+max_health = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(32, 32)
@@ -37,8 +38,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ypukh")
 
 [node name="piece_area" type="Area2D" parent="."]
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 2
+collision_priority = 3.0
+priority = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="piece_area"]
 position = Vector2(32, 32)

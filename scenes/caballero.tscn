@@ -7,8 +7,9 @@
 [node name="caballero" instance=ExtResource("1_h5n6l")]
 script = ExtResource("2_vkwv5")
 movement = 3
-physical_damage = 3
-health = 3
+physical_damage = 2
+max_health = 3
+armor = 1
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_757vx")

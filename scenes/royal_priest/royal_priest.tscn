@@ -18,5 +18,10 @@ active_skill = NodePath("skills/salvation_prayer")
 scale = Vector2(1, 1)
 texture = ExtResource("3_d7kas")
 
+[node name="piece_area" parent="." index="2"]
+y_sort_enabled = false
+collision_priority = 1.0
+priority = 0
+
 [node name="salvation_prayer" parent="skills" index="0" node_paths=PackedStringArray("actor") instance=ExtResource("4_3tyb0")]
 actor = NodePath("../..")

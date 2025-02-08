@@ -10,9 +10,8 @@ class_name Jugador
 @onready var mana_lbl = $mana_lbl
 @onready var extra_mana_lbl = $extra_mana_lbl
 
-
 #VARIABLES DE ACCIONES DEL TURNO si ambas vars son true, automaticamente se pasa el turno
-#si ya se ataco o se movio no se puede vovler a hacer hasta el proximo turno
+#si ya se ataco o se movio no se puede vovler  hacer hasta el proximo turno
 #var ataque_realizado: bool = false
 #var pieza_movida: bool = false
 
@@ -26,6 +25,7 @@ func _ready():
 	
 func set_team() -> void:
 	for piece in piezas.get_children():
+		
 		piece.team = self.team
 
 func arrange_pieces(team: String) -> void:
@@ -73,6 +73,9 @@ func arrange_pieces(team: String) -> void:
 				
 				else:
 					piece.global_position = Vector2(6,0) * 64
+					
+					
+					
 				
 			#equipo azul
 			elif team == "blue":

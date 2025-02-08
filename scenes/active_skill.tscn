@@ -10,12 +10,14 @@
 script = ExtResource("1_dcsas")
 
 [node name="skill_name_lbl" type="Label" parent="."]
-offset_right = 40.0
+offset_right = 1.0
 offset_bottom = 23.0
+mouse_filter = 1
 
 [node name="skill_description_lbl" type="Label" parent="."]
-offset_right = 40.0
+offset_right = 1.0
 offset_bottom = 23.0
+mouse_filter = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 script = ExtResource("2_cjvxv")
@@ -62,14 +64,15 @@ focus_mode = 0
 
 [node name="cooldown_countdown_lbl" type="Label" parent="control_button"]
 layout_mode = 0
-offset_right = 56.0
+offset_right = 1.0
 offset_bottom = 23.0
-text = "prueba"
 
 [node name="skillArea" type="Area2D" parent="."]
 collision_layer = 7
 collision_mask = 7
+collision_priority = 3.0
 monitoring = false
+priority = 3
 
 [connection signal="mouse_entered" from="control_button/skill_button" to="." method="_on_skill_button_mouse_entered"]
 [connection signal="mouse_exited" from="control_button/skill_button" to="." method="_on_skill_button_mouse_exited"]

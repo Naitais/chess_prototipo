@@ -11,12 +11,16 @@ visibility_layer = 1
 z_index = 1
 y_sort_enabled = false
 script = ExtResource("2_h2p6m")
-max_health = 1
 active_skill = NodePath("skills/shield_bash")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(1, 1)
 texture = ExtResource("3_wglxw")
+
+[node name="piece_area" parent="." index="2"]
+y_sort_enabled = false
+collision_priority = 1.0
+priority = 0
 
 [node name="shield_bash" parent="skills" index="0" node_paths=PackedStringArray("actor") instance=ExtResource("5_kuoft")]
 actor = NodePath("../..")

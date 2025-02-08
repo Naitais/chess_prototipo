@@ -124,7 +124,7 @@ func set_movement_tiles() -> void:
 			#por cada posicion final se agrega una instancia de square y se le asigna una de las posiciones
 			var valid_positions: Array = []
 			for pos in positions:
-				if pos_is_inside_map(pos) and is_path_clear(Global.board.local_to_map(pos)):
+				if is_path_clear(Global.board.local_to_map(pos)):
 					valid_positions.append(pos)
 			for pos in valid_positions:
 				square_instance.position = pos
@@ -154,12 +154,12 @@ func set_invisible_squares() -> void:
 		square.visible = false
 
 #reviso si las ubicaciones para movimientos estan afuera o dentro del mapa
-func pos_is_inside_map(position) -> bool:
-	var converted_pos: Vector2 = Global.board.local_to_map(position)
-	if converted_pos in Global.tilemap_positions:
-		return true
+#func pos_is_inside_map(position) -> bool:
+#	var converted_pos: Vector2 = Global.board.local_to_map(position)
+#	if converted_pos in Global.tilemap_positions:
+#		return true
 			
-	return false
+#	return false
 			
 
 #funcion que evita movimientos ilegales

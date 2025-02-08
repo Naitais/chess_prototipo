@@ -1,7 +1,6 @@
 extends Node2D
 class_name ActiveSkill
 
-
 @export var mana_cost: int
 @export var damage: int
 @export var skill_name: String
@@ -59,6 +58,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	#directamente lo voy a acomodar desde aca en la esquina inferior izq con anchors
 	#skill_button.global_position = UiManager.active_skill_panel.global_position
 	deactivate_casting()
@@ -138,14 +138,13 @@ func deactivate_casting() -> void:
 		choose_target_state.emit_signal("skill_deactivated")
 
 
-	
-
 
 func _on_skill_button_pressed():
 	inactive_skill_state.emit_signal("skill_activated")
 
 
 func _on_skill_button_mouse_entered():
+	print("mouse entro")
 	skill_description_lbl.position = skill_button.position
 	skill_description_lbl.visible = true
 

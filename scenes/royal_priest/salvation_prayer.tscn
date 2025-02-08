@@ -19,6 +19,9 @@ tipo = "buff_debuff_rango"
 [node name="skill_button" parent="control_button" index="0"]
 icon = ExtResource("3_w0rhc")
 
+[node name="skillArea" parent="." index="4"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skillArea" index="0"]
 position = Vector2(32, 38)
 shape = SubResource("RectangleShape2D_2y7b3")

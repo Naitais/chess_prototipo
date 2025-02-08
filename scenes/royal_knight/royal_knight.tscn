@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://djbgncgumklch"]
+
+[ext_resource type="PackedScene" uid="uid://cwemggqjy3icr" path="res://scenes/caballero.tscn" id="1_ul34m"]
+[ext_resource type="Texture2D" uid="uid://bqasvtde8ewq3" path="res://resources/royal_knight/caballo.png" id="2_ftkqe"]
+[ext_resource type="Script" path="res://scripts/royal_knight/royal_knight.gd" id="2_uvbm8"]
+[ext_resource type="PackedScene" uid="uid://d2o4bgx1gss0i" path="res://scenes/royal_knight/charge.tscn" id="4_06mh8"]
+
+[node name="royal_knight" node_paths=PackedStringArray("active_skill") instance=ExtResource("1_ul34m")]
+z_index = 1
+y_sort_enabled = false
+script = ExtResource("2_uvbm8")
+max_health = 5
+active_skill = NodePath("skills/charge")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ftkqe")
+
+[node name="charge" parent="skills" index="0" node_paths=PackedStringArray("actor") instance=ExtResource("4_06mh8")]
+actor = NodePath("../..")

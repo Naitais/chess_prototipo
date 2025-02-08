@@ -85,7 +85,9 @@ func _on_piece_area_mouse_entered():
 	
 	#tengo que revisar esto porque es una bosta, creo que las active skills deberian
 	#tener sus propios metodos para activarse con los clicks pero bueno tengo que revisar
+	
 	elif isActive == false and Global.selected_piece and Global.selected_piece.active_skill.tipo == "buff_debuff_rango" and Global.selected_piece.isCastingSkill:
+		print("asd")
 		inactive_piece_state.emit_signal("piece_is_target")
 		
 func _on_piece_area_mouse_exited():

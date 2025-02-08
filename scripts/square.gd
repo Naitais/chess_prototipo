@@ -13,6 +13,9 @@ func _ready():
 func _process(delta):
 	show_or_hide_square()
 	change_colour()
+	pos_is_inside_map(self.position)
+	if !Global.selected_piece:
+		queue_free()
 	
 func change_colour() -> void:
 	if is_skill_square:
@@ -31,7 +34,17 @@ func show_or_hide_square() -> void:
 		
 		if !is_skill_square and Global.selected_piece.isCastingSkill:
 			queue_free()
+		
+		
+#reviso si las ubicaciones para movimientos estan afuera o dentro del mapa
+func pos_is_inside_map(position) -> void:
+	var converted_pos: Vector2 = Global.board.local_to_map(global_position)
+	if converted_pos not in Global.tilemap_positions:
+		queue_free()
+			
 
+		
+	
 
 func _on_detect_piece_body_entered(body):
 	if body is Piece and !is_skill_square:
