@@ -65,6 +65,7 @@ func _process(delta):
 	set_button_pos()
 	reset_cooldown()
 	show_cooldown_countdown()
+	#deactivate_skill()
 	#hide_or_show_skill_button()
 
 #el efecto que realiza la habilidad
@@ -113,6 +114,13 @@ func show_cooldown_countdown() -> void:
 		cooldown_countdown_lbl.visible = false
 	
 
+func deactivate_skill() -> void:
+	if actor:
+		if !actor.isActive:
+			self.visible = false
+		else:
+			self.visible = true
+			
 func hide_or_show_skill_button() -> void:
 	if actor:
 		if actor.isCastingSkill:
@@ -144,7 +152,6 @@ func _on_skill_button_pressed():
 
 
 func _on_skill_button_mouse_entered():
-	print("mouse entro")
 	skill_description_lbl.position = skill_button.position
 	skill_description_lbl.visible = true
 
