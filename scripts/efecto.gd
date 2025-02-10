@@ -12,7 +12,6 @@ class_name Efecto
 @export var actor: Piece #pieza que es afectada por el efecto
 @export var is_active: bool = false
 
-
 #state machine
 @onready var state_machine = $StateMachine as StateMachine
 @onready var inactive_effect_state = $StateMachine/InactiveEffectState as InactiveEffectState

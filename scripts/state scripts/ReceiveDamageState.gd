@@ -4,6 +4,8 @@ extends State
 @export var actor = CharacterBody2D
 @export var sprite = Sprite2D
 
+
+
 signal piece_not_hovered
 signal piece_attack_finished
 
@@ -91,9 +93,23 @@ func move_piece_to_killed_piece_pos(killed_piece_pos: Vector2, attacker: Piece) 
 
 #uso metodo para checkear is es legal el ataque para no tener todo amontonado
 func check_attack_is_legal() -> bool:
-	return Global.selected_piece \
-		   and Global.selected_piece.jugador.mana >= 1 \
-		   and Global.selected_piece.jugador.team == TurnManager.turn
+	#pieza atacante
+	var pieza_atacante: Piece = Global.selected_piece
+	var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+	var total_player_mana: int = pieza_atacante.jugador.mana + pieza_atacante.jugador.extra_mana
+	
+	if pieza_atacante.isCastingSkill:
+		return pieza_atacante \
+				#si estoy casteando una skill fisica comparo aca
+				#para comparar si me alcanza el mana de la habilidad
+				#activa
+			   and total_player_mana >= skill_mana_cost \
+			   and pieza_atacante.jugador.team == TurnManager.turn
+	else:
+		return pieza_atacante \
+				#aca solo comparo si tengo al menos 1 de mana porque los ataques
+			   and pieza_atacante.jugador.mana >= 1 \
+			   and pieza_atacante.jugador.team == TurnManager.turn
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
