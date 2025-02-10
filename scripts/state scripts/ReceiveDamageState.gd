@@ -15,6 +15,11 @@ func receive_damage() -> void:
 	
 	
 	if  Input.is_action_just_pressed("left_click") and check_attack_is_legal():
+		
+		#pieza objetivo
+		if !Global.target_piece:
+			Global.target_piece = actor
+		
 		#daño realizado lo saco del attack damage de la pieza que ataca
 		var damage_taken: int = Global.selected_piece.physical_damage
 		#pieza atacante
@@ -73,8 +78,8 @@ func receive_damage() -> void:
 				pieza_atacante.active_skill._pieza = actor
 				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				
-		
-		
+	#seteo null cuando termino el ataque
+	Global.target_piece = null
 		#await get_tree().create_timer(1.0).timeout #espero un segundo para mostrar label de skill casteada
 		#despues de atacar deselecciono
 		

@@ -11,6 +11,7 @@ class_name ActiveSkill
 @export var on_cooldown: bool = false
 @export var effect_list: Array
 @export var matrix_range: Vector2
+@export var destination_pos: Vector2
 #tipos de active skill para determinar como funcionan:
 	#fisico_melee -> se activa desde el ReceiveDamageState de piece
 	#buff_debuff_rango
@@ -91,6 +92,11 @@ func add_effect() -> void:
 	else:
 		actor.set_stats()
 
+#en caso de realizar acciones extras
+#cada skill debera extender su script, heredar del padre
+#y sobreescribir este metodo
+func skill_action() -> void:
+	pass
 
 func set_labels_text() -> void:
 	skill_name_lbl.text = skill_name

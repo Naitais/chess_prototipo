@@ -29,6 +29,7 @@ func show_skill_name_when_cast() -> void:
 
 
 func _enter_state() -> void:
+	skill.skill_action()
 	#solo se activa cuando entro al state wander
 	skill.actor.jugador.deplete_mana(skill.mana_cost)
 	skill.add_effect()

@@ -2,6 +2,7 @@ extends Node
 
 
 var selected_piece: Piece
+var target_piece: Piece
 var tilemap_positions: Array = []
 var occupied_positions: Array = []
 var pieces_on_board: Array = []
