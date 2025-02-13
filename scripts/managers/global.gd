@@ -9,6 +9,7 @@ var pieces_on_board: Array = []
 var board: TileMap = null
 var game_end: bool = false
 var king_check: bool = false
+var pieces_on_board_dict: Dictionary = {}
 
 #TODO
 #implementar tooltip
@@ -102,7 +103,20 @@ func exit() -> void:
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
 
+#mantengo diccionario actualizado con piezas y su ubicacion en el board
+func update_pieces_dict() -> void:
+	for key in pieces_on_board_dict.keys():
+		if not is_instance_valid(key):
+			pieces_on_board_dict.erase(key)  # Remove freed object
+	
+	for piece in pieces_on_board:
+		if piece not in pieces_on_board_dict.keys():
+			pieces_on_board_dict[piece] = Vector2(board.local_to_map(piece.position))
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	update_pieces_dict()
+			
+	
 	exit()
 	
