@@ -12,6 +12,7 @@ class_name ActiveSkill
 @export var effect_list: Array
 @export var matrix_range: Vector2
 @export var destination_pos: Vector2
+@export var path_blocked: bool = false
 #tipos de active skill para determinar como funcionan:
 	#fisico_melee -> se activa desde el ReceiveDamageState de piece
 	#buff_debuff_rango
@@ -91,7 +92,7 @@ func cast_skill() -> void:
 		#var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
 		
 		#seteo la pieza objetivo de la skill puede ser aliada o enemigo
-		_pieza = target_piece
+		_pieza = Global.target_piece
 		choose_target_state.emit_signal("skill_executed")
 
 #salvation prayer ya se ejecuta ahora solo me queda pasar la pieza a este metodo cuando lo llamo

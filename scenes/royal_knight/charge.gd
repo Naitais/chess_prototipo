@@ -11,7 +11,24 @@ func _process(delta):
 func skill_action() -> void:
 	#falta agregar empuje
 	start_move_tween(calculate_final_pos(Global.target_piece.position))
+
+func cast_skill() -> void:
+	var final_pos = calculate_final_pos(Global.target_piece.position)
 	
+	if not is_path_clear(final_pos):
+		print("Skill blocked: path is not clear")
+		return  # Exit the function early
+
+	# If path is clear, proceed with casting
+	if actor.active_skill.tipo == "fisico_melee":
+		actor.active_skill.choose_target_state.emit_signal("skill_executed")
+		Global.target_piece.aplicar_daño(damage, "fisico")
+
+	elif tipo == "buff_debuff_rango":
+		_pieza = Global.target_piece
+		choose_target_state.emit_signal("skill_executed")
+
+	skill_action()
 func start_move_tween(final_pos) -> void:
 	if is_path_clear(final_pos):
 		
@@ -26,6 +43,7 @@ func is_path_clear(final_pos) -> bool:
 
 	for piece in Global.pieces_on_board_dict.keys():
 		if Global.pieces_on_board_dict[piece] == Vector2(final_pos):
+			
 			return false  # Position is occupied
 			
 	return true  # No piece found, path is clear
