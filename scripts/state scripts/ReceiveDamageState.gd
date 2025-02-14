@@ -62,21 +62,21 @@ func receive_damage() -> void:
 				
 		
 		if actor in pieza_atacante.active_skill.pieces_in_range and pieza_atacante.isCastingSkill:
-			
-			#si la skill es fisico melee
-			if pieza_atacante.active_skill.tipo == "fisico_melee":
-				var skill_damage: int = pieza_atacante.active_skill.damage
-				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
-				
-				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
-				actor.aplicar_daño(skill_damage, "fisico")
-					
-			elif pieza_atacante.active_skill.tipo == "buff_debuff_rango":
-				var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
-				
-				#seteo la pieza objetivo de la skill puede ser aliada o enemigo
-				pieza_atacante.active_skill._pieza = actor
-				pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
+			Global.selected_piece.active_skill.cast_skill()
+			##si la skill es fisico melee
+			#if pieza_atacante.active_skill.tipo == "fisico_melee":
+				#var skill_damage: int = pieza_atacante.active_skill.damage
+				#var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+				#
+				#pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
+				#actor.aplicar_daño(skill_damage, "fisico")
+					#
+			#elif pieza_atacante.active_skill.tipo == "buff_debuff_rango":
+				#var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+				#
+				##seteo la pieza objetivo de la skill puede ser aliada o enemigo
+				#pieza_atacante.active_skill._pieza = actor
+				#pieza_atacante.active_skill.choose_target_state.emit_signal("skill_executed")
 				
 	#seteo null cuando termino el ataque
 	Global.target_piece = null

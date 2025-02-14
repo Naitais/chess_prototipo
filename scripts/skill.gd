@@ -75,6 +75,25 @@ func _process(delta):
 #supongo que podria tener distintas versiones de este metodo
 #y solo modificarla segun la habilidad
 
+func cast_skill() -> void:
+	#if actor in pieza_atacante.active_skill.pieces_in_range and pieza_atacante.isCastingSkill:
+	#if target_piece in actor.active_skill.pieces_in_range and actor.isCastingSkill:
+	
+	#si la skill es fisico melee
+	if actor.active_skill.tipo == "fisico_melee":
+		#var skill_damage: int = pieza_atacante.active_skill.damage
+		#var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+		
+		actor.active_skill.choose_target_state.emit_signal("skill_executed")
+		Global.target_piece.aplicar_daño(damage, "fisico")
+			
+	elif tipo == "buff_debuff_rango":
+		#var skill_mana_cost: int = pieza_atacante.active_skill.mana_cost
+		
+		#seteo la pieza objetivo de la skill puede ser aliada o enemigo
+		_pieza = target_piece
+		choose_target_state.emit_signal("skill_executed")
+
 #salvation prayer ya se ejecuta ahora solo me queda pasar la pieza a este metodo cuando lo llamo
 #en el execute skill state
 func add_effect() -> void:
