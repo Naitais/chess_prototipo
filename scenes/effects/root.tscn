@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ema4h8mfcwj"]
+
+[ext_resource type="PackedScene" uid="uid://cx14jjtle6mu8" path="res://scenes/efecto.tscn" id="1_2lx66"]
+[ext_resource type="Script" path="res://scripts/effect scripts/root.gd" id="2_qibxt"]
+
+[node name="root" instance=ExtResource("1_2lx66")]
+script = ExtResource("2_qibxt")
+duracion = 1
+nombre = "Root"
+descripcion = "Piece cannot move this turn"

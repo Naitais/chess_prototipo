@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djgbi3ho3ktqn"]
+
+[ext_resource type="PackedScene" uid="uid://dtnyhsyeyk6mv" path="res://scenes/active_skill.tscn" id="1_4dhav"]
+[ext_resource type="Texture2D" uid="uid://dxg5oi3lu4x21" path="res://resources/royal_tower/skill_icon/fortress.png" id="2_uj1wo"]
+
+[node name="fortress" instance=ExtResource("1_4dhav")]
+mana_cost = 2
+skill_name = "Fortress"
+description = "Grants 4 armor to itself but gain effect root."
+effect_list = [&"root"]
+tipo = "buff"
+
+[node name="skill_button" parent="control_button" index="0"]
+icon = ExtResource("2_uj1wo")

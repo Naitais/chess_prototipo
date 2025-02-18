@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://v36qteennc35"]
+[gd_scene load_steps=6 format=3 uid="uid://v36qteennc35"]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_3fj0r"]
 [ext_resource type="PackedScene" uid="uid://dgvsvwgogjkdg" path="res://scenes/royal_priest/royal_priest.tscn" id="3_388th"]
 [ext_resource type="PackedScene" uid="uid://djbgncgumklch" path="res://scenes/royal_knight/royal_knight.tscn" id="4_f6q1l"]
+[ext_resource type="PackedScene" uid="uid://cr7rqp54rh85q" path="res://scenes/royal_tower/royal_tower.tscn" id="5_5chwx"]
 [ext_resource type="PackedScene" uid="uid://bxkhjp7f17v1d" path="res://scenes/royal_soldier/royal_soldier.tscn" id="8_nvywv"]
 
 [node name="jugador" type="Node2D"]
@@ -26,6 +27,10 @@ gold = 250
 [node name="royal_priest2" parent="piezas" instance=ExtResource("3_388th")]
 
 [node name="royal_knight" parent="piezas" instance=ExtResource("4_f6q1l")]
+
+[node name="royal_tower" parent="piezas" instance=ExtResource("5_5chwx")]
+
+[node name="royal_tower2" parent="piezas" instance=ExtResource("5_5chwx")]
 
 [node name="mana_lbl" type="Label" parent="."]
 offset_left = 517.0

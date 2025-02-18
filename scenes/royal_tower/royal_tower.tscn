@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr7rqp54rh85q"]
+[gd_scene load_steps=5 format=3 uid="uid://cr7rqp54rh85q"]
 
 [ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="1_r6ycs"]
 [ext_resource type="Script" path="res://scripts/royal_tower/royal_tower.gd" id="2_q8q6f"]
+[ext_resource type="Texture2D" uid="uid://imhvghmtamnb" path="res://resources/royal_tower/royal_tower.png" id="3_rl5u7"]
+[ext_resource type="PackedScene" uid="uid://djgbi3ho3ktqn" path="res://scenes/royal_tower/fortress.tscn" id="4_2tdeb"]
 
-[node name="royal_tower" instance=ExtResource("1_r6ycs")]
+[node name="royal_tower" node_paths=PackedStringArray("active_skill") instance=ExtResource("1_r6ycs")]
 script = ExtResource("2_q8q6f")
-movement = 0
-physical_damage = 0
-max_health = 0
+max_health = 5
+active_skill = NodePath("skills/fortress")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_rl5u7")
+
+[node name="fortress" parent="skills" index="0" node_paths=PackedStringArray("actor") instance=ExtResource("4_2tdeb")]
+actor = NodePath("../..")
