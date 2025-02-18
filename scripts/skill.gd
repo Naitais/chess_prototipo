@@ -18,7 +18,7 @@ class_name ActiveSkill
 	#buff_debuff_rango
 	#fisico_rango
 	#magico_rango
-	#buff
+	#self_buff
 	#debuff
 @export var tipo: String
 
@@ -94,7 +94,9 @@ func cast_skill() -> void:
 		#seteo la pieza objetivo de la skill puede ser aliada o enemigo
 		_pieza = Global.target_piece
 		choose_target_state.emit_signal("skill_executed")
-
+	
+	else:
+		print("soy alto pancho")
 #salvation prayer ya se ejecuta ahora solo me queda pasar la pieza a este metodo cuando lo llamo
 #en el execute skill state
 func add_effect() -> void:

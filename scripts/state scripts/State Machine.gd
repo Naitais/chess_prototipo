@@ -14,6 +14,8 @@ func change_state(new_state: State):
 	state = new_state
 
 func _process(delta):
-	#print(state)
+	#if Global.selected_piece:
+		#if self.get_parent() == Global.selected_piece:
+			#print(state)
 	
 	pass

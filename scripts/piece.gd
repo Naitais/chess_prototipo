@@ -72,6 +72,7 @@ func _physics_process(delta):
 	
 	
 func _on_piece_area_mouse_entered():
+	print("sads")
 	
 	#hovereo la pieza que quiero seleccionar para mover
 	if isActive == false:
@@ -85,12 +86,16 @@ func _on_piece_area_mouse_entered():
 	
 	#tengo que revisar esto porque es una bosta, creo que las active skills deberian
 	#tener sus propios metodos para activarse con los clicks pero bueno tengo que revisar
-	
 	elif isActive == false and Global.selected_piece and Global.selected_piece.active_skill.tipo == "buff_debuff_rango" and Global.selected_piece.isCastingSkill:
-		
+		inactive_piece_state.emit_signal("piece_is_target")
+	
+	#esto es para cuando la pieza objetivo es la misma pieza que castea un self buff
+	elif isActive == false and Global.selected_piece and Global.selected_piece.active_skill.tipo == "self_buff" and Global.selected_piece.isCastingSkill:# and self == Global.selected_piece:
+		print("asdasddsssssssss")
 		inactive_piece_state.emit_signal("piece_is_target")
 		
 func _on_piece_area_mouse_exited():
+	
 	#solo envio señal cuando la pieza esta inactiva sino cuando
 	#salgo del area de la pieza me saca del move state 
 	if !isActive:

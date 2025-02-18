@@ -9,6 +9,9 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 
+
+
+
 func activate_effect() -> void:
 	if !is_active:
 		if actor.health < actor.max_health:
