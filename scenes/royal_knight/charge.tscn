@@ -6,6 +6,7 @@
 
 [node name="charge" instance=ExtResource("1_e6ee6")]
 script = ExtResource("2_nswj5")
+mana_cost = 2
 damage = 1
 skill_name = "Charge"
 description = "Move up to one space and target an enemy piece. The piece is hit by 2 damage and is pushed back 1 space."

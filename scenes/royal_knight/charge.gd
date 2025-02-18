@@ -16,6 +16,8 @@ func cast_skill() -> void:
 	var final_pos = calculate_final_pos(Global.target_piece.position)
 	
 	if not is_path_clear(final_pos):
+		#TODO CUANDO EL CABALLO ESTA AL LADO NO ME DEJA TIRA PATH BLOCKED
+		#SEGURO ES PORQUE EL CALCULO COINCIDA Y FLASHA QUE ESTA OCUPADO
 		print("Skill blocked: path is not clear")
 		return  # Exit the function early
 
@@ -40,9 +42,15 @@ func start_move_tween(final_pos) -> void:
 
 func is_path_clear(final_pos) -> bool:
 	final_pos = Global.board.local_to_map(final_pos)  # Ensure we're using map coordinates
-
+	var start_pos: Vector2 = Global.board.local_to_map(actor.position)
+	
+	#para determinar si estoy usando la habilidad al lado de la pieza o no
+	#porque sino considera que si esta al lado el camino esta bloqueado
+	#porque coincide la pos final con la de una pieza
+	var distance: float = start_pos.distance_to(final_pos)
+	
 	for piece in Global.pieces_on_board_dict.keys():
-		if Global.pieces_on_board_dict[piece] == Vector2(final_pos):
+		if Global.pieces_on_board_dict[piece] == Vector2(final_pos) and distance > 0:
 			
 			return false  # Position is occupied
 			

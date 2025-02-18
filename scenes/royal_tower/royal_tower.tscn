@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr7rqp54rh85q"]
+
+[ext_resource type="PackedScene" uid="uid://cx33v0hplatmn" path="res://scenes/rook.tscn" id="1_r6ycs"]
+[ext_resource type="Script" path="res://scripts/royal_tower/royal_tower.gd" id="2_q8q6f"]
+
+[node name="royal_tower" instance=ExtResource("1_r6ycs")]
+script = ExtResource("2_q8q6f")
+movement = 0
+physical_damage = 0
+max_health = 0
