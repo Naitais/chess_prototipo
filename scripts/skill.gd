@@ -97,9 +97,8 @@ func cast_skill() -> void:
 	
 	elif tipo == "self_buff":
 		_pieza = Global.target_piece
-		print(_pieza)
 		choose_target_state.emit_signal("skill_executed")
-		print("soy alto pancho")
+		
 #salvation prayer ya se ejecuta ahora solo me queda pasar la pieza a este metodo cuando lo llamo
 #en el execute skill state
 func add_effect() -> void:

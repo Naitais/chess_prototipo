@@ -52,6 +52,14 @@ func modify_piece_stat(stat_type: String) -> void:
 func activate_effect() -> void:
 	pass
 
+func deactivate_effect_on_cooldown() -> void:
+	if check_round_cooldown():
+		queue_free()
+
+func check_round_cooldown() -> int:
+	print()
+	return true
+
 func send_signal_on_actor_true() -> void:
 	if actor != null:
 		inactive_effect_state.emit_signal("effect_activated")
