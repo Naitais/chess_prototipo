@@ -9,7 +9,6 @@ size = Vector2(58, 58)
 
 [node name="fortress" instance=ExtResource("1_4dhav")]
 script = ExtResource("2_xnr40")
-mana_cost = 2
 skill_name = "Fortress"
 description = "Grants 4 armor to itself but gain effect root."
 effect_list = [&"root", &"shield", &"shield", &"shield", &"shield"]

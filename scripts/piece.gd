@@ -72,7 +72,7 @@ func _physics_process(delta):
 	
 	
 func _on_piece_area_mouse_entered():
-	print("sads")
+	
 	
 	#hovereo la pieza que quiero seleccionar para mover
 	if isActive == false:
@@ -90,8 +90,8 @@ func _on_piece_area_mouse_entered():
 		inactive_piece_state.emit_signal("piece_is_target")
 	
 	#esto es para cuando la pieza objetivo es la misma pieza que castea un self buff
-	elif isActive == false and Global.selected_piece and Global.selected_piece.active_skill.tipo == "self_buff" and Global.selected_piece.isCastingSkill:# and self == Global.selected_piece:
-		print("asdasddsssssssss")
+	elif isActive == true and Global.selected_piece and Global.selected_piece.active_skill.tipo == "self_buff" and Global.selected_piece.isCastingSkill:# and self == Global.selected_piece:
+		print(self)
 		inactive_piece_state.emit_signal("piece_is_target")
 		
 func _on_piece_area_mouse_exited():

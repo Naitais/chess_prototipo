@@ -55,14 +55,10 @@ func receive_damage() -> void:
 				#si la pieza murio, muevo la pieza atacante al lugar de la pieza muerta
 			move_piece_to_killed_piece_pos(pos_actual,Global.selected_piece)
 			Global.selected_piece.deselect_piece_no_click()
-				
 			
-				
-				
-				
+		elif actor in pieza_atacante.active_skill.pieces_in_range and pieza_atacante.isCastingSkill:
+					Global.selected_piece.active_skill.cast_skill()
 		
-		if actor in pieza_atacante.active_skill.pieces_in_range and pieza_atacante.isCastingSkill:
-			Global.selected_piece.active_skill.cast_skill()
 			##si la skill es fisico melee
 			#if pieza_atacante.active_skill.tipo == "fisico_melee":
 				#var skill_damage: int = pieza_atacante.active_skill.damage
