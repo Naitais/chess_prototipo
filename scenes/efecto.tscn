@@ -7,7 +7,6 @@
 
 [node name="efecto" type="Node2D"]
 script = ExtResource("1_kwmbj")
-duracion = 2
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 script = ExtResource("2_y3s1q")
@@ -20,3 +19,6 @@ efecto = NodePath("../..")
 [node name="ActiveEffectState" type="Node" parent="StateMachine" node_paths=PackedStringArray("efecto")]
 script = ExtResource("4_57fja")
 efecto = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1

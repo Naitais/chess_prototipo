@@ -52,13 +52,16 @@ func modify_piece_stat(stat_type: String) -> void:
 func activate_effect() -> void:
 	pass
 
-func deactivate_effect_on_cooldown() -> void:
-	if check_round_cooldown():
-		queue_free()
 
-func check_round_cooldown() -> int:
-	print()
-	return true
+
+func check_round_cooldown() -> bool:
+	print(TurnManager.round_counter+duracion)
+	print(TurnManager.round_counter)
+	if TurnManager.round_counter+duracion < TurnManager.round_counter:
+		queue_free()
+		return true
+	else:
+		return false
 
 func send_signal_on_actor_true() -> void:
 	if actor != null:

@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://0ema4h8mfcwj"]
+[gd_scene load_steps=4 format=3 uid="uid://0ema4h8mfcwj"]
 
 [ext_resource type="PackedScene" uid="uid://cx14jjtle6mu8" path="res://scenes/efecto.tscn" id="1_2lx66"]
 [ext_resource type="Script" path="res://scripts/effect scripts/root.gd" id="2_qibxt"]
+[ext_resource type="Texture2D" uid="uid://b78ao5ara6ndp" path="res://resources/effects/root/root.png" id="3_3pojn"]
 
 [node name="root" instance=ExtResource("1_2lx66")]
 script = ExtResource("2_qibxt")
-duracion = 1
+duracion = 2
 nombre = "Root"
 descripcion = "Piece cannot move this turn"
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(31, 15)
+texture = ExtResource("3_3pojn")
